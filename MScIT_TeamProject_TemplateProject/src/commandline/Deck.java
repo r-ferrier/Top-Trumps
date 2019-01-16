@@ -1,3 +1,5 @@
+package commandline;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,7 +22,7 @@ public class Deck {
     }
 
     /**
-     * reads file line by line. Uses the first line to create categories, and creates a Card object with every line
+     * reads file line by line. Uses the first line to create categories, and creates a commandline.Card object with every line
      * after that, storing these objects in an Arraylist (deck).
      */
     private void readFile(){
@@ -45,7 +47,7 @@ public class Deck {
 
     /**
      * adds a new card object to the deck arraylist
-     * @param nextCard Card object created as file is read
+     * @param nextCard commandline.Card object created as file is read
      */
     private void addCard(Card nextCard){
         deck.add(nextCard);
@@ -71,7 +73,6 @@ public class Deck {
         for (int i = 0; i<5; i++){
             categories[i] = categoriesIncludingDescription[i+1];
         }
-
     }
 
     public ArrayList<Card> getDeck(){
