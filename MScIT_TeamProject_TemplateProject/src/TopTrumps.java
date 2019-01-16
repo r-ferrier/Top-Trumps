@@ -45,5 +45,9 @@ public class TopTrumps {
 		}
 		
 	}
+
+	void rosieFerrierMethod(){
+
+	}
 	
 }
