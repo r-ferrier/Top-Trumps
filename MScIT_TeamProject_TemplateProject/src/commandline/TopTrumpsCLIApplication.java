@@ -3,6 +3,10 @@ package commandline;
 /**
  * Top Trumps command line application
  */
+
+/**
+ * This is Sarah's comment to show that she can commit
+ */
 public class TopTrumpsCLIApplication {
 
 	/**
