@@ -1,6 +1,6 @@
 package online.dwViews;
 
-import io.dropwizard.views.View;
+//import io.dropwizard.views.View;
 
 /**
  * Each HTML page that is specified in GameWebPagesResource first needs a class that extends
@@ -14,12 +14,12 @@ import io.dropwizard.views.View;
  * Note: The HTML/Javascript file is actially a freemarker file (https://freemarker.apache.org/),
  * however we do not expect you to use the additional functionality that freemarker provides.
  */
-public class SelectionScreenView extends View {
-
-	/**
-	 * Simple Constructor method, it simply specifies where the HTML page is to return.
-	 */
-    public SelectionScreenView() {
-        super("SelectionScreen.ftl");
-    }
-}
+//public class SelectionScreenView extends View {
+//
+//	/**
+//	 * Simple Constructor method, it simply specifies where the HTML page is to return.
+//	 */
+//    public SelectionScreenView() {
+//        super("SelectionScreen.ftl");
+//    }
+//}

@@ -25,10 +25,8 @@ public class TopTrumpsCLIApplication {
 		// Loop until the user wants to exit the game
 		while (!userWantsToQuit) {
 
-			// ----------------------------------------------------
-			// Add your game logic here based on the requirements
-			// ----------------------------------------------------
-			
+			GamePlay newGame = new GamePlay();
+
 			userWantsToQuit=true; // use this when the user wants to exit the game
 			
 		}
