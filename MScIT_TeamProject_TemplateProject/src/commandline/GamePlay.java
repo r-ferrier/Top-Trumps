@@ -14,21 +14,13 @@ public class GamePlay {
     private Deck deck;
     private String[] categories;
 
-    public static void main(String[] args){
-
-
-        GamePlay newGamePlay = new GamePlay();
-        newGamePlay.gamePlay();
-
-    }
-
     /**
-     * This will be the constructor for this class. It creates a deck of cards from the file chosen in the commandline.Deck class,
+     * constructor for this class. It creates a deck of cards from the file chosen in the commandline.Deck class,
      * stores the categories for the cards, creates the AI players and begins the game. Once the user has entered their
      * name they're added to an array of players, players are shuffled and have cards dealt to them, and then they can
      * begin to play rounds.
      */
-    private void gamePlay(){
+    public GamePlay(){
 
         createDeck();
         setCategories();
