@@ -32,10 +32,15 @@ public class GamePlay {
 
         dealCardsToPlayers();
 
+        playRound();
+
         /*
         methods to play round and determine winners in here
          */
 
+    }
+    public static void main(String[] args){
+        new GamePlay();
     }
 
     /**
@@ -113,9 +118,59 @@ public class GamePlay {
     }
 
     private void playRound(){
+        chooseCategory();
 
     }
 
+    private void checkActivePlayer(){
+        //Not sure if this should be in GamePlay or the main class but is here for now.
+        //Will be entered in around an if statement (e.g. if player enters 10 call this method)
+
+//        if (scanner.nextInt() == 10) {
+//            System.out.println("Do you want to check the active player?");
+//            System.out.println("Enter 'Y' or 'N':");
+//            if (scanner.next() == 'Y' || scanner.next() == 'y'){
+//               checkActivePlayer();
+//            }
+//        }
+
+        //I've initially set it to be player 0, as I'm assuming this will always be the active player but
+        //we can always change this later. Maybe have a "activePlayer" attribute?
+        String activePlayer = players.get(0).getName();
+        System.out.println(activePlayer + " is the active player.");
+    }
+
+    private void chooseCategory(){
+        Card topCard = players.get(0).getTopCard();
+        String name = players.get(0).getName();
+
+        Scanner categorySelection = new Scanner(System.in);
+
+        if (players.get(0).checkHuman() == true){
+            System.out.println(topCard.toString());
+            System.out.println("Please select your category:");
+            chosenCategory = categorySelection.nextInt();
+        }else {
+            chosenCategory = topCard.findBestCategory();
+        }
+        System.out.println(name + " has chosen category " + chosenCategory + ".");
+    }
+
+    private void checkTopCard(){
+        //Like checkActivePlayer, the if statement below will be placed elsewhere
+        //Unsure currently if we're always have the human as player 0, but for this assuming yes
+        //Can easily change number later
+
+//       if (scanner.nextInt() == 9) {
+//            System.out.println("Do you want to view your top card?");
+//            System.out.println("Enter 'Y' or 'N':");
+//            if (scanner.next() == 'Y' || scanner.next() == 'y'){
+//               checkTopCard();
+//            }
+//        }
+        Card topCard = players.get(0).getTopCard();
+        System.out.println("Your top card is:\n" + topCard.toString());
+    }
     private void decideWinner(){
 
     }
