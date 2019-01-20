@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 public class Deck {
 
     private ArrayList<Card> deck = new ArrayList<>();
     private String[] categories = new String[5];
-    private final String fileName = "StarCitizenDeck.txt";
+    private  String fileName = "StarCitizenDeck.txt";
 
     /**
      * constructor for deck needs to open and read the file. If it can do this successfully, it will pass each line of the file
@@ -44,6 +45,7 @@ public class Deck {
             fileNotFound.printStackTrace();
         }
     }
+
 
     /**
      * adds a new card object to the deck arraylist

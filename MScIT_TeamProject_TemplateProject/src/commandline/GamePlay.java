@@ -14,21 +14,13 @@ public class GamePlay {
     private Deck deck;
     private String[] categories;
 
-    public static void main(String[] args){
-
-
-        GamePlay newGamePlay = new GamePlay();
-        newGamePlay.gamePlay();
-
-    }
-
     /**
-     * This will be the constructor for this class. It creates a deck of cards from the file chosen in the commandline.Deck class,
+     * constructor for this class. It creates a deck of cards from the file chosen in the commandline.Deck class,
      * stores the categories for the cards, creates the AI players and begins the game. Once the user has entered their
      * name they're added to an array of players, players are shuffled and have cards dealt to them, and then they can
      * begin to play rounds.
      */
-    private void gamePlay(){
+    public GamePlay(){
 
         createDeck();
         setCategories();
@@ -53,10 +45,10 @@ public class GamePlay {
 
         players = new ArrayList<>();
 
-        players.add(new Player("Clive",false));
-        players.add(new Player("Brenda",false));
-        players.add(new Player("Philip",false));
-        players.add(new Player("Janet",false));
+        players.add(new Player("Clive",false,1));
+        players.add(new Player("Brenda",false,2));
+        players.add(new Player("Philip",false,3));
+        players.add(new Player("Janet",false,4));
 
     }
 
@@ -78,7 +70,7 @@ public class GamePlay {
         System.out.println("Hello human player. \n" +
                 "Please enter your name: ");
 
-        players.add(new Player(scanner.nextLine(),true));
+        players.add(new Player(scanner.nextLine(),true,0));
 
         System.out.println(players.get(4).getName()+"! What a lovely name.\n" +
                 "My name is "+players.get(0).getName()+". \n"+
@@ -98,14 +90,6 @@ public class GamePlay {
     private void chooseFirstPlayer(){
 
         Collections.shuffle(players);
-
-        int i = 0;
-
-        for (Player player: players){
-            player.setPlayerNumber(i);
-            i++;
-        }
-
         System.out.println(players.get(0).getName()+" goes first!");
     }
 
