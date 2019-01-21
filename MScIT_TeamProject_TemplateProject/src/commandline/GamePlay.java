@@ -14,7 +14,7 @@ public class GamePlay {
     private Deck deck;
     private String[] categories;
     private int humanIndex;
-    private int currentPlayer;
+    private int currentPlayer = 0; //set to first player (0) initially, will be updated to the winner index
     private boolean gameOver = false;
     private int activePlayers;
 
@@ -38,6 +38,7 @@ public class GamePlay {
 
 
         setHumanPlayerIndex();
+
         playRound();
 
        // activePlayers = players.size(); // set number of players in game 
@@ -152,6 +153,9 @@ public class GamePlay {
     }
 
     private void setCurrentPlayer(){
+        /** this sets currentPlayer to be the winner's player number. :)
+        */
+//        currentPlayer = winner;
     }
     /**
      * call this method each time a player is knocked out. checks the number of active players and set gameOver to true when there is 
@@ -170,15 +174,15 @@ public class GamePlay {
      */
     private int decideWinner() {
         int winner = -1;
-		for (Player player : players) {
-			if (player.amIKnockedOut() == false) {
-				winner = player.getNumber();
-				System.out.println("The winner is " + player.getName());
-			}
-			
-		}
-		return winner;
+        for (Player player : players) {
+            if (player.amIKnockedOut() == false) {
+                winner = player.getNumber();
+                System.out.println("The winner is " + player.getName());
+            }
 
+        }
+        return winner;
+    }
     private void checkCurrentPlayer(){
         //Not sure if this should be in GamePlay or the main class but is here for now.
         //Will be entered in around an if statement (e.g. if player enters 10 call this method)
