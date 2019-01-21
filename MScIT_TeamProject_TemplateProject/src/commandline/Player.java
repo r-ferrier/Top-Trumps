@@ -87,4 +87,8 @@ public class Player {
     public int getNumber(){
         return number;
     }
+
+    public boolean checkHuman() {
+        return human;
+    }
 }
