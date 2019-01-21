@@ -13,6 +13,8 @@ public class GamePlay {
 //    private GameData gameData;
     private Deck deck;
     private String[] categories;
+    private boolean gameOver = false;
+    private int activePlayers;
 
     public static void main(String[] args){
 
@@ -39,6 +41,16 @@ public class GamePlay {
         chooseFirstPlayer(); //shuffles player array so the order of players is random and fair
 
         dealCardsToPlayers();
+
+        activePlayers = players.size(); // set number of players in game 
+        
+        /**
+         * play rounds while game is not over
+         */
+        // while(!gameOver){
+        //     playRound();
+        // }
+        // decideWinner(); // once game is over, decide winner
 
         /*
         methods to play round and determine winners in here
@@ -132,7 +144,31 @@ public class GamePlay {
 
     }
 
-    private void decideWinner(){
+    /**
+     * call this method each time a player is knocked out. checks the number of active players and set gameOver to true when there is 
+     * only one active player
+     */
+    private void checkStateOfPlay(){
+            if(activePlayers == 1) {
+                gameOver = true;
+                System.out.println("Game Over!");
+		}
+	}
+    
+    /**
+     * when game is over, loop through players and return the player who is not knocked out
+     * @return winner
+     */
+    private int decideWinner() {
+        int winner = -1;
+		for (Player player : players) {
+			if (player.amIKnockedOut() == false) {
+				winner = player.getNumber();
+				System.out.println("The winner is " + player.getName());
+			}
+			
+		}
+		return winner;
 
     }
 

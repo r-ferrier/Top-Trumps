@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - GamePlay",
+            "request": "launch",
+            "mainClass": "commandline.GamePlay",
+            "projectName": "MScIT2019Project"
+        }
+    ]
+}
