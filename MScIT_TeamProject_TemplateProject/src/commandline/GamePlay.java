@@ -13,6 +13,9 @@ public class GamePlay {
 //    private GameData gameData;
     private Deck deck;
     private String[] categories;
+    private int humanIndex;
+    private int currentPlayer;
+
 
     /**
      * constructor for this class. It creates a deck of cards from the file chosen in the commandline.Deck class,
@@ -32,6 +35,7 @@ public class GamePlay {
 
         dealCardsToPlayers();
 
+        setHumanPlayerIndex();
         playRound();
 
         /*
@@ -122,7 +126,21 @@ public class GamePlay {
 
     }
 
-    private void checkActivePlayer(){
+    private void setHumanPlayerIndex() {
+        int humanIndex = 0;
+
+        for (Player p: players) {
+            if (p.checkHuman()){
+                break;
+            }else {
+                humanIndex++;
+            }
+        }
+        this.humanIndex = humanIndex;
+        System.out.println("HUMAN" + humanIndex + players.get(humanIndex).getName());
+    }
+
+    private void setCurrentPlayer(){
         //Not sure if this should be in GamePlay or the main class but is here for now.
         //Will be entered in around an if statement (e.g. if player enters 10 call this method)
 
@@ -141,12 +159,12 @@ public class GamePlay {
     }
 
     private void chooseCategory(){
-        Card topCard = players.get(0).getTopCard();
-        String name = players.get(0).getName();
+        Card topCard = players.get(currentPlayer).getTopCard();
+        String name = players.get(currentPlayer).getName();
 
         Scanner categorySelection = new Scanner(System.in);
 
-        if (players.get(0).checkHuman() == true){
+        if (players.get(currentPlayer).checkHuman() == true){
             System.out.println(topCard.toString());
             System.out.println("Please select your category:");
             chosenCategory = categorySelection.nextInt();
@@ -168,7 +186,7 @@ public class GamePlay {
 //               checkTopCard();
 //            }
 //        }
-        Card topCard = players.get(0).getTopCard();
+        Card topCard = players.get(humanIndex).getTopCard();
         System.out.println("Your top card is:\n" + topCard.toString());
     }
     private void decideWinner(){
