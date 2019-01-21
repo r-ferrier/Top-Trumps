@@ -17,9 +17,10 @@ public class Player {
      * @param name name of player
      * @param human if true, it's a human, if false, it's an AI player
      */
-    public Player(String name, boolean human){
+    public Player(String name, boolean human, int number){
         this.name = name;
         this.human = human;
+        this.number = number;
     }
 
     /**
@@ -85,5 +86,9 @@ public class Player {
 
     public int getNumber(){
         return number;
+    }
+
+    public boolean checkHuman() {
+        return human;
     }
 }
