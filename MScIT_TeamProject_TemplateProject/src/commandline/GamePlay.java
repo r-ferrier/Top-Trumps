@@ -15,7 +15,8 @@ public class GamePlay {
     private String[] categories;
     private int humanIndex;
     private int currentPlayer;
-
+    private boolean gameOver = false;
+    private int activePlayers;
 
     /**
      * constructor for this class. It creates a deck of cards from the file chosen in the commandline.Deck class,
@@ -35,8 +36,19 @@ public class GamePlay {
 
         dealCardsToPlayers();
 
+
         setHumanPlayerIndex();
         playRound();
+
+       // activePlayers = players.size(); // set number of players in game 
+        
+        /**
+         * play rounds while game is not over
+         */
+        // while(!gameOver){
+        //     playRound();
+        // }
+        // decideWinner(); // once game is over, decide winner
 
         /*
         methods to play round and determine winners in here
@@ -125,7 +137,6 @@ public class GamePlay {
         chooseCategory();
 
     }
-
     private void setHumanPlayerIndex() {
         int humanIndex = 0;
 
@@ -141,6 +152,34 @@ public class GamePlay {
     }
 
     private void setCurrentPlayer(){
+    }
+    /**
+     * call this method each time a player is knocked out. checks the number of active players and set gameOver to true when there is 
+     * only one active player
+     */
+    private void checkStateOfPlay(){
+            if(activePlayers == 1) {
+                gameOver = true;
+                System.out.println("Game Over!");
+		}
+	}
+    
+    /**
+     * when game is over, loop through players and return the player who is not knocked out
+     * @return winner
+     */
+    private int decideWinner() {
+        int winner = -1;
+		for (Player player : players) {
+			if (player.amIKnockedOut() == false) {
+				winner = player.getNumber();
+				System.out.println("The winner is " + player.getName());
+			}
+			
+		}
+		return winner;
+
+    private void checkCurrentPlayer(){
         //Not sure if this should be in GamePlay or the main class but is here for now.
         //Will be entered in around an if statement (e.g. if player enters 10 call this method)
 
@@ -154,8 +193,8 @@ public class GamePlay {
 
         //I've initially set it to be player 0, as I'm assuming this will always be the active player but
         //we can always change this later. Maybe have a "activePlayer" attribute?
-        String activePlayer = players.get(0).getName();
-        System.out.println(activePlayer + " is the active player.");
+        String currentPlayer = players.get(0).getName();
+        System.out.println(currentPlayer + " is the current player.");
     }
 
     private void chooseCategory(){
@@ -189,9 +228,7 @@ public class GamePlay {
         Card topCard = players.get(humanIndex).getTopCard();
         System.out.println("Your top card is:\n" + topCard.toString());
     }
-    private void decideWinner(){
 
-    }
 
     private void addCardsToCardsInPlay(){
 
