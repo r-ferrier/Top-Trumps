@@ -13,6 +13,8 @@ public class GamePlay {
 //    private GameData gameData;
     private Deck deck;
     private String[] categories;
+    private int humanIndex;
+    private int currentPlayer;
     private boolean gameOver = false;
     private int activePlayers;
 
@@ -35,6 +37,9 @@ public class GamePlay {
         dealCardsToPlayers();
 
 
+        setHumanPlayerIndex();
+        playRound();
+
        // activePlayers = players.size(); // set number of players in game 
         
         /**
@@ -44,7 +49,6 @@ public class GamePlay {
         //     playRound();
         // }
         // decideWinner(); // once game is over, decide winner
-
 
         /*
         methods to play round and determine winners in here
@@ -133,8 +137,22 @@ public class GamePlay {
         chooseCategory();
 
     }
+    private void setHumanPlayerIndex() {
+        int humanIndex = 0;
 
+        for (Player p: players) {
+            if (p.checkHuman()){
+                break;
+            }else {
+                humanIndex++;
+            }
+        }
+        this.humanIndex = humanIndex;
+        System.out.println("HUMAN" + humanIndex + players.get(humanIndex).getName());
+    }
 
+    private void setCurrentPlayer(){
+    }
     /**
      * call this method each time a player is knocked out. checks the number of active players and set gameOver to true when there is 
      * only one active player
@@ -180,12 +198,12 @@ public class GamePlay {
     }
 
     private void chooseCategory(){
-        Card topCard = players.get(0).getTopCard();
-        String name = players.get(0).getName();
+        Card topCard = players.get(currentPlayer).getTopCard();
+        String name = players.get(currentPlayer).getName();
 
         Scanner categorySelection = new Scanner(System.in);
 
-        if (players.get(0).checkHuman() == true){
+        if (players.get(currentPlayer).checkHuman() == true){
             System.out.println(topCard.toString());
             System.out.println("Please select your category:");
             chosenCategory = categorySelection.nextInt();
@@ -207,7 +225,7 @@ public class GamePlay {
 //               checkTopCard();
 //            }
 //        }
-        Card topCard = players.get(0).getTopCard();
+        Card topCard = players.get(humanIndex).getTopCard();
         System.out.println("Your top card is:\n" + topCard.toString());
     }
 
