@@ -13,6 +13,10 @@ public class GamePlay {
 //    private GameData gameData;
     private Deck deck;
     private String[] categories;
+    private int humanIndex;
+    private int currentPlayer = 0; //set to first player (0) initially, will be updated to the winner index
+    private boolean gameOver = false;
+    private int activePlayers;
 
     /**
      * constructor for this class. It creates a deck of cards from the file chosen in the commandline.Deck class,
@@ -32,7 +36,20 @@ public class GamePlay {
 
         dealCardsToPlayers();
 
+
+        setHumanPlayerIndex();
+
         playRound();
+
+       // activePlayers = players.size(); // set number of players in game 
+        
+        /**
+         * play rounds while game is not over
+         */
+        // while(!gameOver){
+        //     playRound();
+        // }
+        // decideWinner(); // once game is over, decide winner
 
         /*
         methods to play round and determine winners in here
@@ -118,36 +135,67 @@ public class GamePlay {
     }
 
     private void playRound(){
+        checkCurrentPlayer();
+        checkTopCard();
         chooseCategory();
 
     }
+    private void setHumanPlayerIndex() {
+        int humanIndex = 0;
 
-    private void checkActivePlayer(){
-        //Not sure if this should be in GamePlay or the main class but is here for now.
-        //Will be entered in around an if statement (e.g. if player enters 10 call this method)
+        for (Player p: players) {
+            if (p.checkHuman()){
+                break;
+            }else {
+                humanIndex++;
+            }
+        }
+        this.humanIndex = humanIndex;
+        System.out.println("HUMAN" + humanIndex + players.get(humanIndex).getName());
+    }
 
-//        if (scanner.nextInt() == 10) {
-//            System.out.println("Do you want to check the active player?");
-//            System.out.println("Enter 'Y' or 'N':");
-//            if (scanner.next() == 'Y' || scanner.next() == 'y'){
-//               checkActivePlayer();
-//            }
-//        }
+    private void setCurrentPlayer(){
+        /** this sets currentPlayer to be the winner's player number. :)
+        */
+//        currentPlayer = winner;
+    }
+    /**
+     * call this method each time a player is knocked out. checks the number of active players and set gameOver to true when there is 
+     * only one active player
+     */
+    private void checkStateOfPlay(){
+            if(activePlayers == 1) {
+                gameOver = true;
+                System.out.println("Game Over!");
+		}
+	}
+    
+    /**
+     * when game is over, loop through players and return the player who is not knocked out
+     * @return winner
+     */
+    private int decideWinner() {
+        int winner = -1;
+        for (Player player : players) {
+            if (player.amIKnockedOut() == false) {
+                winner = player.getNumber();
+                System.out.println("The winner is " + player.getName());
+            }
 
-        //I've initially set it to be player 0, as I'm assuming this will always be the active player but
-        //we can always change this later. Maybe have a "activePlayer" attribute?
-        String activePlayer = players.get(0).getName();
-        System.out.println(activePlayer + " is the active player.");
+        }
+        return winner;
+    }
+    private void checkCurrentPlayer(){
+        System.out.println("It is " + players.get(currentPlayer).getName() + "'s turn.");
     }
 
     private void chooseCategory(){
-        Card topCard = players.get(0).getTopCard();
-        String name = players.get(0).getName();
+        Card topCard = players.get(currentPlayer).getTopCard();
+        String name = players.get(currentPlayer).getName();
 
         Scanner categorySelection = new Scanner(System.in);
 
-        if (players.get(0).checkHuman() == true){
-            System.out.println(topCard.toString());
+        if (players.get(currentPlayer).checkHuman() == true){
             System.out.println("Please select your category:");
             chosenCategory = categorySelection.nextInt();
         }else {
@@ -157,23 +205,10 @@ public class GamePlay {
     }
 
     private void checkTopCard(){
-        //Like checkActivePlayer, the if statement below will be placed elsewhere
-        //Unsure currently if we're always have the human as player 0, but for this assuming yes
-        //Can easily change number later
-
-//       if (scanner.nextInt() == 9) {
-//            System.out.println("Do you want to view your top card?");
-//            System.out.println("Enter 'Y' or 'N':");
-//            if (scanner.next() == 'Y' || scanner.next() == 'y'){
-//               checkTopCard();
-//            }
-//        }
-        Card topCard = players.get(0).getTopCard();
+        Card topCard = players.get(humanIndex).getTopCard();
         System.out.println("Your top card is:\n" + topCard.toString());
     }
-    private void decideWinner(){
 
-    }
 
     private void addCardsToCardsInPlay(){
 
