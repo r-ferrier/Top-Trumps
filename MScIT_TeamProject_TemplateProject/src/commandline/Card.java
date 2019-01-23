@@ -47,6 +47,7 @@ public class Card {
         int bestCategory = categoryList.indexOf(max) + 1;
         return bestCategory;
     }
+
     public String toString(){
         String cardDetails = description + "\nCategory 1: " + category1 + "\nCategory 2: " + category2 + "\nCategory 3: "
                 + category3 + "\nCategory 4: " + category4 + "\nCategory 5: " + category5;

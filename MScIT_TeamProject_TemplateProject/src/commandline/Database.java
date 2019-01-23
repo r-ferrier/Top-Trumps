@@ -1,9 +1,6 @@
 package commandline;
 
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Database {
 	
@@ -28,7 +25,7 @@ public class Database {
 	            e.printStackTrace();
 	            return;
 
-	        } if (connection != null) {
+	        } if (c != null) {
 	            createNewTable();
 	            
 	        } else {
@@ -46,7 +43,7 @@ public class Database {
 	        */
 	    	try {
 	        System.out.println("Controlling your database...");
-	        Statement statement = connection.createStatement();
+	        Statement statement = c.createStatement();
 	        String sqlStringGameStats = "CREATE TABLE IF NOT EXISTS game_stats ( \n" 
 	        		+ " game_number integer PRIMARY KEY, \n"
 	        		+ " game_winner integer NOT NULL, \n" 
@@ -75,7 +72,7 @@ public class Database {
 	    			+ gameNumber + ", " + gameWinner + ", " + gameRounds + ", " + gameDraws + ") ";
 	    	
 	    	// invoke executeUpdate to insert
-	    	status = statement.executeUpdate(SQLInsert);
+			status = statement.executeUpdate(SQLInsert);
 	    	
 	    	//check the insertion
 	    	

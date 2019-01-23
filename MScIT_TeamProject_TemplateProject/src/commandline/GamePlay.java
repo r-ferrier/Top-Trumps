@@ -34,6 +34,8 @@ public class GamePlay {
 
         dealCardsToPlayers();
 
+        playRound();
+
 
        // activePlayers = players.size(); // set number of players in game 
         
@@ -152,14 +154,15 @@ public class GamePlay {
      */
     private int decideWinner() {
         int winner = -1;
-		for (Player player : players) {
-			if (player.amIKnockedOut() == false) {
-				winner = player.getNumber();
-				System.out.println("The winner is " + player.getName());
-			}
-			
-		}
-		return winner;
+        for (Player player : players) {
+            if (player.amIKnockedOut() == false) {
+                winner = player.getNumber();
+                System.out.println("The winner is " + player.getName());
+            }
+
+        }
+        return winner;
+    }
 
     private void checkCurrentPlayer(){
         //Not sure if this should be in GamePlay or the main class but is here for now.
