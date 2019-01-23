@@ -21,6 +21,10 @@ public class Deck {
      */
     public Deck(){
         readFile();
+
+        for(Card c: deck){
+            c.setCategoryDescriptions(categories);
+        }
     }
 
     /**
@@ -71,11 +75,13 @@ public class Deck {
     private void setCategories(String allCategories){
 
         String[] categoriesIncludingDescription;
+
         categoriesIncludingDescription = allCategories.split(" ");
 
         for (int i = 0; i<5; i++){
             categories[i] = categoriesIncludingDescription[i+1];
         }
+
     }
 
     public ArrayList<Card> getDeck(){
