@@ -1,6 +1,6 @@
 package commandline;
 
-import java.util.ArrayList;
+mport java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -10,6 +10,7 @@ public class GamePlay {
     private int chosenCategory;
     private ArrayList<Card> cardsInPlay;
     private ArrayList<Player> players;
+    private Player winner;
 //    private GameData gameData;
     private Deck deck;
     private String[] categories;
@@ -122,7 +123,6 @@ public class GamePlay {
     private void dealCardsToPlayers(){
 
         int i = 0;
-
         for(Card card: deck.getDeck()){
             players.get(i).dealCard(card);
             i++;
@@ -138,6 +138,13 @@ public class GamePlay {
         checkCurrentPlayer();
         checkTopCard();
         chooseCategory();
+        if(declareRoundWinOrDraw()) 
+        {
+        	addCardsToCardsInPlay();
+        }else {
+        	//if it is a draw, what happens? do you move onto the next card of the current player or select another category?
+        	//enhance choseCategory so that it choses next best category for the current players topCard
+        }
 
     }
     private void setHumanPlayerIndex() {
@@ -209,12 +216,48 @@ public class GamePlay {
         System.out.println("Your top card is:\n" + topCard.toString());
     }
 
+    private boolean declareRoundWinOrDraw(){
+    	
+    	winner = players.get(currentPlayer);
+    	
+    	for(Player p : players) {
+    		Card topCardForPlayer = p.getTopCard();
+    		int playersHandForCat = 0;
+    		
+    		if(chosenCategory == 1) {
+    			playersHandForCat = topCardForPlayer.getCategory1();
+    		}
+    		if(chosenCategory == 2) {
+    			playersHandForCat = topCardForPlayer.getCategory2();
+    		}
+    		if(chosenCategory == 3) {
+    			playersHandForCat = topCardForPlayer.getCategory3();
+    		}
+    		if(chosenCategory < playersHandForCat) {
+    			chosenCategory = playersHandForCat;
+    			winner = p;
+    		}
+    		else if(chosenCategory == playersHandForCat) {
+    	    	System.out.println("IT WAS A DRAW BETWEEN " + winner.getName() + "And " + p.getName());
 
+    			winner = null;
+    			return false;
+    		}
+    	}
+    	System.out.println(winner.getName() + "has score");
+    	return true;
+    }
+
+    
     private void addCardsToCardsInPlay(){
-
+    	//for each player, if player is not the winner, get their topcard, remove it, and add it to the winner.Hand
+    	for(Player p : players) {
+    		if(p != winner) {
+    			//before u remove the card from the losers hand, we must add it to the winning hand
+    			 winner.dealCard(p.getTopCard());
+    			//need to remove topCard - need method for this in player class
+    			 p.removeTopCardFromHand();
+    		}
+    	}
+    	
     }
-
-    private void declareRounWinOrDraw(){
-
-    }
-}
