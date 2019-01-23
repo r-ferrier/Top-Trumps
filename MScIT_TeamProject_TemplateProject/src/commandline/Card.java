@@ -2,7 +2,6 @@ package commandline;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
 import static java.lang.Integer.parseInt;
 
 public class Card {
@@ -11,8 +10,8 @@ public class Card {
     private int category3;
     private int category4;
     private int category5;
-//    private int bestCategory;
     private String description;
+    private String[] categories = new String[5];
 
     public Card(String CategoryInformation){
         setCategories(CategoryInformation);
@@ -47,28 +46,55 @@ public class Card {
         int bestCategory = categoryList.indexOf(max) + 1;
         return bestCategory;
     }
+
     public String toString(){
-        String cardDetails = description + "\nCategory 1: " + category1 + "\nCategory 2: " + category2 + "\nCategory 3: "
-                + category3 + "\nCategory 4: " + category4 + "\nCategory 5: " + category5;
+
+        String cardDetails = categories[0]+ ": " +category1+
+                        "\n"+categories[1]+ ": " +category2+
+                        "\n"+categories[2]+ ": " +category3+
+                        "\n"+categories[3]+ ": " +category4+
+                        "\n"+categories[4]+ ": " +category5+
+                        "\n";
+
         return cardDetails;
     }
-    public int getCategory1(){
-        return category1;
+
+    public String chooseACategory(){
+
+        String cardCategories = "1. "+category1+
+                              "\n2. "+category2+
+                              "\n3. "+category3+
+                              "\n4. "+category4+
+                              "\n5. "+category5+
+                              "\n";
+        return cardCategories;
     }
 
-    public int getCategory2() {
-        return category2;
+    public int getAnyCategory(int categoryToReturn){
+
+        if(categoryToReturn == 1){
+            return category1;
+        }else if(categoryToReturn == 2){
+            return category2;
+        }else if(categoryToReturn == 3){
+            return category3;
+        }else if(categoryToReturn == 4){
+            return category4;
+        }else{
+            return category5;
+        }
     }
 
-    public int getCategory3() {
-        return category3;
+    public String getDescription(){
+        return description;
     }
 
-    public int getCategory4() {
-        return category4;
+    public void setCategoryDescriptions(String[] categories){
+        this.categories = categories;
     }
 
-    public int getCategory5() {
-        return category5;
+    public String[] getCategories(){
+        return categories;
     }
+
 }

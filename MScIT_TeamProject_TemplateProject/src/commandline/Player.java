@@ -1,5 +1,4 @@
 package commandline;
-
 import java.util.ArrayList;
 
 public class Player {
@@ -43,12 +42,12 @@ public class Player {
      * method to play a card.
      * @return card that the player is going to play
      */
-    public Card playCard(){
-
-        Card card = getTopCard();
-        hand.remove(hand.size()-1);
-        return card;
-    }
+//    public Card playCard(){
+//
+//        Card card = getTopCard();
+//        hand.remove(hand.size()-1);
+//        return card;
+//    }
 
     /**
      * method to return the top card from a player's hand - can be used to show the player the card they're looking
@@ -56,7 +55,8 @@ public class Player {
      * @return
      */
     public Card getTopCard(){
-        return hand.get(hand.size()-1);
+
+        return hand.get(0);
     }
 
     /*
@@ -80,6 +80,7 @@ public class Player {
         knockedOut = true;
     }
 
+    
     public String getName(){
         return name;
     }
@@ -90,5 +91,22 @@ public class Player {
 
     public boolean checkHuman() {
         return human;
+    }
+    
+    public ArrayList<Card> getHand(){
+    	return this.hand;
+    }
+
+
+    public void removeTopCardFromHand() {
+
+        hand.remove(0);
+    	hand.trimToSize();
+
+    	if(hand == null || hand.isEmpty()){
+    	    knockedOut = true;
+        }
+
+
     }
 }

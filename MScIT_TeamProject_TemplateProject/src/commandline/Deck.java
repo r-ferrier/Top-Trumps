@@ -1,5 +1,6 @@
 package commandline;
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,7 +12,7 @@ public class Deck {
 
     private ArrayList<Card> deck = new ArrayList<>();
     private String[] categories = new String[5];
-    private  String fileName = "StarCitizenDeck.txt";
+    private  String fileName = "Sandwich.txt";
 
     /**
      * constructor for deck needs to open and read the file. If it can do this successfully, it will pass each line of the file
@@ -20,6 +21,10 @@ public class Deck {
      */
     public Deck(){
         readFile();
+
+        for(Card c: deck){
+            c.setCategoryDescriptions(categories);
+        }
     }
 
     /**
@@ -70,11 +75,13 @@ public class Deck {
     private void setCategories(String allCategories){
 
         String[] categoriesIncludingDescription;
+
         categoriesIncludingDescription = allCategories.split(" ");
 
         for (int i = 0; i<5; i++){
             categories[i] = categoriesIncludingDescription[i+1];
         }
+
     }
 
     public ArrayList<Card> getDeck(){
