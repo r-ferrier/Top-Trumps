@@ -2,7 +2,6 @@ package commandline;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
 import static java.lang.Integer.parseInt;
 
 public class Card {
@@ -11,7 +10,6 @@ public class Card {
     private int category3;
     private int category4;
     private int category5;
-//    private int bestCategory;
     private String description;
     private String[] categories = new String[5];
 
@@ -51,36 +49,29 @@ public class Card {
 
     public String toString(){
 
-        String cardDetails = description +
-                "\n"+categories[0]+ ": " +category1+ "  (Category 1)" +
-                "\n"+categories[1]+ ": " +category2+ "  (Category 2)"+
-                "\n"+categories[2]+ ": " +category3+ "  (Category 3)" +
-                "\n"+categories[3]+ ": " +category4+ "  (Category 4)" +
-                "\n"+categories[4]+ ": " +category5+ "  (Category 5)";
+        String cardDetails = categories[0]+ ": " +category1+
+                        "\n"+categories[1]+ ": " +category2+
+                        "\n"+categories[2]+ ": " +category3+
+                        "\n"+categories[3]+ ": " +category4+
+                        "\n"+categories[4]+ ": " +category5+
+                        "\n";
 
         return cardDetails;
     }
-    public int getCategory1(){
-        return category1;
-    }
 
-    public int getCategory2() {
-        return category2;
-    }
+    public String chooseACategory(){
 
-    public int getCategory3() {
-        return category3;
-    }
-
-    public int getCategory4() {
-        return category4;
-    }
-
-    public int getCategory5() {
-        return category5;
+        String cardCategories = "1. "+category1+
+                              "\n2. "+category2+
+                              "\n3. "+category3+
+                              "\n4. "+category4+
+                              "\n5. "+category5+
+                              "\n";
+        return cardCategories;
     }
 
     public int getAnyCategory(int categoryToReturn){
+
         if(categoryToReturn == 1){
             return category1;
         }else if(categoryToReturn == 2){
@@ -94,7 +85,16 @@ public class Card {
         }
     }
 
+    public String getDescription(){
+        return description;
+    }
+
     public void setCategoryDescriptions(String[] categories){
         this.categories = categories;
     }
+
+    public String[] getCategories(){
+        return categories;
+    }
+
 }
