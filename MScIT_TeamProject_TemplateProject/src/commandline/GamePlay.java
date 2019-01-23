@@ -15,8 +15,8 @@ public class GamePlay {
     private Deck deck;
     private int humanIndex;
     private int currentPlayer = 0; //set to first player (0) initially, will be updated to the winner index
-    private boolean gameOver = false;
     private int activePlayers;
+    private boolean humanKnockedOut = false;
 
     /**
      * constructor for this class. It creates a deck of cards from the file chosen in the commandline.Deck class,
@@ -27,35 +27,22 @@ public class GamePlay {
     public GamePlay() {
 
         createDeck();
-
         setAIPlayers(); //setting up all the elements needed for the game
-
         gameBegins(); //prints some output and prompts user entry of name
 
-
         chooseFirstPlayer(); //shuffles player array so the order of players is random and fair
-
         dealCardsToPlayers();
 
-        playRound();
-
-        playRound();
-        playRound();
-        playRound();
-
-
-        playRound();
-
-
-        // activePlayers = players.size(); // set number of players in game
+         // set number of players in game
 
         /**
          * play rounds while game is not over
          */
-        // while(!gameOver){
-        //     playRound();
-        // }
-        // decideWinner(); // once game is over, decide winner
+         while(!isGameOver()){
+
+             playRound();
+         }
+         decideWinner(); // once game is over, decide winner
 
         /*
         methods to play round and determine winners in here
@@ -139,21 +126,35 @@ public class GamePlay {
     }
 
     private void playRound() {
+
+        for(int i = 0; i< players.size(); i++){
+
+            if(players.get(i).amIKnockedOut()){
+
+                if(players.get(i).checkHuman()){
+                    humanKnockedOut = true;
+                }
+
+                System.out.println(players.get(i).getName()+" was knocked out.");
+                players.remove(i);
+
+                i--;
+
+                if(currentPlayer>i){
+                    currentPlayer--;
+                }
+
+            }
+        }
+
+        setHumanPlayerIndex();
+
         checkCurrentPlayer();
         checkTopCard();
         chooseCategory();
 
         addCardsToCardsInPlay();
 
-//        if (declareRoundWinOrDraw()) {
-//            addCardsToCardsInPlay();
-//        } else {
-//
-//
-//
-//            //if it is a draw, what happens? do you move onto the next card of the current player or select another category?
-//            //enhance choseCategory so that it choses next best category for the current players topCard
-//        }
 
     }
 
@@ -176,10 +177,15 @@ public class GamePlay {
      * call this method each time a player is knocked out. checks the number of active players and set gameOver to true when there is
      * only one active player
      */
-    private void checkStateOfPlay() {
+    private boolean isGameOver() {
+
+        activePlayers = players.size();
+
         if (activePlayers == 1) {
-            gameOver = true;
             System.out.println("Game Over!");
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -190,6 +196,7 @@ public class GamePlay {
      */
     private int decideWinner() {
         int winner = -1;
+
         for (Player player : players) {
             if (player.amIKnockedOut() == false) {
                 winner = player.getNumber();
@@ -200,6 +207,7 @@ public class GamePlay {
     }
 
     private void checkCurrentPlayer() {
+
         System.out.println("It is " + players.get(currentPlayer).getName() + "'s turn.");
     }
 
@@ -220,11 +228,19 @@ public class GamePlay {
     }
 
     private void checkTopCard() {
-        Card topCard = players.get(humanIndex).getTopCard();
-        System.out.println();
-        System.out.println("Your top card is:\n" +
-                topCard.toString());
-        System.out.println();
+
+
+        if(!humanKnockedOut) {
+
+            Card topCard = players.get(humanIndex).getTopCard();
+            System.out.println();
+            System.out.println("Your top card is:\n" +
+                    topCard.toString());
+            System.out.println();
+
+        } else {
+            System.out.println("\n"+"You are out"+"\n");
+        }
     }
 
 
@@ -241,6 +257,7 @@ public class GamePlay {
 
         int valueOfChosenCategory;
         int currentHighestCategoryValue = 0;
+        int winnerIndex = 0;
 
         for (Player p : players) {
 
@@ -250,11 +267,11 @@ public class GamePlay {
                 currentHighestCategoryValue = valueOfChosenCategory;
 
                 winner = p;
-                currentPlayer = playerIndex;
+                winnerIndex = playerIndex;
 
             } else if (valueOfChosenCategory == currentHighestCategoryValue) {
 
-                System.out.println("IT WAS A DRAW BETWEEN " + winner.getName() + "And " + p.getName());
+                System.out.println("IT WAS A DRAW");
 
                 winner = null;
                 return false;
@@ -262,6 +279,9 @@ public class GamePlay {
 
             playerIndex++;
         }
+
+        currentPlayer = winnerIndex;
+
         System.out.println(winner.getName() + " has won this round with the value " + currentHighestCategoryValue);
         return true;
     }
@@ -270,15 +290,14 @@ public class GamePlay {
     private void addCardsToCardsInPlay() {
         //for each player, if player is not the winner, get their topcard, remove it, and add it to the winner.Hand
 
-
         if (declareRoundWinOrDraw()) {
 
-            for (int i = 0; i < 5; i++) {
-                if (i != currentPlayer) {
 
-                    players.get(currentPlayer).dealCard(players.get(i).getTopCard());
-                    players.get(i).removeTopCardFromHand();
-                }
+            for (int i = 0; i < players.size(); i++) {
+
+                players.get(currentPlayer).dealCard(players.get(i).getTopCard());
+                players.get(i).removeTopCardFromHand();
+
             }
 
             for(Card c: cardsInPlay){
@@ -289,11 +308,22 @@ public class GamePlay {
 
         } else {
 
-
             for(Player p: players){
                 cardsInPlay.add(p.getTopCard());
                 p.removeTopCardFromHand();
             }
+        }
+
+        int playerToreturn = 0;
+
+        for(Player p: players) {
+
+            if(p.getNumberOfCardsInHand()>0){
+
+            }
+
+            System.out.println(players.get(playerToreturn).getName() + " has " + players.get(playerToreturn).getNumberOfCardsInHand() + " cards.");
+            playerToreturn++;
         }
     }
 }

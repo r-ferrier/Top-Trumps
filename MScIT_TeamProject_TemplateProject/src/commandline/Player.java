@@ -55,7 +55,8 @@ public class Player {
      * @return
      */
     public Card getTopCard(){
-        return hand.get(hand.size()-1);
+
+        return hand.get(0);
     }
 
     /*
@@ -79,7 +80,6 @@ public class Player {
         knockedOut = true;
     }
 
-    public boolean isKnockedOut =  this.hand == null || this.hand.isEmpty();
     
     public String getName(){
         return name;
@@ -96,7 +96,17 @@ public class Player {
     public ArrayList<Card> getHand(){
     	return this.hand;
     }
+
+
     public void removeTopCardFromHand() {
-    	hand.remove(hand.size()-1);
+
+        hand.remove(0);
+    	hand.trimToSize();
+
+    	if(hand == null || hand.isEmpty()){
+    	    knockedOut = true;
+        }
+
+
     }
 }
