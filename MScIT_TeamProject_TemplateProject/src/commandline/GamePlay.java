@@ -275,7 +275,7 @@ public class GamePlay {
 
             } else if (valueOfChosenCategory == currentHighestCategoryValue) {
 
-                System.out.println("IT WAS A DRAW");
+                System.out.println("IT WAS A DRAW\n\n");
 
                 winner = null;
                 return false;
@@ -286,7 +286,8 @@ public class GamePlay {
 
         currentPlayer = winnerIndex;
 
-        System.out.println(winner.getName() + " won this round with a value of " + currentHighestCategoryValue+".\n\n");
+        System.out.println(winner.getName() + " won this round with the card "+ winner.getTopCard().getDescription()+
+                " which had a "+winner.getTopCard().getCategories()[chosenCategory-1]+" value of " + currentHighestCategoryValue+".\n\n");
         return true;
     }
 
