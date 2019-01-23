@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class GamePlay {
 
-    private int roundCounter;
+    private int roundCounter = 1;
     private int chosenCategory;
     private ArrayList<Card> cardsInPlay = new ArrayList<>();
     private ArrayList<Player> players;
@@ -40,13 +40,11 @@ public class GamePlay {
          */
          while(!isGameOver()){
 
+             announceRoundNumber();
              playRound();
+             roundCounter++;
          }
          decideWinner(); // once game is over, decide winner
-
-        /*
-        methods to play round and determine winners in here
-         */
 
     }
 
@@ -70,6 +68,10 @@ public class GamePlay {
 
     private void createDeck() {
         deck = new Deck();
+    }
+
+    private void announceRoundNumber(){
+        System.out.println("Round "+roundCounter+": Players have drawn their cards.");
     }
 
 
@@ -98,12 +100,11 @@ public class GamePlay {
 //    }
 
     /**
-     * shuffles the order of the players then gives them all a player number.
+     * shuffles the order of the players.
      */
     private void chooseFirstPlayer() {
 
         Collections.shuffle(players);
-        System.out.println(players.get(0).getName() + " goes first!");
         setHumanPlayerIndex();
     }
 
@@ -127,6 +128,14 @@ public class GamePlay {
 
     private void playRound() {
 
+        setHumanPlayerIndex();
+        announceCurrentPlayer();
+
+        showHumanTopCard();
+        chooseCategory();
+
+        addCardsToCardsInPlay();
+
         for(int i = 0; i< players.size(); i++){
 
             if(players.get(i).amIKnockedOut()){
@@ -146,14 +155,6 @@ public class GamePlay {
 
             }
         }
-
-        setHumanPlayerIndex();
-
-        checkCurrentPlayer();
-        checkTopCard();
-        chooseCategory();
-
-        addCardsToCardsInPlay();
 
 
     }
@@ -206,9 +207,9 @@ public class GamePlay {
         return winner;
     }
 
-    private void checkCurrentPlayer() {
+    private void announceCurrentPlayer() {
 
-        System.out.println("It is " + players.get(currentPlayer).getName() + "'s turn.");
+        System.out.println("It's " + players.get(currentPlayer).getName() + "'s turn.");
     }
 
     private void chooseCategory() {
@@ -218,28 +219,31 @@ public class GamePlay {
         Scanner categorySelection = new Scanner(System.in);
 
         if (players.get(currentPlayer).checkHuman() == true) {
-            System.out.println("Please select your category:");
+
+            System.out.println("Please select your category, the categories are:" +
+                    "\n"+topCard.chooseACategory());
+
             chosenCategory = categorySelection.nextInt();
+
         } else {
             chosenCategory = topCard.findBestCategory();
         }
 
-        System.out.println(name + " has chosen category " + chosenCategory + ".");
+        System.out.println(name + " has chosen category " + chosenCategory + ", "+topCard.getCategories()[chosenCategory-1]+".");
     }
 
-    private void checkTopCard() {
+    private void showHumanTopCard() {
 
 
         if(!humanKnockedOut) {
 
             Card topCard = players.get(humanIndex).getTopCard();
             System.out.println();
-            System.out.println("Your top card is:\n" +
-                    topCard.toString());
-            System.out.println();
+            System.out.println("You have drawn "+players.get(humanIndex).getTopCard().getDescription()+".");
+            System.out.println(topCard.toString());
 
         } else {
-            System.out.println("\n"+"You are out"+"\n");
+            System.out.println("\n"+"You have no cards left to play and have been knocked out of the game"+"\n");
         }
     }
 
@@ -282,13 +286,13 @@ public class GamePlay {
 
         currentPlayer = winnerIndex;
 
-        System.out.println(winner.getName() + " has won this round with the value " + currentHighestCategoryValue);
+        System.out.println(winner.getName() + " won this round with a value of " + currentHighestCategoryValue+".\n\n");
         return true;
     }
 
 
     private void addCardsToCardsInPlay() {
-        //for each player, if player is not the winner, get their topcard, remove it, and add it to the winner.Hand
+        //for each player, if player is not the winner, get their top card, remove it, and add it to the winner.Hand
 
         if (declareRoundWinOrDraw()) {
 
@@ -314,16 +318,6 @@ public class GamePlay {
             }
         }
 
-        int playerToreturn = 0;
 
-        for(Player p: players) {
-
-            if(p.getNumberOfCardsInHand()>0){
-
-            }
-
-            System.out.println(players.get(playerToreturn).getName() + " has " + players.get(playerToreturn).getNumberOfCardsInHand() + " cards.");
-            playerToreturn++;
-        }
     }
 }
