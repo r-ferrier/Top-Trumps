@@ -33,12 +33,8 @@ public class GamePlay {
         chooseFirstPlayer(); //shuffles player array so the order of players is random and fair
         dealCardsToPlayers();
 
-         // set number of players in game
 
-        /**
-         * play rounds while game is not over
-         */
-         while(!isGameOver()){
+         while(!isGameOver()){//play rounds while game is not over
 
              announceRoundNumber();
              playRound();
@@ -128,14 +124,30 @@ public class GamePlay {
 
     private void playRound() {
 
-        setHumanPlayerIndex();
-        announceCurrentPlayer();
+        setHumanPlayerIndex(); //at beginning of each round, check where the human is in the player array
+        announceCurrentPlayer(); //announce which player will be playing round (player in position 0 for first round,
+                                 //after that always the most recent winner. draws are ignored.
 
-        showHumanTopCard();
-        chooseCategory();
+        showHumanTopCard(); //print the human player's card into the terminal
+        chooseCategory(); //ask the human to pick a category OR ask the computer to select the highest category from the card
 
-        addCardsToCardsInPlay();
+        addCardsToCardsInPlay(declareRoundWinOrDraw());
+        /*
+        run two methods. First is to declare whether or not the round had a winner or was a draw. If the method finds any
+         two scores that match it will immediately return false, set the winner as null and exit the method without making
+         any further changes. If the method returns as true, it will change the currentPlayer index to reflect the position
+         of the round winner. The true/false result is passed to the second method which removes every player's top card.
+         If the player won the round, the top cards go onto that player's pile, along with any cards currently in the
+         communal pile. If there was no winner, cards go onto a communal pile.
 
+         */
+
+        removeKnockedOutPlayers(); //any players with no cards left at the end of the game are removed from the players
+        //array, current player index is changed to reflect new position and we check if the human is still in the game.
+
+    }
+
+    private void removeKnockedOutPlayers(){
         for(int i = 0; i< players.size(); i++){
 
             if(players.get(i).amIKnockedOut()){
@@ -147,16 +159,16 @@ public class GamePlay {
                 System.out.println(players.get(i).getName()+" was knocked out.");
                 players.remove(i);
 
-                i--;
+                i--; //if array is shortened during loop, remove 1 from the counter so we look at every position
 
                 if(currentPlayer>i){
-                    currentPlayer--;
+                    currentPlayer--; //if current player's position was after i or if it WAS i and current player
+                    //is being knocked out after a series of draws, current player position is moved one position down
+                    //in the array to reflect either their change in position or the turn moving to the next person at
+                    //the table.
                 }
-
             }
         }
-
-
     }
 
     private void setHumanPlayerIndex() {
@@ -292,17 +304,14 @@ public class GamePlay {
     }
 
 
-    private void addCardsToCardsInPlay() {
+    private void addCardsToCardsInPlay(boolean win) {
         //for each player, if player is not the winner, get their top card, remove it, and add it to the winner.Hand
 
-        if (declareRoundWinOrDraw()) {
-
+        if (win) {
 
             for (int i = 0; i < players.size(); i++) {
-
                 players.get(currentPlayer).dealCard(players.get(i).getTopCard());
                 players.get(i).removeTopCardFromHand();
-
             }
 
             for(Card c: cardsInPlay){

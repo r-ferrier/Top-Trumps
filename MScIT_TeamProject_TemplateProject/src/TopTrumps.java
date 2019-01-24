@@ -1,10 +1,10 @@
 import commandline.TopTrumpsCLIApplication;
 import online.TopTrumpsOnlineApplication;
 
-
+/** This is the main class for the TopTrumps Application */
 public class TopTrumps {
 
-	/** This is the main class for the TopTrumps Application */
+
 	public static void main(String[] args) {
 
 		System.out.println("--------------------");

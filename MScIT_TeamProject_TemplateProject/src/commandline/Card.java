@@ -13,8 +13,11 @@ public class Card {
     private String description;
     private String[] categories = new String[5];
 
-    public Card(String CategoryInformation){
+    public Card(String CategoryInformation, String categoryDescriptions){
+
         setCategories(CategoryInformation);
+        setCategoryDescriptions(categoryDescriptions);
+
     }
 
     private void setCategories(String categoryInformation){
@@ -89,8 +92,19 @@ public class Card {
         return description;
     }
 
-    public void setCategoryDescriptions(String[] categories){
-        this.categories = categories;
+    /**
+     * sets the 5 categories for the deck and stores them as an array of strings in the correct order. Has to create a
+     * two arrays to remove the first entry which just reads 'description'
+     * @param categoryDescriptions first line of the imported file
+     */
+    public void setCategoryDescriptions(String categoryDescriptions){
+
+        String[] categoriesIncludingDescription;
+        categoriesIncludingDescription = categoryDescriptions.split(" ");
+
+        for (int i = 0; i<5; i++){
+            categories[i] = categoriesIncludingDescription[i+1];
+        }
     }
 
     public String[] getCategories(){

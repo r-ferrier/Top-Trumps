@@ -38,20 +38,10 @@ public class Player {
         hand.add(card);
     }
 
-    /**
-     * method to play a card.
-     * @return card that the player is going to play
-     */
-//    public Card playCard(){
-//
-//        Card card = getTopCard();
-//        hand.remove(hand.size()-1);
-//        return card;
-//    }
 
     /**
      * method to return the top card from a player's hand - can be used to show the player the card they're looking
-     * at at the start of each round
+     * at at the start of each round. Top card is in position 0. Bottom card is in position size-1.
      * @return
      */
     public Card getTopCard(){
