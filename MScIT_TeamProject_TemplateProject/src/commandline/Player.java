@@ -61,6 +61,10 @@ public class Player {
     public void winRound(){
         roundsWon++;
     }
+    
+    public int roundsWon() {
+    	return roundsWon;
+    }
 
     public boolean amIKnockedOut(){
         return knockedOut;
