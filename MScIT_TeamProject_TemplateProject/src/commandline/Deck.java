@@ -11,7 +11,6 @@ import java.util.Collections;
 public class Deck {
 
     private ArrayList<Card> deck = new ArrayList<>();
-    private String[] categories = new String[5];
     private  String fileName = "Sandwich.txt";
 
     /**
@@ -21,10 +20,6 @@ public class Deck {
      */
     public Deck(){
         readFile();
-
-        for(Card c: deck){
-            c.setCategoryDescriptions(categories);
-        }
     }
 
     /**
@@ -36,11 +31,11 @@ public class Deck {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
 
-            setCategories(reader.readLine());
+            String categoryDescriptions = (reader.readLine());
 
             String thisLine;
             while ((thisLine = reader.readLine()) != null) {
-                Card nextCard = new Card(thisLine);
+                Card nextCard = new Card(thisLine, categoryDescriptions);
                 addCard(nextCard);
             }
 
@@ -50,7 +45,6 @@ public class Deck {
             fileNotFound.printStackTrace();
         }
     }
-
 
     /**
      * adds a new card object to the deck arraylist
@@ -67,29 +61,9 @@ public class Deck {
         Collections.shuffle(deck);
     }
 
-
-    /**
-     * sets the 5 categories for the deck and stores them as an array of strings in the correct order
-     * @param allCategories first line of the imported file
-     */
-    private void setCategories(String allCategories){
-
-        String[] categoriesIncludingDescription;
-
-        categoriesIncludingDescription = allCategories.split(" ");
-
-        for (int i = 0; i<5; i++){
-            categories[i] = categoriesIncludingDescription[i+1];
-        }
-
-    }
-
     public ArrayList<Card> getDeck(){
         return deck;
     }
 
-    public String[] getCategories(){
-        return categories;
-    }
 
 }

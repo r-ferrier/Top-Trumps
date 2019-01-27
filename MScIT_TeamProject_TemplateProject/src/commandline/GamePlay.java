@@ -6,13 +6,14 @@ import java.util.Scanner;
 
 public class GamePlay {
 
+
 	private int roundCounter = 1;
 	private int drawCounter;
 	private int chosenCategory;
 	private ArrayList<Card> cardsInPlay = new ArrayList<>();
 	private ArrayList<Player> players;
 	private Player winner;
-	// private GameData gameData;
+	//    private GameData gameData;
 	private Deck deck;
 	private int humanIndex;
 	private int currentPlayer = 0; // set to first player (0) initially, will be updated to the winner index
@@ -21,43 +22,39 @@ public class GamePlay {
 	private int gameWinner;
 	private boolean startGame;
 
-	/**
-	 * constructor for this class. It creates a deck of cards from the file chosen
-	 * in the commandline.Deck class, stores the categories for the cards, creates
-	 * the AI players and begins the game. Once the user has entered their name
-	 * they're added to an array of players, players are shuffled and have cards
-	 * dealt to them, and then they can begin to play rounds.
-	 */
-	public GamePlay() {
+    /**
+     * constructor for this class. It creates a deck of cards from the file chosen in the commandline.Deck class,
+     * stores the categories for the cards, creates the AI players and begins the game. Once the user has entered their
+     * name they're added to an array of players, players are shuffled and have cards dealt to them, and then they can
+     * begin to play rounds.
+     */
+  
+    public GamePlay() {
 
-		createDeck();
-		setAIPlayers(); // setting up all the elements needed for the game
-		gameBegins(); // prints some output and prompts user entry of name
+        createDeck();
+        setAIPlayers(); //setting up all the elements needed for the game
+        gameBegins(); //prints some output and prompts user entry of name
 
-		chooseFirstPlayer(); // shuffles player array so the order of players is random and fair
-		dealCardsToPlayers();
+        chooseFirstPlayer(); //shuffles player array so the order of players is random and fair
+        dealCardsToPlayers();
 
-		// set number of players in game
 
-		/**
-		 * play rounds while game is not over
-		 */
-		while (!isGameOver()) {
+         while(!isGameOver()){//play rounds while game is not over
 
-			announceRoundNumber();
-			playRound();
-			roundCounter++;
-		}
-		gameWinner = decideWinner(); // once game is over, decide winner
-		Database database = new Database(players);
-		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
-		database.uploadPlayerStats();
+             announceRoundNumber();
+             playRound();
+             roundCounter++;
+         }
+         gameWinner = decideWinner(); // once game is over, decide winner
+         	Database database = new Database(players);
+	      	database.uploadGameStats(drawCounter, gameWinner, roundCounter);
+		      database.uploadPlayerStats();
+    }
 
-	}
+    public static void main(String[] args) {
+        new GamePlay();
+    }
 
-//    public static void main(String[] args) {
-//        new GamePlay();
-//    }
 
 	/**
 	 * creates the array for our players and adds in all of the AI players
@@ -117,45 +114,61 @@ public class GamePlay {
 //        return players;
 //    }
 
-	/**
-	 * shuffles the order of the players.
-	 */
-	private void chooseFirstPlayer() {
+    /**
+     * shuffles the order of the players.
+     */
+    private void chooseFirstPlayer() {
 
-		Collections.shuffle(players);
-		setHumanPlayerIndex();
-	}
+        Collections.shuffle(players);
+        setHumanPlayerIndex();
+    }
 
-	/**
-	 * takes the shuffled pack of cards and hands them out one at a time to the
-	 * players in the order they have been set for this game in the array.
-	 */
-	private void dealCardsToPlayers() {
+    /**
+     * takes the shuffled pack of cards and hands them out one at a time to the players in the order they have been
+     * set for this game in the array.
+     */
+    private void dealCardsToPlayers() {
 
-		int i = 0;
-		for (Card card : deck.getDeck()) {
-			players.get(i).dealCard(card);
-			i++;
+        int i = 0;
+        for (Card card : deck.getDeck()) {
+            players.get(i).dealCard(card);
+            i++;
 
-			if (i > 4) {
-				i = 0;
-			}
-		}
+            if (i > 4) {
+                i = 0;
+            }
+        }
 
-	}
+    }
 
-	private void playRound() {
+    private void playRound() {
 
-		setHumanPlayerIndex();
-		announceCurrentPlayer();
+        setHumanPlayerIndex(); //at beginning of each round, check where the human is in the player array
+        announceCurrentPlayer(); //announce which player will be playing round (player in position 0 for first round,
+                                 //after that always the most recent winner. draws are ignored.
 
-		showHumanTopCard();
-		chooseCategory();
+        showHumanTopCard(); //print the human player's card into the terminal
+        chooseCategory(); //ask the human to pick a category OR ask the computer to select the highest category from the card
 
-		addCardsToCardsInPlay();
+        addCardsToCardsInPlay(declareRoundWinOrDraw());
+        /*
+        run two methods. First is to declare whether or not the round had a winner or was a draw. If the method finds any
+         two scores that match it will immediately return false, set the winner as null and exit the method without making
+         any further changes. If the method returns as true, it will change the currentPlayer index to reflect the position
+         of the round winner. The true/false result is passed to the second method which removes every player's top card.
+         If the player won the round, the top cards go onto that player's pile, along with any cards currently in the
+         communal pile. If there was no winner, cards go onto a communal pile.
 
-		for (int i = 0; i < players.size(); i++) {
+         */
 
+        removeKnockedOutPlayers(); //any players with no cards left at the end of the game are removed from the players
+        //array, current player index is changed to reflect new position and we check if the human is still in the game.
+
+    }
+
+    private void removeKnockedOutPlayers(){
+        for(int i = 0; i< players.size(); i++){
+          
 			if (players.get(i).amIKnockedOut()) {
 
 				if (players.get(i).checkHuman()) {
@@ -164,11 +177,14 @@ public class GamePlay {
 
 				System.out.println(players.get(i).getName() + " was knocked out.");
 				players.remove(i);
+        
+         i--; //if array is shortened during loop, remove 1 from the counter so we look at every position
 
-				i--;
-
-				if (currentPlayer > i) {
-					currentPlayer--;
+                if(currentPlayer>i){
+                    currentPlayer--; //if current player's position was after i or if it WAS i and current player
+                    //is being knocked out after a series of draws, current player position is moved one position down
+                    //in the array to reflect either their change in position or the turn moving to the next person at
+                    //the table.
 				}
 
 			}
@@ -308,18 +324,16 @@ public class GamePlay {
 		return true;
 	}
 
-	private void addCardsToCardsInPlay() {
-		// for each player, if player is not the winner, get their top card, remove it,
-		// and add it to the winner.Hand
 
-		if (declareRoundWinOrDraw()) {
+    private void addCardsToCardsInPlay(boolean win) {
+        //for each player, if player is not the winner, get their top card, remove it, and add it to the winner.Hand
 
-			for (int i = 0; i < players.size(); i++) {
+        if (win) {
 
-				players.get(currentPlayer).dealCard(players.get(i).getTopCard());
-				players.get(i).removeTopCardFromHand();
-
-			}
+            for (int i = 0; i < players.size(); i++) {
+                players.get(currentPlayer).dealCard(players.get(i).getTopCard());
+                players.get(i).removeTopCardFromHand();
+            }
 
 			for (Card c : cardsInPlay) {
 				players.get(currentPlayer).dealCard(c);
