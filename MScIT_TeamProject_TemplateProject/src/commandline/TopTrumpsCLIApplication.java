@@ -35,5 +35,3 @@ public class TopTrumpsCLIApplication {
 	}
 
 }
-
-// Hello Everyone - Kelsey :)
