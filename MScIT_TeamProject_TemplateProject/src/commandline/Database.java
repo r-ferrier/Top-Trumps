@@ -255,5 +255,9 @@ public class Database {
 		c.close();
 		return gameNumber;
 	}
+	
+	public void hello() {
+		System.out.println("hello");
+	}
 
 }
