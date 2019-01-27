@@ -1,5 +1,4 @@
 
-
 package commandline;
 
 import.java.sql.*;
@@ -22,8 +21,6 @@ public class Database {
 	private int numHumanWon;
 	private int averageDraws;
 	private int largestNumberRound;
-	
-
 	
 	public Database (Player player) {
 		this.player = player;
@@ -256,6 +253,4 @@ public class Database {
 		c.close();
 		return gameNumber;
 	}
-
 }
-
