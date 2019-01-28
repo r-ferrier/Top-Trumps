@@ -29,7 +29,7 @@ Hawaiian_Toast 7 3 7 7 3
 Burrito 6 7 3 8 8
 Super_burrito 7 8 4 9 9
 Bacon_roll 9 8 4 5 2
-Cucumber 2 2 0 0 1
+Cucumber 2 2 0 0 7
 Boxing_Day_Sandwich 9 9 3 3 4
 Hummus_Pita 3 4 3 7 2
 Peanut_Butter_and_Jelly 5 4 6 7 2

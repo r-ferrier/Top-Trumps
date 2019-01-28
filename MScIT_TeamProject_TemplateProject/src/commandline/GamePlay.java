@@ -139,7 +139,6 @@ public class GamePlay {
          of the round winner. The true/false result is passed to the second method which removes every player's top card.
          If the player won the round, the top cards go onto that player's pile, along with any cards currently in the
          communal pile. If there was no winner, cards go onto a communal pile.
-
          */
 
         removeKnockedOutPlayers(); //any players with no cards left at the end of the game are removed from the players
@@ -227,14 +226,12 @@ public class GamePlay {
     private void chooseCategory() {
         Card topCard = players.get(currentPlayer).getTopCard();
         String name = players.get(currentPlayer).getName();
-
         Scanner categorySelection = new Scanner(System.in);
 
         if (players.get(currentPlayer).checkHuman() == true) {
 
             System.out.println("Please select your category, the categories are:" +
                     "\n"+topCard.chooseACategory());
-
             chosenCategory = categorySelection.nextInt();
 
         } else {
@@ -245,7 +242,6 @@ public class GamePlay {
     }
 
     private void showHumanTopCard() {
-
 
         if(!humanKnockedOut) {
 
@@ -319,7 +315,6 @@ public class GamePlay {
             }
             cardsInPlay.clear();
 
-
         } else {
 
             for(Player p: players){
@@ -327,7 +322,5 @@ public class GamePlay {
                 p.removeTopCardFromHand();
             }
         }
-
-
     }
 }
