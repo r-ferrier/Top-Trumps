@@ -45,9 +45,11 @@ public class GamePlay {
 			roundCounter++;
 		}
 		gameWinner = decideWinner(); // once game is over, decide winner
-		Database database = new Database(players);
-		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
-		database.uploadPlayerStats();
+		//Database database = new Database(players);
+		//need to think about how we get dat into the database
+
+//		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
+//		database.uploadPlayerStats();
 	}
 
 	public static void main(String[] args) {
@@ -92,20 +94,20 @@ public class GamePlay {
 				+ players.get(0).getName() + ". \n" + "Please meet my friends: " + players.get(1).getName() + ", "
 				+ players.get(2).getName() + " and " + players.get(3).getName() + ".\n");
 
-		startGame = false;
-		// loops the start game question until the user selects that they want to start
-		// a new game.
-		while (startGame == false) {
-			System.out.println("Would you like to start a new game or see previous game stats? "
-					+ "Enter: 1 for a new game or 0 for previous game stats.");
-			int gameStats = scanner.hasNextInt();
-			if (gameStats == 0) {
-				database.pullGameStats();
-			} else {
-				startGame = true;
-				System.out.println("Ok, is everybody ready? Then let's play.");
-			}
-		}
+//		startGame = false;
+//		// loops the start game question until the user selects that they want to start
+//		// a new game.
+//		while (startGame == false) {
+//			System.out.println("Would you like to start a new game or see previous game stats? "
+//					+ "Enter: 1 for a new game or 0 for previous game stats.");
+//			boolean gameStats = scanner.hasNextInt();
+//			if (gameStats) {
+//		//§		database.pullGameStats();
+//			} else {
+//				startGame = true;
+//				System.out.println("Ok, is everybody ready? Then let's play.");
+//			}
+//		}
 
 	}
 
@@ -144,12 +146,12 @@ public class GamePlay {
 
 		setHumanPlayerIndex(); // at beginning of each round, check where the human is in the player array
 		announceCurrentPlayer(); // announce which player will be playing round (player in position 0 for first
-									// round,
-									// after that always the most recent winner. draws are ignored.
+		// round,
+		// after that always the most recent winner. draws are ignored.
 
 		showHumanTopCard(); // print the human player's card into the terminal
 		chooseCategory(); // ask the human to pick a category OR ask the computer to select the highest
-							// category from the card
+		// category from the card
 
 		addCardsToCardsInPlay(declareRoundWinOrDraw());
 		/*
@@ -162,11 +164,11 @@ public class GamePlay {
 		 * top card. If the player won the round, the top cards go onto that player's
 		 * pile, along with any cards currently in the communal pile. If there was no
 		 * winner, cards go onto a communal pile.
-		 * 
+		 *
 		 */
 
 		removeKnockedOutPlayers(); // any players with no cards left at the end of the game are removed from the
-									// players
+		// players
 		// array, current player index is changed to reflect new position and we check
 		// if the human is still in the game.
 
@@ -185,7 +187,7 @@ public class GamePlay {
 				players.remove(i);
 
 				i--; // if array is shortened during loop, remove 1 from the counter so we look at
-						// every position
+				// every position
 
 				if (currentPlayer > i) {
 					currentPlayer--; // if current player's position was after i or if it WAS i and current player
@@ -265,6 +267,12 @@ public class GamePlay {
 			System.out.println("Please select your category, the categories are:" + "\n" + topCard.chooseACategory());
 
 			chosenCategory = categorySelection.nextInt();
+
+			while(chosenCategory>5||chosenCategory<1){
+			    System.out.println("I'm sorry, that is not a valid category! Please choose again, your number must be between" +
+                        " 1 and 5.");
+                chosenCategory = categorySelection.nextInt();
+            }
 
 		} else {
 			chosenCategory = topCard.findBestCategory();
