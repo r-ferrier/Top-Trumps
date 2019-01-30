@@ -25,8 +25,8 @@
     <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
 
     <div class="top-line">
-        <h2 id="players-turn">Player turn</h2>
         <input id="quit" type = "submit" value="quit"></input>
+        <h2 id="players-turn">Player turn</h2>
     </div>
 
     <div class="all-cards-played"hidden >
@@ -38,26 +38,30 @@
     </div>
 
     <div class="card-outline" >
+        <div class="card-contents">
 
-        <img id="sandwich" src="http://frostyqueen.org/wp-content/uploads/2016/06/Tuna_Sandwhich.jpg">
-        <p id="caption">Placeholder text</p>
+            <img id="sandwich" src="http://frostyqueen.org/wp-content/uploads/2016/06/Tuna_Sandwhich.jpg" width="200" height="150">
+            <p id="caption">Placeholder text</p>
 
 
-        <div class="radio-labels">
-            <input type="radio" id="Deliciousness" name="choices" value="Deliciousness">
-            <label for="Deliciousness">Deliciousness</label>
-            <br>
-            <input type="radio" id="Size" name="choices" value="Size">
-            <label for="Deliciousness">Size</label>
-            <br>
-            <input type="radio" id="Toastability" name="choices" value="Toastability">
-            <label for="Deliciousness">Toastability</label>
-            <br>
-            <input type="radio" id="Satiation" name="choices" value="Satiation">
-            <label for="Deliciousness">Satiation</label>
-            <br>
-            <input type="radio" id="Complexity" name="choices" value="Complexity">
-            <label for="Deliciousness">Complexity</label>
+            <div class="radio-labels">
+                <input class = "labels" type="radio" id="Deliciousness" name="choices" value="Deliciousness">
+                <label class = "labels" for="Deliciousness">Deliciousness</label>
+                <br>
+                <div class="this-label">
+                    <input class = "labels" type="radio" id="Size" name="choices" value="Size">
+                    <label class = "labels" for="Deliciousness">Size</label>
+                </div>
+                <br>
+                <input class = "labels" type="radio" id="Toastability" name="choices" value="Toastability">
+                <label class = "labels" for="Deliciousness">Toastability</label>
+                <br>
+                <input class = "labels" type="radio" id="Satiation" name="choices" value="Satiation">
+                <label class = "labels" for="Deliciousness">Satiation</label>
+                <br>
+                <input class = "labels" type="radio" id="Complexity" name="choices" value="Complexity">
+                <label class = "labels" for="Deliciousness">Complexity</label>
+            </div>
         </div>
     </div>
 
@@ -71,6 +75,7 @@
         <p id="number-of-cards">number of cards left Placeholder</p>
         <p id="count-of-rounds">Count of rounds Placedholder</p>
     </div>
+
 
 
     </body>
