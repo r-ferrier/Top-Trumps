@@ -1,5 +1,7 @@
 package commandline;
 
+
+
 /**
  * Top Trumps command line application
  */
@@ -18,7 +20,9 @@ public class TopTrumpsCLIApplication {
 		boolean writeGameLogsToFile = false; // Should we write game logs to file?
 
 		if (args[0].equalsIgnoreCase("true"))
+
 			writeGameLogsToFile = true; // Command line selection
+
 
 		// State
 		boolean userWantsToQuit = false; // flag to check whether the user wants to quit the application

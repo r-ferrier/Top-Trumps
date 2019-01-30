@@ -7,26 +7,78 @@
     	<!-- Import JQuery, as it provides functions you will probably find useful (see https://jquery.com/) -->
     	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
     	<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-    	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">
+    	<#--<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">-->
 
 		<!-- Optional Styling of the Website, for the demo I used Bootstrap (see https://getbootstrap.com/docs/4.0/getting-started/introduction/) -->
-		<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/TREC_IS/bootstrap.min.css">
-    	<script src="http://dcs.gla.ac.uk/~richardm/vex.combined.min.js"></script>
-    	<script>vex.defaultOptions.className = 'vex-theme-os';</script>
-    	<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex.css"/>
-    	<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex-theme-os.css"/>
-    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<#--<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/TREC_IS/bootstrap.min.css">-->
+    	<#--<script src="http://dcs.gla.ac.uk/~richardm/vex.combined.min.js"></script>-->
+    	<#--<script>vex.defaultOptions.className = 'vex-theme-os';</script>-->
+    	<#--&lt;#&ndash;<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex.css"/>&ndash;&gt;-->
+    	<#--<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex-theme-os.css"/>-->
+    	<#--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+		<#--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+        <link rel="stylesheet" type = "text/css" href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsStyle.css">
+
+        <style>
+            body{
+                font-family: Helvetica;
+            }
+
+            h1{
+                color: green;
+                font-size: 80px;
+                font-weight: bold;
+            }
+
+            .title{
+                align-content: center;
+            }
+
+            #firstWord{
+                float: left;
+                width: 50%;
+            }
+
+            #secondWord{
+                float: left;
+                width: 50%;
+                text-align-last: left;
+            }
+
+            .buttonsContainer{
+                text-align: center;
+                vertical-align: bottom;
+            }
+
+            .buttons{
+                padding: 10px;
+                color: #ffa088;
+                display: inline-block;
+
+            }
+        </style>
 
 	</head>
 
     <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
-    	
-    	<div class="container">
 
-			<!-- Add your HTML Here -->
-		
-		</div>
+    <div class="title">
+        <h1 id="firstWord">Top Trumps:</h1>
+        <h1 id="secondWord"><br>Sandwiches<br>edition</h1>
+    </div>
+    <br>
+
+    <div class="buttonsContainer">
+        <input id="view_stats" type = submit value="view stats" class = "buttons">
+        <input id="start_new_game" type = submit value="start new game" class = "buttons">
+    </div>
+    <br>
+
+
+
+
+    </div>
 		
 		<script type="text/javascript">
 		
