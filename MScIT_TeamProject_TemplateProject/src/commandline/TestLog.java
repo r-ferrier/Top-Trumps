@@ -2,10 +2,14 @@ package commandline;
 import java.util.logging.*;
 import java.io.IOException;
 public class TestLog {
-    private static final Logger LOGGER = Logger.getLogger(TestLog.class.getName());
+    private static final Logger LOGGER = Logger.getGlobal();
 
-    public TestLog(){
-        setUpLogger();
+    public TestLog(boolean writeLog){
+        if(!writeLog){
+            LogManager.getLogManager().reset();
+        }
+        else{setUpLogger();
+        }
 
     }
 
