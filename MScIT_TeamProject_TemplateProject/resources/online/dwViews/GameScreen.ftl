@@ -24,8 +24,58 @@
 
     <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
 
+    <div class="top-line">
+        <h2 id="players-turn">Player turn</h2>
+        <input id="quit" type = "submit" value="quit"></input>
+    </div>
+
+    <div class="all-cards-played"hidden >
+        <img id="player1-card" src ="https://photos.bigoven.com/recipe/hero/roasted-vegetables-baguette-sandwic.jpg?h=100&w=200">
+        <img id="player2-card" src ="https://photos.bigoven.com/recipe/hero/roasted-vegetables-baguette-sandwic.jpg?h=100&w=200">
+        <img id="player3-card"src ="https://photos.bigoven.com/recipe/hero/roasted-vegetables-baguette-sandwic.jpg?h=100&w=200">
+        <img id="player4-card"src ="https://photos.bigoven.com/recipe/hero/roasted-vegetables-baguette-sandwic.jpg?h=100&w=200">
+        <img id="player5-card"src ="https://photos.bigoven.com/recipe/hero/roasted-vegetables-baguette-sandwic.jpg?h=100&w=200">
+    </div>
+
+    <div class="card-outline" >
+
+        <img id="sandwich" src="http://frostyqueen.org/wp-content/uploads/2016/06/Tuna_Sandwhich.jpg">
+        <p id="caption">Placeholder text</p>
+
+
+        <div class="radio-labels">
+            <input type="radio" id="Deliciousness" name="choices" value="Deliciousness">
+            <label for="Deliciousness">Deliciousness</label>
+            <br>
+            <input type="radio" id="Size" name="choices" value="Size">
+            <label for="Deliciousness">Size</label>
+            <br>
+            <input type="radio" id="Toastability" name="choices" value="Toastability">
+            <label for="Deliciousness">Toastability</label>
+            <br>
+            <input type="radio" id="Satiation" name="choices" value="Satiation">
+            <label for="Deliciousness">Satiation</label>
+            <br>
+            <input type="radio" id="Complexity" name="choices" value="Complexity">
+            <label for="Deliciousness">Complexity</label>
+        </div>
+    </div>
+
+    <div class="winning-card" hidden>
+        <img src="https://photos.bigoven.com/recipe/hero/roasted-vegetables-baguette-sandwic.jpg?h=100&w=200">
+    </div>
+
+    <input id="play-card" type="submit" value="play card" disabled></input>
+
+    <div class="game-stats">
+        <p id="number-of-cards">number of cards left Placeholder</p>
+        <p id="count-of-rounds">Count of rounds Placedholder</p>
+    </div>
+
+
     </body>
-		
+
+
 		</div>
 		
 		<script type="text/javascript">
