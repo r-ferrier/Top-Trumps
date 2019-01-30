@@ -88,7 +88,7 @@
         <counts>
           <entry key="class" value="2" />
           <entry key="css" value="146" />
-          <entry key="ftl" value="512" />
+          <entry key="ftl" value="515" />
           <entry key="java" value="5580" />
           <entry key="txt" value="1" />
         </counts>
@@ -97,7 +97,7 @@
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="CSS" value="146" />
-          <entry key="FTL" value="512" />
+          <entry key="FTL" value="515" />
           <entry key="JAVA" value="5580" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
@@ -127,7 +127,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/target/classes/online/dwViews/SelectionScreen.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="253">
               <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
             </state>
           </provider>
@@ -136,17 +136,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/online/dwViews/Statistics.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+            <state relative-caret-position="135">
+              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/online/dwViews/SelectionScreen.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="601">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="65">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -154,8 +154,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sandwich.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+            <state relative-caret-position="600">
+              <caret line="40" column="22" lean-forward="true" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -169,11 +169,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="247">
+              <caret line="26" column="26" lean-forward="true" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -249,8 +249,8 @@
         <option value="$PROJECT_DIR$/target/classes/online/dwViews/SelectionScreen.ftl" />
         <option value="$PROJECT_DIR$/resources/online/dwViews/topTrumpsStyle.css" />
         <option value="$PROJECT_DIR$/src/commandline/GamePlay.java" />
-        <option value="$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl" />
         <option value="$PROJECT_DIR$/resources/online/dwViews/SelectionScreen.ftl" />
+        <option value="$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl" />
       </list>
     </option>
   </component>
@@ -261,7 +261,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="21" />
+    <option name="y" value="33" />
     <option name="width" value="1403" />
     <option name="height" value="815" />
   </component>
@@ -298,61 +299,28 @@
             <path>
               <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="commandline" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name=".vscode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
               <item name="online" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="configuration" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="online" type="462c0819:PsiDirectoryNode" />
               <item name="dwResources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dwViews" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="online" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
@@ -367,27 +335,6 @@
               <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
               <item name="generated-sources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="maven-status" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="maven-status" type="462c0819:PsiDirectoryNode" />
-              <item name="maven-compiler-plugin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="maven-status" type="462c0819:PsiDirectoryNode" />
-              <item name="maven-compiler-plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="compile" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -409,7 +356,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548848361684" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548857093419" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -508,15 +455,15 @@
       <workItem from="1548429230966" duration="715000" />
       <workItem from="1548492961722" duration="523000" />
       <workItem from="1548680823792" duration="11021000" />
-      <workItem from="1548847933929" duration="563000" />
+      <workItem from="1548847933929" duration="4893000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51382000" />
+    <option name="totallyTimeSpent" value="55712000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1403" height="815" extended-state="0" />
+    <frame x="21" y="33" width="1403" height="815" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29537106" />
@@ -763,20 +710,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/online/dwViews/SelectionScreen.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sandwich.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/commandline/GamePlay.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1410">
@@ -801,24 +734,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/Statistics.ftl">
+    <entry file="file://$PROJECT_DIR$/target/classes/online/dwViews/SelectionScreen.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+        <state relative-caret-position="253">
+          <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl">
+    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/Statistics.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="135">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sandwich.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="22" lean-forward="true" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/online/dwViews/SelectionScreen.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="601">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="65">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="26" column="26" lean-forward="true" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
         </state>
       </provider>
     </entry>
