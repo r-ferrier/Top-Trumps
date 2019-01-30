@@ -20,65 +20,10 @@
 
         <link rel="stylesheet" type = "text/css" href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsStyle.css">
 
-        <style>
-            body{
-                font-family: Helvetica;
-            }
-
-            h1{
-                color: green;
-                font-size: 80px;
-                font-weight: bold;
-            }
-
-            .title{
-                align-content: center;
-            }
-
-            #firstWord{
-                float: left;
-                width: 50%;
-            }
-
-            #secondWord{
-                float: left;
-                width: 50%;
-                text-align-last: left;
-            }
-
-            .buttonsContainer{
-                text-align: center;
-                vertical-align: bottom;
-            }
-
-            .buttons{
-                padding: 10px;
-                color: #ffa088;
-                display: inline-block;
-
-            }
-        </style>
-
 	</head>
 
     <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
 
-    <div class="title">
-        <h1 id="firstWord">Top Trumps:</h1>
-        <h1 id="secondWord"><br>Sandwiches<br>edition</h1>
-    </div>
-    <br>
-
-    <div class="buttonsContainer">
-        <input id="view_stats" type = submit value="view stats" class = "buttons">
-        <input id="start_new_game" type = submit value="start new game" class = "buttons">
-    </div>
-    <br>
-
-
-
-
-    </div>
 		
 		<script type="text/javascript">
 		

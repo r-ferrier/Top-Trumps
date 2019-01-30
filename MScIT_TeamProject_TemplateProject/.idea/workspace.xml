@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fa6a7770-71c4-49b7-a5cb-d8a69353f0f2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commandline/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commandline/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commandline/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commandline/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commandline/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commandline/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commandline/TopTrumpsCLIApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commandline/TopTrumpsCLIApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/online/dwViews/SelectionScreen.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/online/dwViews/SelectionScreen.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/online/dwViews/Statistics.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/online/dwViews/Statistics.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-    </list>
+    <list default="true" id="fa6a7770-71c4-49b7-a5cb-d8a69353f0f2" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +88,7 @@
         <counts>
           <entry key="class" value="2" />
           <entry key="css" value="146" />
-          <entry key="ftl" value="509" />
+          <entry key="ftl" value="512" />
           <entry key="java" value="5580" />
           <entry key="txt" value="1" />
         </counts>
@@ -107,7 +97,7 @@
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="CSS" value="146" />
-          <entry key="FTL" value="509" />
+          <entry key="FTL" value="512" />
           <entry key="JAVA" value="5580" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
@@ -152,11 +142,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/online/dwViews/SelectionScreen.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="11" lean-forward="true" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+            <state relative-caret-position="601">
+              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
         </entry>
@@ -179,11 +169,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="32" column="4" lean-forward="true" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+            <state relative-caret-position="375">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -259,8 +249,8 @@
         <option value="$PROJECT_DIR$/target/classes/online/dwViews/SelectionScreen.ftl" />
         <option value="$PROJECT_DIR$/resources/online/dwViews/topTrumpsStyle.css" />
         <option value="$PROJECT_DIR$/src/commandline/GamePlay.java" />
-        <option value="$PROJECT_DIR$/resources/online/dwViews/SelectionScreen.ftl" />
         <option value="$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl" />
+        <option value="$PROJECT_DIR$/resources/online/dwViews/SelectionScreen.ftl" />
       </list>
     </option>
   </component>
@@ -419,7 +409,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548848091732" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548848361684" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -518,12 +508,12 @@
       <workItem from="1548429230966" duration="715000" />
       <workItem from="1548492961722" duration="523000" />
       <workItem from="1548680823792" duration="11021000" />
-      <workItem from="1548847933929" duration="311000" />
+      <workItem from="1548847933929" duration="563000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51130000" />
+    <option name="totallyTimeSpent" value="51382000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1403" height="815" extended-state="0" />
@@ -818,17 +808,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/SelectionScreen.ftl">
+    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="11" lean-forward="true" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+        <state relative-caret-position="375">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl">
+    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/SelectionScreen.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="32" column="4" lean-forward="true" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+        <state relative-caret-position="601">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
     </entry>
