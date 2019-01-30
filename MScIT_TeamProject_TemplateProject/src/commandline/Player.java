@@ -68,9 +68,12 @@ public class Player {
 		roundsWon++;
 	}
 
-	public int roundsWon() {
-		return roundsWon;
-	}
+	//public int roundsWon() {
+	//	return roundsWon;
+	//}
+	/*
+	not currently in use
+	 */
 
 	public boolean amIKnockedOut() {
 		return knockedOut;
