@@ -18,13 +18,30 @@
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+        <link rel="stylesheet" type = "text/css" href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsStyle.css">
+
 	</head>
 
     <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
-    	
-    	<div class="container">
 
-			<!-- Add your HTML Here -->
+
+            <div class="title">
+                <h1 id="firstWord">Top Trumps:</h1>
+                <h1 id="secondWord"><br>Sandwiches<br>edition</h1>
+            </div>
+            <br>
+
+        	<div class="winner-message">
+				<h2 id="This person won"></h2>
+        	</div>
+
+            <div class="buttonsContainer">
+                <input id="view_stats" type = submit value="view stats" class = "buttons">
+                <input id="start_new_game" type = submit value="start new game" class = "buttons">
+            </div>
+            <br>
+
+    </body>
 		
 		</div>
 		
