@@ -1,6 +1,5 @@
 package commandline;
 
-import.java.sql.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,22 +9,21 @@ import java.sql.ResultSet;
 
 public class Database {
 
-	private static Connection c;
-	private static Statement stmt;
-	private int roundWinner;
-	private static int gameNumber;
-	//private Player player;
-	private static int totalNumberGames;
-	private static int numComputerWon;
-	private static int numHumanWon;
-	private static double averageDraws;
-	private static int largestNumberRound;
+	private Connection c;
+	private Statement stmt;
+	private int gameNumber;
+	private int totalNumberGames;
+	private int numComputerWon;
+	private int numHumanWon;
+	private double averageDraws;
+	private int largestNumberRound;
+	private int[] playerWins = new int[]{0,0,0,0,0};
 	
-	public Database (Player player) {
-		this.player = player;
+	public Database () {
+
 	}
 
-	public static void connectToDatabase() {
+	public void connectToDatabase() {
 
 		/*
 		 * This will connect our program to the database so our data can be updated and
@@ -59,7 +57,7 @@ public class Database {
 
 	}
 
-	private static void createNewTable() {
+	private void createNewTable() {
 
 		/*
 		 * This creates a new table for the persistant game data if one does not already
@@ -91,7 +89,7 @@ public class Database {
 		}
 	}
 
-	public static void uploadGameStats(int gameDraws, int gameWinner, int gameRounds) {
+	public void uploadGameStats(int gameDraws, int gameWinner, int gameRounds) {
 
 		/*
 		 * This will take the results from the game just played and upload them to the
@@ -111,7 +109,6 @@ public class Database {
 			stmt.close();
 			c.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -124,46 +121,45 @@ public class Database {
 		
 	}
 	
-//	private void uploadPlayerStats() {
-//		
-//		/*
-//		 * This will upload the number of rounds each player won to the game stats for that game. 
-//		 */
-//		connectToDatabase();
-//		try {
-//			//testing_game_stats to game_stats
-//			String SQLInsert = "INSERT INTO testing_game_stats ("
-//				+ " computer_player_1_rounds_won, "
-//				+ " computer_player_2_rounds_won, "
-//				+ " computer_player_3_rounds_won, "
-//				+ " computer_player_4_rounds_won, "
-//				+ " human_player_rounds_won) "
-//				+ "VALUES (" 
-//				+ player.get(0).roundsWon() 
-//				+ player.get(1).roundsWon()
-//				+ player.get(2).roundsWon()
-//				+ player.get(3).roundsWon()
-//				+ player.get(4).roundsWon() //This is the human player. 
-//				+ ") ";
-//		
-//			// invoke executeUpdate to insert
-//			int status = stmt.executeUpdate(SQLInsert);
-//
-//			// check the insertion
-//			if (status == 1) {
-//				System.out.println("Persistant Game Statistics are inserted");
-//			} else {
-//				System.out.println("No insertion completed");
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		stmt.close();
-//		c.close();
-//		
-//	}
+	private void uploadPlayerStats() {
 
-	private static void pullGameStats() {
+		/*
+		 * This will upload the number of rounds each player won to the game stats for that game.
+		 */
+		connectToDatabase();
+		try {
+			//testing_game_stats to game_stats
+			String SQLInsert = "INSERT INTO testing_game_stats ("
+				+ " human_player_rounds_won, "
+				+ " computer_player_1_rounds_won, "
+				+ " computer_player_2_rounds_won, "
+				+ " computer_player_3_rounds_won, "
+				+ " computer_player_4_rounds_won) "
+				+ "VALUES ("
+				+ playerWins[0]+ ", " //This is the human player.
+				+ playerWins[1]+ ", "
+                + playerWins[2]+ ", "
+                + playerWins[3]+ ", "
+                + playerWins[4]
+                + ") ";
+
+			// invoke executeUpdate to insert
+			int status = stmt.executeUpdate(SQLInsert);
+
+			// check the insertion
+			if (status == 1) {
+				System.out.println("Persistant Game Statistics are inserted");
+			} else {
+				System.out.println("No insertion completed");
+			}
+            stmt.close();
+            c.close();
+        } catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void pullGameStats() {
 
 		/*
 		 * This will print the information about the previous games, while the game is
@@ -193,7 +189,7 @@ public class Database {
 			ResultSet avgDraws = stmt.executeQuery("SELECT AVG(number_of_draws) FROM testing_game_stats");
 			if (avgDraws.next()) {
 				averageDraws = avgDraws.getDouble(1);
-				averageDraws = Math.Round(averageDraws); //Rounds the average number of draws, so the number is more readable. 
+				averageDraws = Math.round(averageDraws); //Rounds the average number of draws, so the number is more readable.
 			}
 				
 			ResultSet largestRound = stmt.executeQuery("SELECT MAX(number_of_rounds) FROM testing_game_stats");
@@ -215,7 +211,7 @@ public class Database {
 
 	}
 	
-	private static void printGameStats() {
+	private void printGameStats() {
 		
 		/*
 		 * Prints the persistant game data.
@@ -230,17 +226,8 @@ public class Database {
 
 	// GETTERS AND SETTERS
 
-	public void setRoundWinner(int roundWinnerInput) {
 
-		roundWinner = roundWinnerInput;
-
-	}
-
-	public int getRoundWinner() {
-		return roundWinner;
-	}
-
-	public static int setGameNumber() {
+	public int setGameNumber() {
 		
 		/*
 		 * Connects to the database and gets the game number of the last game and adds 1 to give the most recent game number. 
@@ -264,5 +251,12 @@ public class Database {
 		gameNumber ++;
 		return gameNumber;
 	}
+
+	public void setRoundWins(int playerIndex){
+
+        playerWins[playerIndex] = playerWins[playerIndex]++;
+
+    }
+
 
 }
