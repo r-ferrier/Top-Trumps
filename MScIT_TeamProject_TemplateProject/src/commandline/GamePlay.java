@@ -2,6 +2,7 @@ package commandline;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GamePlay {
@@ -10,9 +11,8 @@ public class GamePlay {
 	private int drawCounter;
 	private int chosenCategory;
 	private ArrayList<Card> communalPile = new ArrayList<>();
-	private ArrayList<Player> players;
+	public ArrayList<Player> players;
 	private Player winner;
-	// private GameData gameData;
 	private Deck deck;
 	private int humanIndex;
 	private int currentPlayer = 0; // set to first player (0) initially, will be updated to the winner index
@@ -62,7 +62,7 @@ public class GamePlay {
 	/**
 	 * creates the array for our players and adds in all of the AI players
 	 */
-	private void setAIPlayers() {
+	public void setAIPlayers() {
 
 		players = new ArrayList<>();
 
@@ -73,11 +73,11 @@ public class GamePlay {
 
 	}
 
-	private void createDeck() {
+	public void createDeck() {
 		deck = new Deck();
 	}
 
-	private void announceRoundNumber() {
+	public void announceRoundNumber() {
 		System.out.println("Round " + roundCounter + ": Players have drawn their cards.");
 	}
 
@@ -114,14 +114,14 @@ public class GamePlay {
 
 	}
 
-//    private ArrayList<commandline.Player> dealHands(){
-//        return players;
-//    }
+    private ArrayList<commandline.Player> dealHands(){
+        return players;
+    }
 
 	/**
 	 * shuffles the order of the players.
 	 */
-	private void chooseFirstPlayer() {
+	public void chooseFirstPlayer() {
 
 		Collections.shuffle(players);
 		setHumanPlayerIndex();
@@ -156,6 +156,9 @@ public class GamePlay {
 		chooseCategory(); // ask the human to pick a category OR ask the computer to select the highest
 		// category from the card
 
+		if(!humanKnockedOut) {
+			playCard(); // ask the human to press enter to advance the round as long as they are still in the game
+		}
 		addCardsToCommunalPile(declareRoundWinOrDraw());
 		/*
 		 * run two methods. First is to declare whether or not the round had a winner or
@@ -174,6 +177,7 @@ public class GamePlay {
 		// players
 		// array, current player index is changed to reflect new position and we check
 		// if the human is still in the game.
+
 
 	}
 
@@ -263,19 +267,32 @@ public class GamePlay {
 		Card topCard = players.get(currentPlayer).getTopCard();
 		String name = players.get(currentPlayer).getName();
 
-		Scanner categorySelection = new Scanner(System.in);
+
 
 		if (players.get(currentPlayer).checkHuman() == true) {
 
 			System.out.println("Please select your category, the categories are:" + "\n" + topCard.chooseACategory());
 
-			chosenCategory = categorySelection.nextInt();
+			boolean categorySelected = false;
 
-			while(chosenCategory>5||chosenCategory<1){
-			    System.out.println("I'm sorry, that is not a valid category! Please choose again, your number must be between" +
-                        " 1 and 5.");
-                chosenCategory = categorySelection.nextInt();
-            }
+			while(!categorySelected) {
+
+				try {
+					Scanner categorySelection = new Scanner(System.in);
+					chosenCategory = categorySelection.nextInt();
+
+					while (chosenCategory > 5 || chosenCategory < 1) {
+						System.out.println("I'm sorry, that is not a valid category! Please choose again, your number must be between" +
+								" 1 and 5.");
+						chosenCategory = categorySelection.nextInt();
+					}
+					categorySelected=true;
+
+				} catch (InputMismatchException i) {
+					System.out.println("I'm sorry, that is not a valid category! Please choose again, your number must be between" +
+							" 1 and 5.");
+				}
+			}
 
 		} else {
 			chosenCategory = topCard.findBestCategory();
@@ -285,7 +302,27 @@ public class GamePlay {
 				+ topCard.getCategories()[chosenCategory - 1] + ".");
 	}
 
-	private void showHumanTopCard() {
+	private void playCard() {
+
+		System.out.println("Press enter to play your card, or type q to quit");
+		Scanner scan = new Scanner(System.in);
+
+		String readString = scan.nextLine();
+
+		if (readString == null) {
+			return;
+		} else if (readString.isEmpty()) {
+			return;
+		}else if(readString.charAt(0)=='q') {
+				System.exit(0);
+				return;
+			}
+
+			return;
+
+	}
+
+	private void showHumanTopCard(){
 
 		if (!humanKnockedOut) {
 
@@ -336,7 +373,7 @@ public class GamePlay {
 			playerIndex++;
 		}
 
-		database.setRoundWins(winner.getNumber());
+//		database.setRoundWins(winner.getNumber());
 
 		currentPlayer = winnerIndex;
 
@@ -371,4 +408,5 @@ public class GamePlay {
 		}
 
 	}
+
 }

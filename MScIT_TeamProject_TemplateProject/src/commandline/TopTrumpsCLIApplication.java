@@ -19,9 +19,9 @@ public class TopTrumpsCLIApplication {
 
 		boolean writeTestLog = false; // Should we write game logs to file?
 
-		if (args[0].equalsIgnoreCase("true"))
-
+		if (args[0].equalsIgnoreCase("true")) {
 			writeTestLog = true; // Command line selection
+		}
 
 		TestLog testLog = new TestLog(writeTestLog); // Create logger. If writeTestLog is false, no logs will be writte
 
