@@ -12,7 +12,6 @@ public class GamePlay {
 	private ArrayList<Card> communalPile = new ArrayList<>();
 	private ArrayList<Player> players;
 	private Player winner;
-	// private GameData gameData;
 	private Deck deck;
 	private int humanIndex;
 	private int currentPlayer = 0; // set to first player (0) initially, will be updated to the winner index
@@ -47,12 +46,8 @@ public class GamePlay {
 			roundCounter++;
 		}
 		gameWinner = decideWinner(); // once game is over, decide winner
-
-
-
-
-//		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
-//		database.uploadPlayerStats();
+		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
+		database.uploadPlayerStats();
 	}
 
 	public static void main(String[] args) {
@@ -97,20 +92,24 @@ public class GamePlay {
 				+ players.get(0).getName() + ". \n" + "Please meet my friends: " + players.get(1).getName() + ", "
 				+ players.get(2).getName() + " and " + players.get(3).getName() + ".\n");
 
-//		startGame = false;
-//		// loops the start game question until the user selects that they want to start
-//		// a new game.
-//		while (startGame == false) {
-//			System.out.println("Would you like to start a new game or see previous game stats? "
-//					+ "Enter: 1 for a new game or 0 for previous game stats.");
-//			boolean gameStats = scanner.hasNextInt();
-//			if (gameStats) {
-//		//§		database.pullGameStats();
-//			} else {
-//				startGame = true;
-//				System.out.println("Ok, is everybody ready? Then let's play.");
-//			}
-//		}
+		startGame = false;
+		// loops the start game question until the user selects that they want to start
+		// a new game.
+		while (startGame == false) {
+			System.out.println("Would you like to start a new game or see previous game stats? "
+					+ "Enter: 1 for a new game or 0 for previous game stats.");
+			try {
+			int gameStats = scanner.getInt();
+			if (gameStats == 0) {
+				database.pullGameStats();
+			} else {
+				startGame = true;
+				System.out.println("Ok, is everybody ready? Then let's play.");
+			}
+			}catch (InputMismatchException e) {
+				System.out.println("Oops that was not a number. \n");
+			}
+		}
 
 	}
 
