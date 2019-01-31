@@ -50,10 +50,15 @@
 				// --------------------------------------------------------------------------
 				
 				// For example, lets call our sample methods
-				helloJSONList();
-				helloWord("Student");
+				// helloJSONList();
+				// helloWord("Student");
+
+                getCard();
+
 				
 			}
+
+
 			
 			// -----------------------------------------
 			// Add your other Javascript methods Here
@@ -88,7 +93,7 @@
 		
 		<!-- Here are examples of how to call REST API Methods -->
 		<script type="text/javascript">
-		
+
 			// This calls the helloJSONList REST method from TopTrumpsRESTAPI
 			function helloJSONList() {
 			

@@ -1,8 +1,10 @@
 package commandline;
+import java.util.ArrayList;
 import java.util.logging.*;
 import java.io.IOException;
 import java.util.ArrayList;
 public class TestLog {
+
     private static final Logger LOGGER = Logger.getGlobal();
 
     public TestLog(boolean writeLog){

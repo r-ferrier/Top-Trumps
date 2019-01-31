@@ -26,7 +26,7 @@ public class Deck {
      * reads file line by line. Uses the first line to create categories, and creates a commandline.Card object with every line
      * after that, storing these objects in an Arraylist (deck).
      */
-    private void readFile(){
+    public void readFile(){
 
 
         try {
@@ -39,7 +39,13 @@ public class Deck {
                 Card nextCard = new Card(thisLine, categoryDescriptions);
                 addCard(nextCard);
             }
+<<<<<<< HEAD
             TestLog.logDeck(deck);
+=======
+
+            TestLog.logDeck(deck);
+
+>>>>>>> 61ebc6772385db3020d9fce12fd1e9b873738cfb
             shuffleCards();
             TestLog.logShuffle(deck);
 
