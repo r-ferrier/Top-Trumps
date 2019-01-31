@@ -39,13 +39,7 @@ public class Deck {
                 Card nextCard = new Card(thisLine, categoryDescriptions);
                 addCard(nextCard);
             }
-<<<<<<< HEAD
             TestLog.logDeck(deck);
-=======
-
-            TestLog.logDeck(deck);
-
->>>>>>> 61ebc6772385db3020d9fce12fd1e9b873738cfb
             shuffleCards();
             TestLog.logShuffle(deck);
 
