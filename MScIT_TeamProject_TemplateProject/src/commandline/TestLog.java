@@ -1,7 +1,9 @@
 package commandline;
+import java.util.ArrayList;
 import java.util.logging.*;
 import java.io.IOException;
 public class TestLog {
+
     private static final Logger LOGGER = Logger.getGlobal();
 
     public TestLog(boolean writeLog){
@@ -27,8 +29,12 @@ public class TestLog {
     }
     //The contents of the complete deck once it has been read in and constructed
     // 
-    public static void logDeck(){
-        LOGGER.log(Level.INFO, "test" );
+    public static void logDeck(ArrayList<Card> deck){
+        String allCardsInDeck="";
+        for(Card c : deck){
+            allCardsInDeck += c.getDescription()+"\n"+c.toString()+" \n";
+        }
+        LOGGER.log(Level.INFO, allCardsInDeck );
 
     }
 
