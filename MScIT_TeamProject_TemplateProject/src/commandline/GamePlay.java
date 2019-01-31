@@ -139,7 +139,7 @@ public class GamePlay {
 				i = 0;
 			}
 		}
-
+		//TestLog.logHands();
 	}
 
 	private void playRound() {

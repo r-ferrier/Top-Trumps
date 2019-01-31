@@ -1,6 +1,7 @@
 package commandline;
 import java.util.logging.*;
 import java.io.IOException;
+import java.util.ArrayList;
 public class TestLog {
     private static final Logger LOGGER = Logger.getGlobal();
 
@@ -14,7 +15,7 @@ public class TestLog {
     }
 
     public void setUpLogger(){
-        LogManager.getLogManager().reset();
+        LogManager.getLogManager().reset(); // comment out to test in console
         SimpleFormatter formatter = new SimpleFormatter();
         try {
             FileHandler fh = new FileHandler("toptrumps.log");
@@ -27,20 +28,38 @@ public class TestLog {
     }
     //The contents of the complete deck once it has been read in and constructed
     // 
-    public static void logDeck(){
-        LOGGER.log(Level.INFO, "test" );
+    public static void logDeck(ArrayList<Card> deck){
+        String allCardsInDeck="";
+        for(Card c : deck){
+            allCardsInDeck += c.getDescription()+"\n"+c.toString()+" \n";
+        }
+        LOGGER.log(Level.INFO, allCardsInDeck );
 
     }
 
     //The contents of the complete deck after it has been shuffled
-    public static void logShuffle(){
-        LOGGER.log(Level.INFO, "test" );
+    public static void logShuffle(ArrayList<Card> deck){
+        String shuffledDeck="";
+        for(Card c : deck){
+            shuffledDeck += c.getDescription()+"\n"+c.toString()+" \n";
+        }
+        LOGGER.log(Level.INFO, shuffledDeck );
 
     }
 //    The contents of the user’s deck and the computer’s deck(s) once they have been allocated. Be sure to
 //    indicate which the user’s deck is and which the computer’s deck(s) is.
-    public static void logAllocatedHands(){
-        LOGGER.log(Level.INFO, "test" );
+    public static void logAllocatedHands(ArrayList<Player> players){
+        String allocatedHands="";
+        for(Player p : players){
+            String playerHand="";
+            String name = p.getName(); 
+            ArrayList<Card> hand = p.getHand();
+            for(Card c : hand){
+                playerHand += c.getDescription()+"\n"+c.toString()+" \n";
+
+           }allocatedHands += name + "'s Hand:/n" + playerHand;
+        }
+        LOGGER.log(Level.INFO, allocatedHands );
 
     }
 

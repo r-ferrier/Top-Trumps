@@ -39,8 +39,9 @@ public class Deck {
                 Card nextCard = new Card(thisLine, categoryDescriptions);
                 addCard(nextCard);
             }
-
+            TestLog.logDeck(deck);
             shuffleCards();
+            TestLog.logShuffle(deck);
 
         } catch (IOException fileNotFound){
             fileNotFound.printStackTrace();
