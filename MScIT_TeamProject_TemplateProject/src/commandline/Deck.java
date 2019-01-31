@@ -40,6 +40,8 @@ public class Deck {
                 addCard(nextCard);
             }
 
+            TestLog.logDeck(deck);
+
             shuffleCards();
 
         } catch (IOException fileNotFound){

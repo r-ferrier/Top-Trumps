@@ -8,6 +8,7 @@ commandline/Card.class
 online/dwResources/TopTrumpsRESTAPI.class
 online/dwViews/StatisticsView.class
 commandline/Deck.class
+commandline/TestLog.class
 online/dwViews/GameScreenView.class
 TopTrumps.class
 online/TopTrumpsOnlineApplication.class

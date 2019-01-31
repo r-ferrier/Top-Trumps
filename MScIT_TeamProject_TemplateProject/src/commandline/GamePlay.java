@@ -9,7 +9,7 @@ public class GamePlay {
 	private int roundCounter = 1;
 	private int drawCounter;
 	private int chosenCategory;
-	private ArrayList<Card> cardsInPlay = new ArrayList<>();
+	private ArrayList<Card> communalPile = new ArrayList<>();
 	private ArrayList<Player> players;
 	private Player winner;
 	// private GameData gameData;
@@ -153,7 +153,7 @@ public class GamePlay {
 		chooseCategory(); // ask the human to pick a category OR ask the computer to select the highest
 		// category from the card
 
-		addCardsToCardsInPlay(declareRoundWinOrDraw());
+		addCardsToCommunalPile(declareRoundWinOrDraw());
 		/*
 		 * run two methods. First is to declare whether or not the round had a winner or
 		 * was a draw. If the method finds any two scores that match it will immediately
@@ -341,7 +341,7 @@ public class GamePlay {
 		return true;
 	}
 
-	private void addCardsToCardsInPlay(boolean win) {
+	private void addCardsToCommunalPile(boolean win) {
 		// for each player, if player is not the winner, get their top card, remove it,
 		// and add it to the winner.Hand
 
@@ -352,15 +352,15 @@ public class GamePlay {
 				players.get(i).removeTopCardFromHand();
 			}
 
-			for (Card c : cardsInPlay) {
+			for (Card c : communalPile) {
 				players.get(currentPlayer).dealCard(c);
 			}
-			cardsInPlay.clear();
+			communalPile.clear();
 
 		} else {
 
 			for (Player p : players) {
-				cardsInPlay.add(p.getTopCard());
+				communalPile.add(p.getTopCard());
 				p.removeTopCardFromHand();
 			}
 		}
