@@ -1,4 +1,3 @@
-
 package commandline;
 
 import.java.sql.*;
@@ -159,7 +158,6 @@ public class Database {
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
-//		
 //		stmt.close();
 //		c.close();
 //		
