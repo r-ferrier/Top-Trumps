@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\online\dwViews\StatisticsView.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\online\TopTrumpsOnlineApplication.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\commandline\Deck.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\online\dwResources\GameWebPagesResource.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\commandline\Card.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\commandline\GamePlay.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\online\configuration\TopTrumpsJSONConfiguration.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\commandline\Database.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\commandline\TopTrumpsCLIApplication.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\commandline\Player.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\online\dwResources\TopTrumpsRESTAPI.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\online\dwViews\SelectionScreenView.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\commandline\TestLog.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\online\dwViews\GameScreenView.java
+C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\TopTrumps\Top-Trumps\MScIT_TeamProject_TemplateProject\src\TopTrumps.java
+=======
 /Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/online/dwViews/GameScreenView.java
 /Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/commandline/TestLog.java
 /Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/commandline/TopTrumpsCLIApplication.java
@@ -13,3 +30,4 @@
 /Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/online/configuration/TopTrumpsJSONConfiguration.java
 /Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/TopTrumps.java
 /Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/online/dwViews/StatisticsView.java
+>>>>>>> 61ebc6772385db3020d9fce12fd1e9b873738cfb

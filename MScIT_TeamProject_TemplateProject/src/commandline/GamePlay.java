@@ -142,7 +142,7 @@ public class GamePlay {
 				i = 0;
 			}
 		}
-
+		TestLog.logAllocatedHands(players);
 	}
 
 	private void playRound() {
@@ -253,6 +253,8 @@ public class GamePlay {
 			if (player.amIKnockedOut() == false) {
 				winner = player.getNumber();
 				System.out.println("The winner is " + player.getName());
+
+				TestLog.logWinner(player);
 			}
 		}
 		return winner;
@@ -300,6 +302,8 @@ public class GamePlay {
 
 		System.out.println(name + " has chosen category " + chosenCategory + ", "
 				+ topCard.getCategories()[chosenCategory - 1] + ".");
+		
+		TestLog.logSelectedCategory(chosenCategory, topCard.getCategories()[chosenCategory - 1], players);		
 	}
 
 	private void playCard() {
@@ -334,6 +338,7 @@ public class GamePlay {
 		} else {
 			System.out.println("\n" + "You have no cards left to play and have been knocked out of the game" + "\n");
 		}
+		TestLog.logCardsInPlay(players);
 	}
 
 	/**
@@ -406,7 +411,8 @@ public class GamePlay {
 				p.removeTopCardFromHand();
 			}
 		}
-
+		TestLog.logCommunalPile(communalPile);
+		TestLog.logHandsAfterRound(players);	
 	}
 
 }
