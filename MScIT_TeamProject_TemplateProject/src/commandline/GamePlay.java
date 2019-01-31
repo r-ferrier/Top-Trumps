@@ -48,11 +48,14 @@ public class GamePlay {
 		}
 		gameWinner = decideWinner(); // once game is over, decide winner
 		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
-		database.uploadPlayerStats();
+		//database.uploadPlayerStats();
 	}
 
 	public static void main(String[] args) {
+		boolean writeLog = true;
+		TestLog testlog = new TestLog(writeLog);
 		new GamePlay();
+		
 	}
 
 	/**
@@ -93,24 +96,24 @@ public class GamePlay {
 				+ players.get(0).getName() + ". \n" + "Please meet my friends: " + players.get(1).getName() + ", "
 				+ players.get(2).getName() + " and " + players.get(3).getName() + ".\n");
 
-		startGame = false;
-		// loops the start game question until the user selects that they want to start
-		// a new game.
-		while (startGame == false) {
-			System.out.println("Would you like to start a new game or see previous game stats? "
-					+ "Enter: 1 for a new game or 0 for previous game stats.");
-			try {
-			int gameStats = scanner.getInt();
-			if (gameStats == 0) {
-				database.pullGameStats();
-			} else {
-				startGame = true;
-				System.out.println("Ok, is everybody ready? Then let's play.");
-			}
-			}catch (InputMismatchException e) {
-				System.out.println("Oops that was not a number. \n");
-			}
-		}
+//		startGame = false;
+//		// loops the start game question until the user selects that they want to start
+//		// a new game.
+//		while (startGame == false) {
+//			System.out.println("Would you like to start a new game or see previous game stats? "
+//					+ "Enter: 1 for a new game or 0 for previous game stats.");
+//			try {
+//			int gameStats = scanner.getInt();
+//			if (gameStats == 0) {
+//				database.pullGameStats();
+//			} else {
+//				startGame = true;
+//				System.out.println("Ok, is everybody ready? Then let's play.");
+//			}
+//			}catch (InputMismatchException e) {
+//				System.out.println("Oops that was not a number. \n");
+//			}
+//		}
 
 	}
 
