@@ -23,7 +23,7 @@ public class TopTrumpsCLIApplication {
 			writeTestLog = true; // Command line selection
 		}
 
-		TestLog testLog = new TestLog(writeTestLog); // Create logger. If writeTestLog is false, no logs will be writte
+		TestLog testLog = new TestLog(writeTestLog); // Create logger. If writeTestLog is false, no logs will be written.
 
 
 		// State
