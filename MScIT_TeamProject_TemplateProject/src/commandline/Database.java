@@ -101,8 +101,13 @@ public class Database {
 		setGameNumber();
 		int status = 0;
 		try {
-			String SQLInsert = "INSERT INTO testing_game_stats(game_number, game_winner, number_of_rounds, number_of_draws) VALUES ("
-				+ gameNumber + ", " + gameWinner + ", " + gameRounds + ", " + gameDraws + "); ";
+			String SQLInsert = "INSERT INTO testing_game_stats(game_number, game_winner, number_of_rounds, number_of_draws) "
+				+ "VALUES ("	
+				+ gameNumber + ", " 
+				+ gameWinner + ", " 
+				+ gameRounds + ", " 
+				+ gameDraws 
+				+ "); ";
 
 			status = stmt.executeUpdate(SQLInsert);
 			
@@ -176,12 +181,14 @@ public class Database {
 			totalNumberGames = gameNumber.getInt(1);
 			}
 			
-			ResultSet compWon = stmt.executeQuery("SELECT COUNT(*) game_winner FROM testing_game_stats WHERE game_winner <> 4"); // 4 is the human player
+			ResultSet compWon = stmt.executeQuery("SELECT COUNT(*) game_winner FROM testing_game_stats WHERE game_winner <> 0"); 
+			// 0 is the human player
 			while (compWon.next()) {
 				numComputerWon = compWon.getInt(1);
 			}
 			
-			ResultSet humanWon = stmt.executeQuery("SELECT COUNT(*) game_winner FROM testing_game_stats WHERE game_winner = 4"); // 4 is the human player
+			ResultSet humanWon = stmt.executeQuery("SELECT COUNT(*) game_winner FROM testing_game_stats WHERE game_winner = 0"); 
+			// 0 is the human player
 			while (humanWon.next()) {
 				numHumanWon = humanWon.getInt(1);
 			}
@@ -226,7 +233,6 @@ public class Database {
 
 	// GETTERS AND SETTERS
 
-
 	public int setGameNumber() {
 		
 		/*
@@ -240,7 +246,6 @@ public class Database {
 			ResultSet lastGameNumber = stmt.executeQuery("SELECT game_number COUNT(*) FROM testing_game_stats");
 			if (lastGameNumber.next()) {
 				gameNumber = lastGameNumber.getInt("game_number");
-				
 			}
 			lastGameNumber.close();
 			stmt.close();
@@ -253,6 +258,10 @@ public class Database {
 	}
 
 	public void setRoundWins(int playerIndex){
+		
+		/*
+		 * Updates an array of how many rounds each player has won each game. 
+		 */
 
         playerWins[playerIndex] = playerWins[playerIndex]++;
 
