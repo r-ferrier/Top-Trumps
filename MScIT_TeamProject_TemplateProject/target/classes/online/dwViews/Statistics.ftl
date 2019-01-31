@@ -39,9 +39,9 @@
 				// --------------------------------------------------------------------------
 				
 				// For example, lets call our sample methods
-				helloJSONList();
-				helloWord("Student");
-				
+				// helloJSONList();
+				// helloWord("Student");
+				//
 			}
 			
 			// -----------------------------------------
