@@ -20,6 +20,7 @@ public class GamePlay {
 	private boolean humanKnockedOut = false;
 	private int gameWinner;
 	private boolean startGame;
+	private Database database;
 
 	/**
 	 * constructor for this class. It creates a deck of cards from the file chosen
@@ -32,7 +33,8 @@ public class GamePlay {
 	public GamePlay() {
 
 		createDeck();
-		setAIPlayers(); // setting up all the elements needed for the game
+		setAIPlayers();
+		Database database = new Database();// setting up all the elements needed for the game
 		gameBegins(); // prints some output and prompts user entry of name
 
 		chooseFirstPlayer(); // shuffles player array so the order of players is random and fair
@@ -45,8 +47,9 @@ public class GamePlay {
 			roundCounter++;
 		}
 		gameWinner = decideWinner(); // once game is over, decide winner
-		//Database database = new Database(players);
-		//need to think about how we get dat into the database
+
+
+
 
 //		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
 //		database.uploadPlayerStats();
@@ -332,6 +335,8 @@ public class GamePlay {
 
 			playerIndex++;
 		}
+
+		database.setRoundWins(winner.getNumber());
 
 		currentPlayer = winnerIndex;
 
