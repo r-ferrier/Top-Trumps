@@ -257,7 +257,7 @@ public class Database {
 		try {
 			stmt = c.createStatement();
 			// testing_game_stats to game_stats
-			ResultSet lastGameNumber = stmt.executeQuery("SELECT game_number COUNT(*) FROM testing_game_stats");
+			ResultSet lastGameNumber = stmt.executeQuery("SELECT COUNT(*) game_number  FROM testing_game_stats");
 			if (lastGameNumber.next()) {
 				gameNumber = lastGameNumber.getInt("game_number");
 			}
