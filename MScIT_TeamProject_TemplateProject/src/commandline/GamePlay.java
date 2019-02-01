@@ -2,6 +2,7 @@ package commandline;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GamePlay {
@@ -9,10 +10,9 @@ public class GamePlay {
 	private int roundCounter = 1;
 	private int drawCounter;
 	private int chosenCategory;
-	private ArrayList<Card> cardsInPlay = new ArrayList<>();
-	private ArrayList<Player> players;
+	private ArrayList<Card> communalPile = new ArrayList<>();
+	public ArrayList<Player> players;
 	private Player winner;
-	// private GameData gameData;
 	private Deck deck;
 	private int humanIndex;
 	private int currentPlayer = 0; // set to first player (0) initially, will be updated to the winner index
@@ -20,6 +20,7 @@ public class GamePlay {
 	private boolean humanKnockedOut = false;
 	private int gameWinner;
 	private boolean startGame;
+	private Database database;
 
 	/**
 	 * constructor for this class. It creates a deck of cards from the file chosen
@@ -32,7 +33,8 @@ public class GamePlay {
 	public GamePlay() {
 
 		createDeck();
-		setAIPlayers(); // setting up all the elements needed for the game
+		setAIPlayers();
+		database = new Database();// setting up all the elements needed for the game
 		gameBegins(); // prints some output and prompts user entry of name
 
 		chooseFirstPlayer(); // shuffles player array so the order of players is random and fair
@@ -45,9 +47,8 @@ public class GamePlay {
 			roundCounter++;
 		}
 		gameWinner = decideWinner(); // once game is over, decide winner
-		Database database = new Database(players);
 		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
-		database.uploadPlayerStats();
+
 	}
 
 	public static void main(String[] args) {
@@ -57,7 +58,7 @@ public class GamePlay {
 	/**
 	 * creates the array for our players and adds in all of the AI players
 	 */
-	private void setAIPlayers() {
+	public void setAIPlayers() {
 
 		players = new ArrayList<>();
 
@@ -68,11 +69,11 @@ public class GamePlay {
 
 	}
 
-	private void createDeck() {
+	public void createDeck() {
 		deck = new Deck();
 	}
 
-	private void announceRoundNumber() {
+	public void announceRoundNumber() {
 		System.out.println("Round " + roundCounter + ": Players have drawn their cards.");
 	}
 
@@ -98,25 +99,29 @@ public class GamePlay {
 		while (startGame == false) {
 			System.out.println("Would you like to start a new game or see previous game stats? "
 					+ "Enter: 1 for a new game or 0 for previous game stats.");
-			int gameStats = scanner.hasNextInt();
+			try {
+			int gameStats = scanner.nextInt();
 			if (gameStats == 0) {
 				database.pullGameStats();
 			} else {
 				startGame = true;
 				System.out.println("Ok, is everybody ready? Then let's play.");
 			}
+			}catch (InputMismatchException e) {
+				System.out.println("Oops that was not a number. \n");
+			}
 		}
 
 	}
 
-//    private ArrayList<commandline.Player> dealHands(){
-//        return players;
-//    }
+    private ArrayList<commandline.Player> dealHands(){
+        return players;
+    }
 
 	/**
 	 * shuffles the order of the players.
 	 */
-	private void chooseFirstPlayer() {
+	public void chooseFirstPlayer() {
 
 		Collections.shuffle(players);
 		setHumanPlayerIndex();
@@ -137,21 +142,24 @@ public class GamePlay {
 				i = 0;
 			}
 		}
-
+		TestLog.logAllocatedHands(players);
 	}
 
 	private void playRound() {
 
 		setHumanPlayerIndex(); // at beginning of each round, check where the human is in the player array
 		announceCurrentPlayer(); // announce which player will be playing round (player in position 0 for first
-									// round,
-									// after that always the most recent winner. draws are ignored.
+		// round,
+		// after that always the most recent winner. draws are ignored.
 
 		showHumanTopCard(); // print the human player's card into the terminal
 		chooseCategory(); // ask the human to pick a category OR ask the computer to select the highest
-							// category from the card
+		// category from the card
 
-		addCardsToCardsInPlay(declareRoundWinOrDraw());
+		if(!humanKnockedOut) {
+			playCard(); // ask the human to press enter to advance the round as long as they are still in the game
+		}
+		addCardsToCommunalPile(declareRoundWinOrDraw());
 		/*
 		 * run two methods. First is to declare whether or not the round had a winner or
 		 * was a draw. If the method finds any two scores that match it will immediately
@@ -162,13 +170,14 @@ public class GamePlay {
 		 * top card. If the player won the round, the top cards go onto that player's
 		 * pile, along with any cards currently in the communal pile. If there was no
 		 * winner, cards go onto a communal pile.
-		 * 
+		 *
 		 */
 
 		removeKnockedOutPlayers(); // any players with no cards left at the end of the game are removed from the
-									// players
+		// players
 		// array, current player index is changed to reflect new position and we check
 		// if the human is still in the game.
+
 
 	}
 
@@ -185,7 +194,7 @@ public class GamePlay {
 				players.remove(i);
 
 				i--; // if array is shortened during loop, remove 1 from the counter so we look at
-						// every position
+				// every position
 
 				if (currentPlayer > i) {
 					currentPlayer--; // if current player's position was after i or if it WAS i and current player
@@ -244,6 +253,8 @@ public class GamePlay {
 			if (player.amIKnockedOut() == false) {
 				winner = player.getNumber();
 				System.out.println("The winner is " + player.getName());
+
+				TestLog.logWinner(player);
 			}
 		}
 		return winner;
@@ -258,13 +269,32 @@ public class GamePlay {
 		Card topCard = players.get(currentPlayer).getTopCard();
 		String name = players.get(currentPlayer).getName();
 
-		Scanner categorySelection = new Scanner(System.in);
+
 
 		if (players.get(currentPlayer).checkHuman() == true) {
 
 			System.out.println("Please select your category, the categories are:" + "\n" + topCard.chooseACategory());
 
-			chosenCategory = categorySelection.nextInt();
+			boolean categorySelected = false;
+
+			while(!categorySelected) {
+
+				try {
+					Scanner categorySelection = new Scanner(System.in);
+					chosenCategory = categorySelection.nextInt();
+
+					while (chosenCategory > 5 || chosenCategory < 1) {
+						System.out.println("I'm sorry, that is not a valid category! Please choose again, your number must be between" +
+								" 1 and 5.");
+						chosenCategory = categorySelection.nextInt();
+					}
+					categorySelected=true;
+
+				} catch (InputMismatchException i) {
+					System.out.println("I'm sorry, that is not a valid category! Please choose again, your number must be between" +
+							" 1 and 5.");
+				}
+			}
 
 		} else {
 			chosenCategory = topCard.findBestCategory();
@@ -272,9 +302,31 @@ public class GamePlay {
 
 		System.out.println(name + " has chosen category " + chosenCategory + ", "
 				+ topCard.getCategories()[chosenCategory - 1] + ".");
+		
+		TestLog.logSelectedCategory(chosenCategory, topCard.getCategories()[chosenCategory - 1], players);		
 	}
 
-	private void showHumanTopCard() {
+	private void playCard() {
+
+		System.out.println("Press enter to play your card, or type q to quit");
+		Scanner scan = new Scanner(System.in);
+
+		String readString = scan.nextLine();
+
+		if (readString == null) {
+			return;
+		} else if (readString.isEmpty()) {
+			return;
+		}else if(readString.charAt(0)=='q') {
+				System.exit(0);
+				return;
+			}
+
+			return;
+
+	}
+
+	private void showHumanTopCard(){
 
 		if (!humanKnockedOut) {
 
@@ -286,6 +338,7 @@ public class GamePlay {
 		} else {
 			System.out.println("\n" + "You have no cards left to play and have been knocked out of the game" + "\n");
 		}
+		TestLog.logCardsInPlay(players);
 	}
 
 	/**
@@ -309,7 +362,9 @@ public class GamePlay {
 
 			if (valueOfChosenCategory > currentHighestCategoryValue) {
 				currentHighestCategoryValue = valueOfChosenCategory;
-
+				
+				// I have tried this but I don't think it works quite right and I couldn't figure out what else to use. 
+				database.setRoundWins(p.getNumber());
 				winner = p;
 				winnerIndex = playerIndex;
 
@@ -325,6 +380,8 @@ public class GamePlay {
 			playerIndex++;
 		}
 
+//		database.setRoundWins(winner.getNumber());
+
 		currentPlayer = winnerIndex;
 
 		System.out.println(winner.getName() + " won this round with the card " + winner.getTopCard().getDescription()
@@ -333,7 +390,7 @@ public class GamePlay {
 		return true;
 	}
 
-	private void addCardsToCardsInPlay(boolean win) {
+	private void addCardsToCommunalPile(boolean win) {
 		// for each player, if player is not the winner, get their top card, remove it,
 		// and add it to the winner.Hand
 
@@ -344,18 +401,20 @@ public class GamePlay {
 				players.get(i).removeTopCardFromHand();
 			}
 
-			for (Card c : cardsInPlay) {
+			for (Card c : communalPile) {
 				players.get(currentPlayer).dealCard(c);
 			}
-			cardsInPlay.clear();
+			communalPile.clear();
 
 		} else {
 
 			for (Player p : players) {
-				cardsInPlay.add(p.getTopCard());
+				communalPile.add(p.getTopCard());
 				p.removeTopCardFromHand();
 			}
 		}
-
+		TestLog.logCommunalPile(communalPile);
+		TestLog.logHandsAfterRound(players);	
 	}
+
 }
