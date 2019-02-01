@@ -29,7 +29,7 @@ public class TestLog {
      * in console
      */
     public void setUpLogger() {
-       // LogManager.getLogManager().reset(); // comment out to view logs in console
+        LogManager.getLogManager().reset(); // comment out to test in console
         SimpleFormatter formatter = new SimpleFormatter();
         try {
             FileHandler fh = new FileHandler("toptrumps.log");
@@ -68,7 +68,7 @@ public class TestLog {
     }
 
     /**
-     * Check if player is human or computer and convert to a string.
+     * Check if player is human or computer and convert to a string
      * 
      */
     public static String humanOrComputer(boolean checkHuman) {
