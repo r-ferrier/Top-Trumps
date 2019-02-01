@@ -36,7 +36,7 @@ public class Database {
 		c = null;
 		stmt = null;
 		try {
-			Class.forName("org.postresql.Driver");
+			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Could not find JDBC Driver");
 			e.printStackTrace();
@@ -44,7 +44,7 @@ public class Database {
 		}
 		
 		try {
-			c = DriverManager.getConnection("jdbc:postresql://yacata.dcs.gla.ac.uk:5432/", "m_18_2028263c", "2028263c");
+			c = DriverManager.getConnection("jdbc:postgresql://yacata.dcs.gla.ac.uk:5432/", "m_18_2028263c", "2028263c");
 			System.out.println("Opened database sucessfully");
 		} catch (SQLException e) {
 			System.out.println("Connection Failed.");
