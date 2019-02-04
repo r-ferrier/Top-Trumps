@@ -97,10 +97,16 @@ public class TopTrumpsRESTAPI {
     @GET
     @Path("/category-values")
     public int[] categoryValues(){
+        //return int array containing values for each category on the "top card"
 
-        int[] categoryValues = new int[]{5,10,6,5,4};
+        int[] categoryValues = new int[5];
 
-        //put java method in here to return category values of current player's top card as an int array
+        Card topCard = players.get(0).getTopCard();
+        categoryValues[0] = topCard.getAnyCategory(1);
+        categoryValues[1] = topCard.getAnyCategory(2);
+        categoryValues[2] = topCard.getAnyCategory(3);
+        categoryValues[3] = topCard.getAnyCategory(4);
+        categoryValues[4] = topCard.getAnyCategory(5);
 
         return categoryValues;
     }
@@ -108,19 +114,50 @@ public class TopTrumpsRESTAPI {
     @GET
     @Path("/all-top-cards")
     public String[] topCards(){
-
+        //return string array containing the description name of every top card for this round
         String[] topCards = new String[5];
 
-        //put java method in here to return string array containing the description name of every top card for this round
+        for (int i = 0; i<5; i++) {
+            topCards[i] = players.get(i).getTopCard().getDescription();
+        }
 
         return topCards;
     }
 
     @GET
     @Path("/winner")
-    public int winner(){
+    public String winner(){
+        //this method currently is not returning an int like requested but just returns a string stating what
+        //happened. Very open to changing this but thought i'd just put something in for now.
 
-        int winner = 0;
+        String winner="";
+        //i think this could be done by calling GamePlay.declareRoundWinOrDraw() as it would be a lot of the
+        //same code, but that may not work if the other variables aren't being set from GamePlay? obv would
+        //also have to make it a protected method so we could access it.
+
+        int category = 0;
+        int categoryValue;
+        int currentHighestCategoryValue = 0;
+        int index = 0;
+        String winnerName;
+
+        for (Player p : players) {
+
+            categoryValue = p.getTopCard().getAnyCategory(category);
+
+            if (categoryValue > currentHighestCategoryValue) {
+                currentHighestCategoryValue = categoryValue;
+
+                winnerName = p.getName();
+                winner = winnerName + " has won this round!";
+
+
+            } else if (categoryValue == currentHighestCategoryValue) {
+
+                winner = "It's a draw!!!";
+            }
+        }
+
 
         //put java method in here to return the number of the winner of this round
 
