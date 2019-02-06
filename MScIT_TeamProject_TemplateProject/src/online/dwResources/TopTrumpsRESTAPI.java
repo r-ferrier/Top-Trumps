@@ -120,6 +120,24 @@ public class TopTrumpsRESTAPI {
     }
 
     @GET
+    @Path ("/get-winner")
+    public String[] getWinner(){
+        String[] winnerInfo = new String[]{"winner","1"};
+
+
+        return winnerInfo;
+    }
+
+    @GET
+    @Path ("/players-turn")
+    public String[] playerTurn() {
+        String[] playerInfo = new String[]{"playerNumber", "1", "276", "3", "4", "5", "1"};
+        return playerInfo;
+    }
+
+
+
+    @GET
     @Path("/winner")
     public String winner(){
         //this method currently is not returning an int like requested but just returns a string stating what
@@ -154,33 +172,33 @@ public class TopTrumpsRESTAPI {
         }
 
 
-        //put java method in here to return the number of the winner of this round
+        //put java method in here to return the number of the winner
 
         return winner;
     }
 
 
 //
-//    @GET
-//    @Path("/helloJSONList")
-//    /**
-//     * Here is an example of a simple REST get request that returns a String.
-//     * We also illustrate here how we can convert Java objects to JSON strings.
-//     * @return - List of words as JSON
-//     * @throws IOException
-//     */
-//    public String helloJSONList() throws IOException {
-//
-//        List<String> listOfWords = new ArrayList<String>();
-//        listOfWords.add("Hello");
-//        listOfWords.add("World!");
-//
-//        // We can turn arbatory Java objects directly into JSON strings using
-//        // Jackson seralization, assuming that the Java objects are not too complex.
-//        String listAsJSONString = oWriter.writeValueAsString(listOfWords);
-//
-//        return listAsJSONString;
-//    }
+    @GET
+    @Path("/helloJSONList")
+    /**
+     * Here is an example of a simple REST get request that returns a String.
+     * We also illustrate here how we can convert Java objects to JSON strings.
+     * @return - List of words as JSON
+     * @throws IOException
+     */
+    public String helloJSONList() throws IOException {
+
+        List<String> listOfWords = new ArrayList<String>();
+        listOfWords.add("Hello");
+        listOfWords.add("World!");
+
+        // We can turn arbatory Java objects directly into JSON strings using
+        // Jackson seralization, assuming that the Java objects are not too complex.
+        String listAsJSONString = oWriter.writeValueAsString(listOfWords);
+
+        return listAsJSONString;
+    }
 //
 //    @GET
 //    @Path("/helloWord")
