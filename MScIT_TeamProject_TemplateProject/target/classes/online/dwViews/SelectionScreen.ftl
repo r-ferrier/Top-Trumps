@@ -68,7 +68,11 @@
 
     function startGame() {
         document.getElementsByClassName("choose-players").innerHTML=beginNewGame
-        window.location.href = "http://localhost:7777/toptrumps/start-game";
+        window.location.href = '<a href="' + window.location.protocol + '//' + window.location.hostname + ':7777'
+            + window.location.pathname + '" >New Game</a>');
+
+
+
     }
 
     // -----------------------------------------

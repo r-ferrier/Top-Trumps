@@ -4,19 +4,11 @@
 		<!-- Web page title -->
     	<title>Top Trumps</title>
     	
-    	<!-- Import JQuery, as it provides functions you will probably find useful (see https://jquery.com/) -->
-    	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
-    	<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-    	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">
+    	<#--<!-- Import JQuery, as it provides functions you will probably find useful (see https://jquery.com/) &ndash;&gt;-->
+    	<#--<script src="https://code.jquery.com/jquery-2.1.1.js"></script>-->
+    	<#--<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>-->
 
-		<!-- Optional Styling of the Website, for the demo I used Bootstrap (see https://getbootstrap.com/docs/4.0/getting-started/introduction/) -->
-		<#--<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/TREC_IS/bootstrap.min.css">-->
-    	<#--<script src="http://dcs.gla.ac.uk/~richardm/vex.combined.min.js"></script>-->
-    	<#--<script>vex.defaultOptions.className = 'vex-theme-os';</script>-->
-    	<#--<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex.css"/>-->
-    	<#--<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex-theme-os.css"/>-->
-    	<#--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
-		<#--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+    	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">
 
         <link rel="stylesheet" type = "text/css" href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsGameScreen.css">
 
@@ -305,7 +297,7 @@
 
                 var player = JSON.parse(playerInfo);
 
-                document.getElementById("players-turn").innerText="it is " + player[0] + "turn";
+                document.getElementById("players-turn").innerText="it is " + player[0] + " turn";
 
                 setCategories(player);
 
