@@ -1,419 +1,524 @@
 <html>
 
-	<head>
-		<!-- Web page title -->
-    	<title>Top Trumps</title>
-    	
-    	<#--<!-- Import JQuery, as it provides functions you will probably find useful (see https://jquery.com/) &ndash;&gt;-->
-    	<#--<script src="https://code.jquery.com/jquery-2.1.1.js"></script>-->
-    	<#--<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>-->
+<head>
+    <!-- Web page title -->
+    <title>Top Trumps</title>
 
-    	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">
+<#--<!-- Import JQuery, as it provides functions you will probably find useful (see https://jquery.com/) &ndash;&gt;-->
+<#--<script src="https://code.jquery.com/jquery-2.1.1.js"></script>-->
+<#--<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>-->
 
-        <link rel="stylesheet" type = "text/css" href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsGameScreen.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">
 
-	</head>
+    <link rel="stylesheet" type="text/css"
+          href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsGameScreen.css">
 
-    <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
+</head>
 
-    <div class="top-line">
-        <input id="quit" type = "submit" value="quit"></input>
+<body onload="initalize()"> <!-- Call the initalize method when the page loads -->
 
-        <h2 id="players-turn"></h2>
-    </div>
+<div class="top-line">
+    <input id="quit" type="submit" value="quit"></input>
 
-    <div class="all-cards-played" style="display: none">
-        <img id="player1-card" src ="https://github.com/r-ferrier/topTrumpsCSS/blob/master/whole_card_big_mac1.png?raw=true" width="170">
-        <img id="player2-card" src ="https://github.com/r-ferrier/topTrumpsCSS/blob/master/whole_card_jam_sandwich1.png?raw=true" width="170">
-        <img id="player3-card"src ="https://raw.githubusercontent.com/r-ferrier/topTrumpsCSS/master/imageofcard.png" width="170">
-        <img id="player4-card"src ="https://raw.githubusercontent.com/r-ferrier/topTrumpsCSS/master/imageofcard.png" width="170">
-        <img id="player5-card"src ="https://raw.githubusercontent.com/r-ferrier/topTrumpsCSS/master/imageofcard.png" width="170">
-    </div>
+    <h2 id="players-turn"></h2>
+</div>
 
-    <div class="card-outline" style="display: block">
-        <div class="card-contents">
+<div class="all-cards-played" style="display: none">
+    <img id="player1-card" src="https://github.com/r-ferrier/topTrumpsCSS/blob/master/whole_card_big_mac1.png?raw=true"
+         width="170">
+    <img id="player2-card"
+         src="https://github.com/r-ferrier/topTrumpsCSS/blob/master/whole_card_jam_sandwich1.png?raw=true" width="170">
+    <img id="player3-card" src="https://raw.githubusercontent.com/r-ferrier/topTrumpsCSS/master/imageofcard.png"
+         width="170">
+    <img id="player4-card" src="https://raw.githubusercontent.com/r-ferrier/topTrumpsCSS/master/imageofcard.png"
+         width="170">
+    <img id="player5-card" src="https://raw.githubusercontent.com/r-ferrier/topTrumpsCSS/master/imageofcard.png"
+         width="170">
+</div>
 
-            <img id="sandwich" src="https://raw.githubusercontent.com/r-ferrier/topTrumpsCSS/master/jam_sandwich.png" width="200" height="150">
-            <p id="caption">Sandwich Name</p>
+<div class="card-outline" style="display: block">
+    <div class="card-contents">
+
+        <img id="sandwich" src="https://raw.githubusercontent.com/r-ferrier/topTrumpsCSS/master/jam_sandwich.png"
+             width="200" height="150">
+        <p id="caption">Sandwich Name</p>
 
 
-            <div class="radio-labels">
-                <div class="this-label">
-                    <label for="Deliciousness">Deliciousness</label>
-                    <input type="radio" id="Deliciousness" name="choices" value="Deliciousness">
-                    <label for="Deliciousness" id="category1"></label>
-                </div>
-                <br>
-                <div class="this-label">
-                    <label for="Size">Size</label>
-                    <input type="radio" id="Size" name="choices" value="Size">
-                    <label for="Size" id="category2"></label>
-                </div>
-                <br>
-                <div class="this-label">
-                    <label class = "labels" for="Toastability">Toastability</label>
-                    <input class = "labels" type="radio" id="Toastability" name="choices" value="Toastability">
-                    <label class = "labels" for="Toastability" id="category3"></label>
-                </div>
-                <br>
-                <div class="this-label">
-                    <label class = "labels" for="Satiation">Satiation</label>
-                    <input class = "labels" type="radio" id="Satiation" name="choices" value="Satiation">
-                    <label class = "labels" for="Satiation" id="category4"></label>
-                </div>
-                <br>
-                <div class="this-label">
-                    <label class = "labels" for="Complexity">Complexity</label>
-                    <input class = "labels" type="radio" id="Complexity" name="choices" value="Complexity">
-                    <label class = "labels" for="Complexity" id="category5"></label>
-                </div>
+        <div class="radio-labels">
+            <div class="this-label">
+                <label for="Deliciousness">Deliciousness</label>
+                <input type="radio" id="Deliciousness" name="choices" value="Deliciousness">
+                <label for="Deliciousness" id="category1"></label>
+            </div>
+            <br>
+            <div class="this-label">
+                <label for="Size">Size</label>
+                <input type="radio" id="Size" name="choices" value="Size">
+                <label for="Size" id="category2"></label>
+            </div>
+            <br>
+            <div class="this-label">
+                <label for="Toastability">Toastability</label>
+                <input type="radio" id="Toastability" name="choices" value="Toastability">
+                <label for="Toastability" id="category3"></label>
+            </div>
+            <br>
+            <div class="this-label">
+                <label for="Satiation">Satiation</label>
+                <input type="radio" id="Satiation" name="choices" value="Satiation">
+                <label for="Satiation" id="category4"></label>
+            </div>
+            <br>
+            <div class="this-label">
+                <label for="Complexity">Complexity</label>
+                <input type="radio" id="Complexity" name="choices" value="Complexity">
+                <label for="Complexity" id="category5"></label>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="winning-card" style="display: none" >
-        <img id="winners-card" width="300">
+<div class="ai-card-outline" style="display: none">
+    <img id="winners-card" width="300">
+</div>
+
+
+<div class="winning-card" style="display: none">
+    <img id="winners-card" width="300">
+</div>
+
+<div class="bottom-line">
+
+    <div class="play-card">
+        <input id="play-card" type="submit" value="play card" onclick="buttons()">
     </div>
 
-    <div class="bottom-line">
+    <div class="game-stats">
+        <p id="number-of-cards">number of cards left Placeholder</p>
+        <p id="count-of-rounds">Count of rounds Placeholder</p>
+        <div>
 
-        <div class="play-card">
-            <input id="play-card" type="submit" value="play card" onclick="buttons()">
         </div>
 
-        <div class="game-stats">
-            <p id="number-of-cards">number of cards left Placeholder</p>
-            <p id="count-of-rounds">Count of rounds Placeholder</p>
-            <div>
-
-            </div>
-
-    </body>
+</body>
 
 
-		</div>
-		
-		<script type="text/javascript">
+</div>
 
-        //    var words = new URLSearchParams(window.location.search);
+<script type="text/javascript">
 
-            var cardImagesArray = ["https://github.com/r-ferrier/topTrumpsCSS/blob/master/imageofcard.png?raw=true","https://github.com/r-ferrier/topTrumpsCSS/blob/master/imageofcard.png?raw=true"]
-            var imagesArray = ["https://github.com/r-ferrier/topTrumpsCSS/blob/master/hawaiian.png?raw=true","https://github.com/r-ferrier/topTrumpsCSS/blob/master/smorrebrod.png?raw=true"]
-            var ifHuman;
+    //    var words = new URLSearchParams(window.location.search);
 
-
-			// Method that is called on page load
-			function initalize() {
-			
-				// --------------------------------------------------------------------------
-				// You can call other methods you want to run when the page first loads here
-				// --------------------------------------------------------------------------
-
-              //  var players = new URLSearchParams(window.location.search);
+    var cardImagesArray = ["https://github.com/r-ferrier/topTrumpsCSS/blob/master/imageofcard.png?raw=true", "https://github.com/r-ferrier/topTrumpsCSS/blob/master/imageofcard.png?raw=true"]
+    var imagesArray = ["https://github.com/r-ferrier/topTrumpsCSS/blob/master/hawaiian.png?raw=true", "https://github.com/r-ferrier/topTrumpsCSS/blob/master/smorrebrod.png?raw=true"]
+    var ifHuman;
+    var players;
+    var deck;
+   // var currentPlayer = players.get(0).getNumber();
+    var indexOfCurrentPlayer = 0;
+    var indexOfHumanPlayer = 0;
 
 
-                startGame(${players});
-                // getIfHuman();
-                // getCategories();
+
+    // Method that is called on page load
+    function initalize() {
+
+        // --------------------------------------------------------------------------
+        // You can call other methods you want to run when the page first loads here
+        // --------------------------------------------------------------------------
+
+        //  var players = new URLSearchParams(window.location.search);
+
+        getDeck();
+        getPlayers();
+        getWhoIsInGame();
+
+    //    startGame(${players});
 
 
-                // if(players.has('4')){
-                //     document.getElementById("players-turn").innerHTML = 'YES THAT\'S A MOTHERFLIPPING NUMBER 4';
-                // }
 
+
+        // getIfHuman();
+
+
+
+        // if(players.has('4')){
+        //     document.getElementById("players-turn").innerHTML = 'YES THAT\'S A MOTHERFLIPPING NUMBER 4';
+        // }
+
+    }
+
+    // -----------------------------------------
+    // Add your other Javascript methods Here
+    // -----------------------------------------
+
+
+    function startingGame(startMessage) {
+
+        document.getElementById("players-turn").innerHTML = startMessage;
+
+    }
+
+    function buttons() {
+
+        var button = document.getElementById("play-card").getAttribute("value");
+
+
+        if (button === "play card") {
+            document.getElementsByClassName("card-outline")[0].style.display = "none";
+            document.getElementsByClassName("all-cards-played")[0].style.display = "block";
+            document.getElementsByClassName("winning-card")[0].style.display = "none";
+            document.getElementById("play-card").setAttribute("value", "show winner");
+        } else if (button === "show winner") {
+            document.getElementsByClassName("card-outline")[0].style.display = "none";
+            document.getElementsByClassName("all-cards-played")[0].style.display = "none";
+            document.getElementsByClassName("winning-card")[0].style.display = "block";
+            document.getElementById("play-card").setAttribute("value", "continue to next round");
+
+            getWinner();
+
+        } else if (button === "continue to next round") {
+
+            if(ifHuman) {
+                document.getElementsByClassName("card-outline")[0].style.display = "block";
+                document.getElementsByClassName("ai-card-outline")[0].style.display = "none";
+            }else{
+                document.getElementsByClassName("card-outline")[0].style.display = "none";
+                document.getElementsByClassName("ai-card-outline")[0].style.display = "block";
             }
-			
-			// -----------------------------------------
-			// Add your other Javascript methods Here
-			// -----------------------------------------
+            document.getElementsByClassName("all-cards-played")[0].style.display = "none";
+            document.getElementsByClassName("winning-card")[0].style.display = "none";
+            document.getElementById("play-card").setAttribute("value", "play card");
 
+            playersTurn();
+        }
 
-            function startingGame(startMessage){
+    }
 
-                document.getElementById("players-turn").innerHTML=startMessage;
+    function setCategories(categories) {
 
-            }
 
-            function buttons(){
+            document.getElementsByClassName("card-outline")[0].style.display = "block";
+            document.getElementsByClassName("ai-card-outline")[0].style.display = "none";
 
-                var button = document.getElementById("play-card").getAttribute("value");
 
+        var categoriesArray = JSON.parse(categories);
 
-			    if (button === "play card") {
-                    document.getElementsByClassName("card-outline")[0].style.display = "none";
-                    document.getElementsByClassName("all-cards-played")[0].style.display = "block";
-                    document.getElementsByClassName("winning-card")[0].style.display = "none";
-                    document.getElementById("play-card").setAttribute("value","show winner");
-                } else if (button === "show winner"){
-                    document.getElementsByClassName("card-outline")[0].style.display = "none";
-                    document.getElementsByClassName("all-cards-played")[0].style.display = "none";
-                    document.getElementsByClassName("winning-card")[0].style.display = "block";
-                    document.getElementById("play-card").setAttribute("value","continue to next round");
+        document.getElementById("category1").innerText = categoriesArray[0];
+        document.getElementById("category2").innerText = categoriesArray[1];
+        document.getElementById("category3").innerText = categoriesArray[2];
+        document.getElementById("category4").innerText = categoriesArray[3];
+        document.getElementById("category5").innerText = categoriesArray[4];
 
-                    getWinner();
 
-                } else if (button === "continue to next round") {
-                    document.getElementsByClassName("card-outline")[0].style.display = "block";
-                    document.getElementsByClassName("all-cards-played")[0].style.display = "none";
-                    document.getElementsByClassName("winning-card")[0].style.display = "none";
-                    document.getElementById("play-card").setAttribute("value","play card");
+    }
 
-                    playersTurn();
-                }
+    function displayWinner(winnerInfo) {
 
-            }
+        var winnerArray = JSON.parse(winnerInfo);
+        var cardnumber = parseInt(winnerArray[1]);
 
-            function setCategories(categories) {
+        document.getElementById("players-turn").innerText = "Player " + winnerArray[0] + " won.";
+        document.getElementById("winners-card").src = cardImagesArray[cardnumber];
 
-                var categoriesArray = JSON.parse(categories);
 
-                document.getElementById("category1").innerText=categoriesArray[0];
-                document.getElementById("category2").innerText=categoriesArray[1];
-                document.getElementById("category3").innerText=categoriesArray[2];
-                document.getElementById("category4").innerText=categoriesArray[3];
-                document.getElementById("category5").innerText=categoriesArray[4];
+    }
 
-                // if(ifHuman) {
-                //     document.getElementsByName("choices").forEach(function(element){
-                //         element.style.display = "block";
-                //     }
-                // }else{
-                // document.getElementsByName("choices").forEach(function(element){
-                //     element.style.display = "hidden";
-                // })
-                // }
-            }
+    function checkIfCurrentPlayerHuman(human){
 
-            function displayWinner(winnerInfo) {
+        if(human){
+            getCategories();
+        }else{
+            document.getElementsByClassName("card-outline")[0].style.display = "none";
+            document.getElementsByClassName("ai-card-outline")[0].style.display = "block";
+        }
+    }
 
-			    var winnerArray = JSON.parse(winnerInfo);
-                var cardnumber = parseInt(winnerArray[1]);
 
-			    document.getElementById("players-turn").innerText="Player "+winnerArray[0]+" won.";
-			    document.getElementById("winners-card").src = cardImagesArray[cardnumber];
+    // This is a reusable method for creating a CORS request. Do not edit this.
+    function createCORSRequest(method, url) {
+        var xhr = new XMLHttpRequest();
+        if ("withCredentials" in xhr) {
 
+            // Check if the XMLHttpRequest object has a "withCredentials" property.
+            // "withCredentials" only exists on XMLHTTPRequest2 objects.
+            xhr.open(method, url, true);
 
-            }
+        } else if (typeof XDomainRequest != "undefined") {
 
+            // Otherwise, check if XDomainRequest.
+            // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+            xhr = new XDomainRequest();
+            xhr.open(method, url);
 
-			// This is a reusable method for creating a CORS request. Do not edit this.
-			function createCORSRequest(method, url) {
-  				var xhr = new XMLHttpRequest();
-  				if ("withCredentials" in xhr) {
+        } else {
 
-    				// Check if the XMLHttpRequest object has a "withCredentials" property.
-    				// "withCredentials" only exists on XMLHTTPRequest2 objects.
-    				xhr.open(method, url, true);
+            // Otherwise, CORS is not supported by the browser.
+            xhr = null;
 
-  				} else if (typeof XDomainRequest != "undefined") {
+        }
+        return xhr;
+    }
 
-    				// Otherwise, check if XDomainRequest.
-    				// XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-    				xhr = new XDomainRequest();
-    				xhr.open(method, url);
+    function setPlayersTurn(playerInfo) {
 
- 				 } else {
+        var player = JSON.parse(playerInfo);
 
-    				// Otherwise, CORS is not supported by the browser.
-    				xhr = null;
+        document.getElementById("players-turn").innerText = "it is " + player[0] + " turn";
 
-  				 }
-  				 return xhr;
-			}
-		
-		</script>
+        setCategories(player);
 
-    <!-- this is how we get java into the website -->
+        var card = parseInt(player[6]);
 
+        document.getElementById("sandwich").src = imagesArray[card];
+    }
 
+    function setDeck(deck){
 
+        this.deck = JSON.parse(deck);
+    }
 
-		<!-- Here are examples of how to call REST API Methods -->
-		<script type="text/javascript">
 
-            function getIfHuman(){
+</script>
 
-                var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/is-currentplayer-human"); //first create cors request to my new restapi method
+<!-- this is how we get java into the website -->
 
-                if (!xhr) {
-                    alert("CORS not supported");
-                }
 
-                xhr.onload = function(e) {
+<!-- Here are examples of how to call REST API Methods -->
+<script type="text/javascript">
 
-                    var responseText = xhr.response; // the text of the response
-                    ifHuman = responseText;
-                };
+    function startGame(numOfPlayers) {
 
-                // We have done everything we need to prepare the CORS request, so send it
-                xhr.send();
+        var htmlStart = "http://localhost:7777/toptrumps/start-game/";
+        var numberPathParam = numOfPlayers;
 
-            }
+        var xhr = createCORSRequest('GET', htmlStart + numberPathParam); //first create cors request to my new restapi method
 
+        if (!xhr) {
+            alert("CORS not supported");
+        }
 
-            function startGame(numOfPlayers) {
+        xhr.onload = function (e) {
 
-                var htmlStart = "http://localhost:7777/toptrumps/start-game/";
-                var numberPathParam = numOfPlayers;
+            var responseText = xhr.response; // the text of the response
+            startingGame(responseText);
 
-                var xhr = createCORSRequest('GET', htmlStart+numberPathParam); //first create cors request to my new restapi method
+        };
 
-                if (!xhr) {
-                    alert("CORS not supported");
-                }
+        // We have done everything we need to prepare the CORS request, so send it
+        xhr.send();
 
-                xhr.onload = function(e) {
+    }
 
-                    var responseText = xhr.response; // the text of the response
-                    startingGame(responseText);
+    // function getIfHuman() {
+    //
+    //     var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/is-currentplayer-human"); //first create cors request to my new restapi method
+    //
+    //     if (!xhr) {
+    //         alert("CORS not supported");
+    //     }
+    //
+    //     xhr.onload = function (e) {
+    //
+    //         var responseText = xhr.response; // the text of the response
+    //         checkIfCurrentPlayerHuman(responseText);
+    //         alert(responseText);
+    //     };
+    //
+    //     // We have done everything we need to prepare the CORS request, so send it
+    //     xhr.send();
+    //
+    // }
 
-                };
+    function getWinner() {
 
-                // We have done everything we need to prepare the CORS request, so send it
-                xhr.send();
+        var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/get-winner"); //first create cors request to my new restapi method
 
-            }
+        if (!xhr) {
+            alert("CORS not supported");
+        }
 
-            function getWinner() {
+        xhr.onload = function (e) {
 
-                var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/get-winner"); //first create cors request to my new restapi method
+            var responseText = xhr.response; // the text of the response
+            displayWinner(responseText);
 
-                if (!xhr) {
-                    alert("CORS not supported");
-                }
+        };
 
-                xhr.onload = function(e) {
+        // We have done everything we need to prepare the CORS request, so send it
+        xhr.send();
 
-                    var responseText = xhr.response; // the text of the response
-                    displayWinner(responseText);
+    }
 
-                };
+    function getPlayers() {
 
-                // We have done everything we need to prepare the CORS request, so send it
-                xhr.send();
+        var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/get-players/${players}"); //first create cors request to my new restapi method
 
-            }
+        if (!xhr) {
+            alert("CORS not supported");
+        }
 
+        xhr.onload = function (e) {
 
+            var responseText = xhr.response; // the text of the response
+         //   setPlayers(responseText);
+            alert(responseText);
 
-            function getCategories() {
+        };
 
-                var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/category-values"); //first create cors request to my new restapi method
+        // We have done everything we need to prepare the CORS request, so send it
+        xhr.send();
 
-                if (!xhr) {
-                    alert("CORS not supported");
-                }
+    }
 
-                xhr.onload = function(e) {
 
-                    var responseText = xhr.response; // the text of the response
-                    setCategories(responseText);
+    function getCategories() {
 
-                };
+        var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/category-values"); //first create cors request to my new restapi method
 
-                // We have done everything we need to prepare the CORS request, so send it
-                xhr.send();
+        if (!xhr) {
+            alert("CORS not supported");
+        }
 
-            }
+        xhr.onload = function (e) {
 
-            function playersTurn() {
+            var responseText = xhr.response; // the text of the response
+            setCategories(responseText);
 
-                var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/players-turn"); //first create cors request to my new restapi method
+        };
 
-                if (!xhr) {
-                    alert("CORS not supported");
-                }
+        // We have done everything we need to prepare the CORS request, so send it
+        xhr.send();
 
-                xhr.onload = function(e) {
+    }
 
-                    var responseText = xhr.response; // the text of the response
-                    setPlayersTurn(responseText);
+    function playersTurn() {
 
-                };
+        var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/players-turn"); //first create cors request to my new restapi method
 
-                // We have done everything we need to prepare the CORS request, so send it
-                xhr.send();
+        if (!xhr) {
+            alert("CORS not supported");
+        }
 
-            }
+        xhr.onload = function (e) {
 
-            function setPlayersTurn(playerInfo){
+            var responseText = xhr.response; // the text of the response
+            setPlayersTurn(responseText);
 
-                var player = JSON.parse(playerInfo);
+        };
 
-                document.getElementById("players-turn").innerText="it is " + player[0] + " turn";
+        // We have done everything we need to prepare the CORS request, so send it
+        xhr.send();
 
-                setCategories(player);
+    }
 
-                var card = parseInt(player[6]);
+    function getDeck() {
 
-                document.getElementById("sandwich").src = imagesArray[card];
-            }
+        var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/deck"); //first create cors request to my new restapi method
 
-            // function getCard() {
-            //
-            //     var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/card"); //first create cors request to my new restapi method
-            //
-            //     if (!xhr) {
-            //         alert("CORS not supported");
-            //     }
-            //
-            //     xhr.onload = function(e) {
-            //
-            //         var responseText = xhr.response; // the text of the response
-            //         setTextAsCard(responseText);
-            //
-            //     };
-            //
-            //     // We have done everything we need to prepare the CORS request, so send it
-            //     xhr.send();
-            //
-            // }
-		
-			// // This calls the helloJSONList REST method from TopTrumpsRESTAPI
-			// function helloJSONList() {
-			//
-			// 	// First create a CORS request, this is the message we are going to send (a get request in this case)
-			// 	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList"); // Request type and URL
-			//
-			// 	// Message is not sent yet, but we can check that the browser supports CORS
-			// 	if (!xhr) {
-  			// 		alert("CORS not supported");
-			// 	}
-            //
-			// 	// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-			// 	// to do when the response arrives
-			// 	xhr.onload = function(e) {
- 			// 		var responseText = xhr.response; // the text of the response
-			// 		alert(responseText); // lets produce an alert
-			// 	};
-			//
-			// 	// We have done everything we need to prepare the CORS request, so send it
-			// 	xhr.send();
-			// }
-			//
-			// // This calls the helloJSONList REST method from TopTrumpsRESTAPI
-			// function helloWord(word) {
-			//
-			// 	// First create a CORS request, this is the message we are going to send (a get request in this case)
-			// 	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloWord?Word="+word); // Request type and URL+parameters
-			//
-			// 	// Message is not sent yet, but we can check that the browser supports CORS
-			// 	if (!xhr) {
-  			// 		alert("CORS not supported");
-			// 	}
-            //
-			// 	// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-			// 	// to do when the response arrives
-			// 	xhr.onload = function(e) {
- 			// 		var responseText = xhr.response; // the text of the response
-			// 		alert(responseText); // lets produce an alert
-			// 	};
-			//
-			// 	// We have done everything we need to prepare the CORS request, so send it
-			// 	xhr.send();
-			// }
+        if (!xhr) {
+            alert("CORS not supported");
+        }
 
-		</script>
-		
-		</body>
+        xhr.onload = function (e) {
+
+            var responseText = xhr.response; // the text of the response
+             setDeck(responseText);
+        };
+
+        // We have done everything we need to prepare the CORS request, so send it
+        xhr.send();
+
+    }
+
+    function getWhoIsInGame() {
+
+        var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/who-is-left/${players}"); //first create cors request to my new restapi method
+
+        if (!xhr) {
+            alert("CORS not supported");
+        }
+
+        xhr.onload = function (e) {
+
+            var responseText = xhr.response; // the text of the response
+            startingGame(responseText);
+        };
+
+        // We have done everything we need to prepare the CORS request, so send it
+        xhr.send();
+
+    }
+
+
+
+
+
+    // function getCard() {
+    //
+    //     var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/card"); //first create cors request to my new restapi method
+    //
+    //     if (!xhr) {
+    //         alert("CORS not supported");
+    //     }
+    //
+    //     xhr.onload = function(e) {
+    //
+    //         var responseText = xhr.response; // the text of the response
+    //         setTextAsCard(responseText);
+    //
+    //     };
+    //
+    //     // We have done everything we need to prepare the CORS request, so send it
+    //     xhr.send();
+    //
+    // }
+
+    // // This calls the helloJSONList REST method from TopTrumpsRESTAPI
+    // function helloJSONList() {
+    //
+    // 	// First create a CORS request, this is the message we are going to send (a get request in this case)
+    // 	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList"); // Request type and URL
+    //
+    // 	// Message is not sent yet, but we can check that the browser supports CORS
+    // 	if (!xhr) {
+    // 		alert("CORS not supported");
+    // 	}
+    //
+    // 	// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+    // 	// to do when the response arrives
+    // 	xhr.onload = function(e) {
+    // 		var responseText = xhr.response; // the text of the response
+    // 		alert(responseText); // lets produce an alert
+    // 	};
+    //
+    // 	// We have done everything we need to prepare the CORS request, so send it
+    // 	xhr.send();
+    // }
+    //
+    // // This calls the helloJSONList REST method from TopTrumpsRESTAPI
+    // function helloWord(word) {
+    //
+    // 	// First create a CORS request, this is the message we are going to send (a get request in this case)
+    // 	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloWord?Word="+word); // Request type and URL+parameters
+    //
+    // 	// Message is not sent yet, but we can check that the browser supports CORS
+    // 	if (!xhr) {
+    // 		alert("CORS not supported");
+    // 	}
+    //
+    // 	// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+    // 	// to do when the response arrives
+    // 	xhr.onload = function(e) {
+    // 		var responseText = xhr.response; // the text of the response
+    // 		alert(responseText); // lets produce an alert
+    // 	};
+    //
+    // 	// We have done everything we need to prepare the CORS request, so send it
+    // 	xhr.send();
+    // }
+
+</script>
+
+</body>
 </html>

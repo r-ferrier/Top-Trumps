@@ -33,11 +33,12 @@ public class Deck {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
 
             String categoryDescriptions = (reader.readLine());
-
             String thisLine;
+            int cardNumber = 0;
             while ((thisLine = reader.readLine()) != null) {
-                Card nextCard = new Card(thisLine, categoryDescriptions);
+                Card nextCard = new Card(thisLine, categoryDescriptions, cardNumber);
                 addCard(nextCard);
+                cardNumber++;
             }
             TestLog.logDeck(deck);
             shuffleCards();
