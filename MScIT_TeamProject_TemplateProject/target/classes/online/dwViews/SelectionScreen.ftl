@@ -76,6 +76,7 @@
         // startGame();
     }
 
+
     // function startGame() {
     //
     //     document.getElementsByClassName("choose-players")[0].innerHTML=beginNewGame;
@@ -88,6 +89,7 @@
     //
     //
     // }
+
 
 
 

@@ -188,6 +188,7 @@ public class TopTrumpsRESTAPI {
 
     }
 
+
     @GET
     @Path("/whose-turn/{human}/{name}")
     public String whoseTurnItIs(@PathParam("human")boolean human,@PathParam("name")String name){
@@ -198,6 +199,7 @@ public class TopTrumpsRESTAPI {
             return "\nIt's " + name + "'s turn.";
         }
     }
+
 
 
 

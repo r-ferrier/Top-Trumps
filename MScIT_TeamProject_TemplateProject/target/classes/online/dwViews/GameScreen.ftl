@@ -1,8 +1,26 @@
 <html>
+	<head>
+		<!-- Web page title -->
+    	<title>Top Trumps</title>
+    	
+    	<#--<!-- Import JQuery, as it provides functions you will probably find useful (see https://jquery.com/) &ndash;&gt;-->
+    	<#--<script src="https://code.jquery.com/jquery-2.1.1.js"></script>-->
+    	<#--<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>-->
 
-<head>
-    <!-- Web page title -->
-    <title>Top Trumps</title>
+    	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">
+
+        <link rel="stylesheet" type = "text/css" href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsGameScreen.css">
+
+	</head>
+
+    <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
+
+    <div class="top-line">
+        <input id="quit" type = "submit" value="quit"></input>
+
+        <h2 id="players-turn"></h2>
+    </div>
+
 
 <#--<!-- Import JQuery, as it provides functions you will probably find useful (see https://jquery.com/) &ndash;&gt;-->
 <#--<script src="https://code.jquery.com/jquery-2.1.1.js"></script>-->
@@ -334,9 +352,12 @@
 
         var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/get-winner"); //first create cors request to my new restapi method
 
+
         if (!xhr) {
             alert("CORS not supported");
         }
+
+
 
         xhr.onload = function (e) {
 
