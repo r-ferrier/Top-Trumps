@@ -8,13 +8,12 @@ import commandline.Deck;
 import commandline.Player;
 import online.configuration.TopTrumpsJSONConfiguration;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @Path("/toptrumps") // Resources specified here should be hosted at http://localhost:7777/toptrumps
 @Produces(MediaType.APPLICATION_JSON) // This resource returns JSON content
@@ -33,6 +32,7 @@ public class TopTrumpsRESTAPI {
 
     public Deck deck;
     public ArrayList<Player> players;
+    public int currentPlayer;
 
     /**
      * A Jackson Object writer. It allows us to turn Java objects
@@ -52,42 +52,50 @@ public class TopTrumpsRESTAPI {
         conf.setDeckFile("Sandwich.txt");
         conf.setNumAIPlayers(4);
         // ----------------------------------------------------
-        // Add relevant initalization here
+        // Add relevant initialisation here
         // ----------------------------------------------------
     }
 
-    // ----------------------------------------------------
+    // ---------------------------------------------------
     // Add relevant API methods here
     // ----------------------------------------------------
 
 
 
     @GET
-    @Path("/start-game")
-    public String itsYourTurn(int numOfPlayers) {
+    @Path("/start-game/{number}")
+    public String itsYourTurn(@PathParam("number")int numOfPlayers) {
 
         deck = new Deck();
         players = new ArrayList<>();
+        String playerNames[] = new String[]{"Clive","Janet","Brenda","Philip"};
 
-        for(int i=0;i<numOfPlayers;i++){
-            players.add(new Player(i));
+        players.add(new Player("you",true,0));
+
+        for(int i=1;i<numOfPlayers;i++){
+            players.add(new Player(playerNames[i],false,i));
         }
 
-        Database database = new Database();
+//        Database database = new Database();
 
         Collections.shuffle(players);
+        currentPlayer = players.get(0).getNumber();
 
-        String name = "Player " + (players.get(0).getNumber() + 1);
-        String itsYourTurn;
+        /*
+        method to return a string saying who is in the game.
+         */
+
+        String firstLine = whoIsLeftInTheGame(numOfPlayers);
+
 
         if (players.get(0).getNumber() == 0) {
-            itsYourTurn = "It's your turn!";
+            return firstLine+"\nIt's your turn!";
         } else {
-            itsYourTurn = "It's " + name + "'s turn.";
+            return firstLine+"\nIt's " + players.get(0).getName() + "'s turn.";
         }
 
-        return itsYourTurn;
     }
+
 
     @GET
     @Path("/category-values")
@@ -97,6 +105,7 @@ public class TopTrumpsRESTAPI {
         int[] categoryValues = new int[5];
 
         Card topCard = players.get(0).getTopCard();
+
         categoryValues[0] = topCard.getAnyCategory(1);
         categoryValues[1] = topCard.getAnyCategory(2);
         categoryValues[2] = topCard.getAnyCategory(3);
@@ -123,8 +132,6 @@ public class TopTrumpsRESTAPI {
     @Path ("/get-winner")
     public String[] getWinner(){
         String[] winnerInfo = new String[]{"winner","1"};
-
-
         return winnerInfo;
     }
 
@@ -135,6 +142,19 @@ public class TopTrumpsRESTAPI {
         return playerInfo;
     }
 
+    @GET
+    @Path ("/is-currentplayer-human")
+    public boolean currentPlayer(){
+
+        for (Player p: players){
+            if(p.getNumber()==currentPlayer){
+                if(p.checkHuman()){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 
     @GET
@@ -177,39 +197,22 @@ public class TopTrumpsRESTAPI {
         return winner;
     }
 
+    public String whoIsLeftInTheGame(int numOfPlayers){
 
-//
-    @GET
-    @Path("/helloJSONList")
-    /**
-     * Here is an example of a simple REST get request that returns a String.
-     * We also illustrate here how we can convert Java objects to JSON strings.
-     * @return - List of words as JSON
-     * @throws IOException
-     */
-    public String helloJSONList() throws IOException {
+        String allPlayersNames = "";
 
-        List<String> listOfWords = new ArrayList<String>();
-        listOfWords.add("Hello");
-        listOfWords.add("World!");
+        for(int i = 0; i<players.size()-2; i++){
+            allPlayersNames += players.get(0).getName()+", ";
+        }
+        allPlayersNames+= players.get(players.size()-2).getName()+" and "+players.get(players.size()-1).getName()+".<br>";
 
-        // We can turn arbatory Java objects directly into JSON strings using
-        // Jackson seralization, assuming that the Java objects are not too complex.
-        String listAsJSONString = oWriter.writeValueAsString(listOfWords);
+        for(Player p: players){
 
-        return listAsJSONString;
+        }
+
+        return "There are "+numOfPlayers+" left in the game: "+allPlayersNames;
+
     }
-//
-//    @GET
-//    @Path("/helloWord")
-//    /**
-//     * Here is an example of how to read parameters provided in an HTML Get request.
-//     * @param Word - A word
-//     * @return - A String
-//     * @throws IOException
-//     */
-//    public String helloWord(@QueryParam("Word") String Word) throws IOException {
-//        return "Hello " + Word;
-//    }
+
 
 }

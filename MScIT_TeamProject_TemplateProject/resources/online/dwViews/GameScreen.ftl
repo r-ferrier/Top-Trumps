@@ -88,7 +88,6 @@
 
             </div>
 
-
     </body>
 
 
@@ -96,9 +95,12 @@
 		
 		<script type="text/javascript">
 
+        //    var words = new URLSearchParams(window.location.search);
 
             var cardImagesArray = ["https://github.com/r-ferrier/topTrumpsCSS/blob/master/imageofcard.png?raw=true","https://github.com/r-ferrier/topTrumpsCSS/blob/master/imageofcard.png?raw=true"]
             var imagesArray = ["https://github.com/r-ferrier/topTrumpsCSS/blob/master/hawaiian.png?raw=true","https://github.com/r-ferrier/topTrumpsCSS/blob/master/smorrebrod.png?raw=true"]
+            var ifHuman;
+
 
 			// Method that is called on page load
 			function initalize() {
@@ -107,10 +109,19 @@
 				// You can call other methods you want to run when the page first loads here
 				// --------------------------------------------------------------------------
 
-                startGame();
-                getCategories();
+              //  var players = new URLSearchParams(window.location.search);
 
-			}
+
+                startGame(${players});
+                // getIfHuman();
+                // getCategories();
+
+
+                // if(players.has('4')){
+                //     document.getElementById("players-turn").innerHTML = 'YES THAT\'S A MOTHERFLIPPING NUMBER 4';
+                // }
+
+            }
 			
 			// -----------------------------------------
 			// Add your other Javascript methods Here
@@ -141,7 +152,6 @@
 
                     getWinner();
 
-
                 } else if (button === "continue to next round") {
                     document.getElementsByClassName("card-outline")[0].style.display = "block";
                     document.getElementsByClassName("all-cards-played")[0].style.display = "none";
@@ -153,14 +163,25 @@
 
             }
 
-            function setCategories(categoriesArray) {
+            function setCategories(categories) {
 
+                var categoriesArray = JSON.parse(categories);
 
-                document.getElementById("category1").innerText=categoriesArray[1];
-                document.getElementById("category2").innerText=categoriesArray[2];
-                document.getElementById("category3").innerText=categoriesArray[3];
-                document.getElementById("category4").innerText=categoriesArray[4];
-                document.getElementById("category5").innerText=categoriesArray[5];
+                document.getElementById("category1").innerText=categoriesArray[0];
+                document.getElementById("category2").innerText=categoriesArray[1];
+                document.getElementById("category3").innerText=categoriesArray[2];
+                document.getElementById("category4").innerText=categoriesArray[3];
+                document.getElementById("category5").innerText=categoriesArray[4];
+
+                // if(ifHuman) {
+                //     document.getElementsByName("choices").forEach(function(element){
+                //         element.style.display = "block";
+                //     }
+                // }else{
+                // document.getElementsByName("choices").forEach(function(element){
+                //     element.style.display = "hidden";
+                // })
+                // }
             }
 
             function displayWinner(winnerInfo) {
@@ -173,7 +194,6 @@
 
 
             }
-
 
 
 			// This is a reusable method for creating a CORS request. Do not edit this.
@@ -211,9 +231,32 @@
 		<!-- Here are examples of how to call REST API Methods -->
 		<script type="text/javascript">
 
-            function startGame() {
+            function getIfHuman(){
 
-                var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/start-game"); //first create cors request to my new restapi method
+                var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/is-currentplayer-human"); //first create cors request to my new restapi method
+
+                if (!xhr) {
+                    alert("CORS not supported");
+                }
+
+                xhr.onload = function(e) {
+
+                    var responseText = xhr.response; // the text of the response
+                    ifHuman = responseText;
+                };
+
+                // We have done everything we need to prepare the CORS request, so send it
+                xhr.send();
+
+            }
+
+
+            function startGame(numOfPlayers) {
+
+                var htmlStart = "http://localhost:7777/toptrumps/start-game/";
+                var numberPathParam = numOfPlayers;
+
+                var xhr = createCORSRequest('GET', htmlStart+numberPathParam); //first create cors request to my new restapi method
 
                 if (!xhr) {
                     alert("CORS not supported");

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 online/dwViews/SelectionScreenView.class
 online/dwResources/GameWebPagesResource.class
 commandline/Player.class
@@ -15,4 +13,3 @@ commandline/TestLog.class
 online/dwViews/GameScreenView.class
 TopTrumps.class
 online/TopTrumpsOnlineApplication.class
->>>>>>> 61ebc6772385db3020d9fce12fd1e9b873738cfb
