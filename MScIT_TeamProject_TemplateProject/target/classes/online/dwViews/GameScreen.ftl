@@ -80,7 +80,7 @@
     </div>
 
     <div class="winning-card" style="display: none" >
-        <img src="https://photos.bigoven.com/recipe/hero/roasted-vegetables-baguette-sandwic.jpg?h=100&w=200">
+        <img id="winners-card" width="300">
     </div>
 
     <div class="bottom-line">
@@ -103,7 +103,11 @@
 		</div>
 		
 		<script type="text/javascript">
-		
+
+
+            var cardImagesArray = ["https://github.com/r-ferrier/topTrumpsCSS/blob/master/imageofcard.png?raw=true","https://github.com/r-ferrier/topTrumpsCSS/blob/master/imageofcard.png?raw=true"]
+            var imagesArray = ["https://github.com/r-ferrier/topTrumpsCSS/blob/master/hawaiian.png?raw=true","https://github.com/r-ferrier/topTrumpsCSS/blob/master/smorrebrod.png?raw=true"]
+
 			// Method that is called on page load
 			function initalize() {
 			
@@ -129,20 +133,53 @@
 
             function buttons(){
 
-                document.getElementsByClassName("card-outline")[0].style.display="none";
-                document.getElementsByClassName("all-cards-played")[0].style.display = "block";
+                var button = document.getElementById("play-card").getAttribute("value");
+
+
+			    if (button === "play card") {
+                    document.getElementsByClassName("card-outline")[0].style.display = "none";
+                    document.getElementsByClassName("all-cards-played")[0].style.display = "block";
+                    document.getElementsByClassName("winning-card")[0].style.display = "none";
+                    document.getElementById("play-card").setAttribute("value","show winner");
+                } else if (button === "show winner"){
+                    document.getElementsByClassName("card-outline")[0].style.display = "none";
+                    document.getElementsByClassName("all-cards-played")[0].style.display = "none";
+                    document.getElementsByClassName("winning-card")[0].style.display = "block";
+                    document.getElementById("play-card").setAttribute("value","continue to next round");
+
+                    getWinner();
+
+
+                } else if (button === "continue to next round") {
+                    document.getElementsByClassName("card-outline")[0].style.display = "block";
+                    document.getElementsByClassName("all-cards-played")[0].style.display = "none";
+                    document.getElementsByClassName("winning-card")[0].style.display = "none";
+                    document.getElementById("play-card").setAttribute("value","play card");
+
+                    playersTurn();
+                }
 
             }
 
-            function setCategories(categories) {
+            function setCategories(categoriesArray) {
 
-			    var categoriesArray = JSON.parse(categories);
 
-			    document.getElementById("category1").innerText=categoriesArray[0];
-                document.getElementById("category2").innerText=categoriesArray[1];
-                document.getElementById("category3").innerText=categoriesArray[2];
-                document.getElementById("category4").innerText=categoriesArray[3];
-                document.getElementById("category5").innerText=categoriesArray[4];
+                document.getElementById("category1").innerText=categoriesArray[1];
+                document.getElementById("category2").innerText=categoriesArray[2];
+                document.getElementById("category3").innerText=categoriesArray[3];
+                document.getElementById("category4").innerText=categoriesArray[4];
+                document.getElementById("category5").innerText=categoriesArray[5];
+            }
+
+            function displayWinner(winnerInfo) {
+
+			    var winnerArray = JSON.parse(winnerInfo);
+                var cardnumber = parseInt(winnerArray[1]);
+
+			    document.getElementById("players-turn").innerText="Player "+winnerArray[0]+" won.";
+			    document.getElementById("winners-card").src = cardImagesArray[cardnumber];
+
+
             }
 
 
@@ -202,6 +239,28 @@
 
             }
 
+            function getWinner() {
+
+                var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/get-winner"); //first create cors request to my new restapi method
+
+                if (!xhr) {
+                    alert("CORS not supported");
+                }
+
+                xhr.onload = function(e) {
+
+                    var responseText = xhr.response; // the text of the response
+                    displayWinner(responseText);
+
+                };
+
+                // We have done everything we need to prepare the CORS request, so send it
+                xhr.send();
+
+            }
+
+
+
             function getCategories() {
 
                 var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/category-values"); //first create cors request to my new restapi method
@@ -220,6 +279,39 @@
                 // We have done everything we need to prepare the CORS request, so send it
                 xhr.send();
 
+            }
+
+            function playersTurn() {
+
+                var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/players-turn"); //first create cors request to my new restapi method
+
+                if (!xhr) {
+                    alert("CORS not supported");
+                }
+
+                xhr.onload = function(e) {
+
+                    var responseText = xhr.response; // the text of the response
+                    setPlayersTurn(responseText);
+
+                };
+
+                // We have done everything we need to prepare the CORS request, so send it
+                xhr.send();
+
+            }
+
+            function setPlayersTurn(playerInfo){
+
+                var player = JSON.parse(playerInfo);
+
+                document.getElementById("players-turn").innerText="it is " + player[0] + "turn";
+
+                setCategories(player);
+
+                var card = parseInt(player[6]);
+
+                document.getElementById("sandwich").src = imagesArray[card];
             }
 
             // function getCard() {

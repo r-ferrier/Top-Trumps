@@ -4,7 +4,7 @@ import java.util.logging.*;
 import java.io.IOException;
 public class TestLog {
 
-    private static final Logger LOGGER = Logger.getGlobal();
+    private static  Logger LOGGER = Logger.getGlobal();
 
     public TestLog(boolean writeLog){
         if(!writeLog){

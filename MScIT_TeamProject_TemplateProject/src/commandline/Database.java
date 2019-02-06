@@ -255,6 +255,7 @@ public class Database {
 	public void setRoundWins(int playerIndex){
 
         playerWins[playerIndex] = playerWins[playerIndex]++;
+		System.out.println( playerWins[playerIndex]);
 
     }
 

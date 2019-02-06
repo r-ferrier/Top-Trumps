@@ -373,7 +373,7 @@ public class GamePlay {
 			playerIndex++;
 		}
 
-//		database.setRoundWins(winner.getNumber());
+		database.setRoundWins(winner.getNumber());
 
 		currentPlayer = winnerIndex;
 
