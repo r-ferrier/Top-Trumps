@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
 
-	private final String name;
+	private String name;
 	private int number;
 	private ArrayList<Card> hand = new ArrayList<>(); // this arrayList contains all of the player's cards
 
@@ -24,7 +24,9 @@ public class Player {
 		this.human = human;
 		this.number = number;
 	}
-
+	public Player(int number){
+		this.number = number;
+	}
 	/**
 	 * method to set player number - set after construction so that they can be
 	 * randomly assigned an order and number
