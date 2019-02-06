@@ -1,25 +1,20 @@
 package online.dwResources;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import commandline.Card;
+import commandline.Database;
+import commandline.Deck;
+import commandline.Player;
+import online.configuration.TopTrumpsJSONConfiguration;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import commandline.*;
-import online.configuration.TopTrumpsJSONConfiguration;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 
 @Path("/toptrumps") // Resources specified here should be hosted at http://localhost:7777/toptrumps
 @Produces(MediaType.APPLICATION_JSON) // This resource returns JSON content
@@ -65,27 +60,27 @@ public class TopTrumpsRESTAPI {
     // Add relevant API methods here
     // ----------------------------------------------------
 
+
+
     @GET
     @Path("/start-game")
-    public String itsYourTurn() {
+    public String itsYourTurn(int numOfPlayers) {
 
         deck = new Deck();
         players = new ArrayList<>();
 
-        players.add(new Player("You", true, 0));
-        players.add(new Player("Clive", false, 1));
-        players.add(new Player("Brenda", false, 2));
-        players.add(new Player("Philip", false, 3));
-        players.add(new Player("Janet", false, 4));
+        for(int i=0;i<numOfPlayers;i++){
+            players.add(new Player(i));
+        }
 
         Database database = new Database();
 
         Collections.shuffle(players);
 
-        String name = players.get(0).getName();
+        String name = "Player " + (players.get(0).getNumber() + 1);
         String itsYourTurn;
 
-        if (name.equals("You")) {
+        if (players.get(0).getNumber() == 0) {
             itsYourTurn = "It's your turn!";
         } else {
             itsYourTurn = "It's " + name + "'s turn.";
