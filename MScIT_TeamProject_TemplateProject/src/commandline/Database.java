@@ -23,7 +23,7 @@ public class Database {
 
 	}
 
-	public void connectToDatabase() {
+	private void connectToDatabase() {
 
 		/*
 		 * This will connect our program to the database so our data can be updated and
@@ -101,8 +101,27 @@ public class Database {
 		setGameNumber();
 		int status = 0;
 		try {
-			String SQLInsert = "INSERT INTO testing_game_stats(game_number, game_winner, number_of_rounds, number_of_draws) VALUES ("
-				+ gameNumber + ", " + gameWinner + ", " + gameRounds + ", " + gameDraws + "); ";
+			String SQLInsert = "INSERT INTO testing_game_stats("
+				+ "game_number, "
+				+ "game_winner, "
+				+ "number_of_rounds, "
+				+ "number_of_draws, "
+				+ "human_player_rounds_won, "
+				+ "computer_player_1_rounds_won, " 
+				+ "computer_player_2_rounds_won, " 
+				+ "computer_player_3_rounds_won, " 
+				+ "computer_player_4_rounds_won) "
+				+ "VALUES ("	
+				+ gameNumber + ", " 
+				+ gameWinner + ", " 
+				+ gameRounds + ", " 
+				+ gameDraws + ", " 
+				+ playerWins[0]+ ", " //This is the human player.
+				+ playerWins[1]+ ", "
+                + playerWins[2]+ ", "
+                + playerWins[3]+ ", "
+                + playerWins[4]
+				+ "); ";
 
 			status = stmt.executeUpdate(SQLInsert);
 			
@@ -121,45 +140,45 @@ public class Database {
 		
 	}
 	
-	private void uploadPlayerStats() {
+//	private void uploadPlayerStats() {
+//
+//		/*
+//		 * This will upload the number of rounds each player won to the game stats for that game.
+//		 */
+//		connectToDatabase();
+//		try {
+//			//testing_game_stats to game_stats
+//			String SQLInsert = "INSERT INTO testing_game_stats ("
+//				+ " human_player_rounds_won, "
+//				+ " computer_player_1_rounds_won, "
+//				+ " computer_player_2_rounds_won, "
+//				+ " computer_player_3_rounds_won, "
+//				+ " computer_player_4_rounds_won) "
+//				+ "VALUES ("
+//				+ playerWins[0]+ ", " //This is the human player.
+//				+ playerWins[1]+ ", "
+//                + playerWins[2]+ ", "
+//                + playerWins[3]+ ", "
+//                + playerWins[4]
+//                + "); ";
+//
+//			// invoke executeUpdate to insert
+//			int status = stmt.executeUpdate(SQLInsert);
+//
+//			// check the insertion
+//			if (status == 1) {
+//				System.out.println("Persistant Game Statistics are inserted");
+//			} else {
+//				System.out.println("No insertion completed");
+//			}
+//            stmt.close();
+//            c.close();
+//        } catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
-		/*
-		 * This will upload the number of rounds each player won to the game stats for that game.
-		 */
-		connectToDatabase();
-		try {
-			//testing_game_stats to game_stats
-			String SQLInsert = "INSERT INTO testing_game_stats ("
-				+ " human_player_rounds_won, "
-				+ " computer_player_1_rounds_won, "
-				+ " computer_player_2_rounds_won, "
-				+ " computer_player_3_rounds_won, "
-				+ " computer_player_4_rounds_won) "
-				+ "VALUES ("
-				+ playerWins[0]+ ", " //This is the human player.
-				+ playerWins[1]+ ", "
-                + playerWins[2]+ ", "
-                + playerWins[3]+ ", "
-                + playerWins[4]
-                + ") ";
-
-			// invoke executeUpdate to insert
-			int status = stmt.executeUpdate(SQLInsert);
-
-			// check the insertion
-			if (status == 1) {
-				System.out.println("Persistant Game Statistics are inserted");
-			} else {
-				System.out.println("No insertion completed");
-			}
-            stmt.close();
-            c.close();
-        } catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void pullGameStats() {
+	public void pullGameStats() {
 
 		/*
 		 * This will print the information about the previous games, while the game is
@@ -176,12 +195,14 @@ public class Database {
 			totalNumberGames = gameNumber.getInt(1);
 			}
 			
-			ResultSet compWon = stmt.executeQuery("SELECT COUNT(*) game_winner FROM testing_game_stats WHERE game_winner <> 4"); // 4 is the human player
+			ResultSet compWon = stmt.executeQuery("SELECT COUNT(*) game_winner FROM testing_game_stats WHERE game_winner <> 0"); 
+			// 0 is the human player
 			while (compWon.next()) {
 				numComputerWon = compWon.getInt(1);
 			}
 			
-			ResultSet humanWon = stmt.executeQuery("SELECT COUNT(*) game_winner FROM testing_game_stats WHERE game_winner = 4"); // 4 is the human player
+			ResultSet humanWon = stmt.executeQuery("SELECT COUNT(*) game_winner FROM testing_game_stats WHERE game_winner = 0"); 
+			// 0 is the human player
 			while (humanWon.next()) {
 				numHumanWon = humanWon.getInt(1);
 			}
@@ -226,7 +247,6 @@ public class Database {
 
 	// GETTERS AND SETTERS
 
-
 	public int setGameNumber() {
 		
 		/*
@@ -237,14 +257,11 @@ public class Database {
 		try {
 			stmt = c.createStatement();
 			// testing_game_stats to game_stats
-			ResultSet lastGameNumber = stmt.executeQuery("SELECT game_number COUNT(*) FROM testing_game_stats");
+			ResultSet lastGameNumber = stmt.executeQuery("SELECT COUNT(*) game_number  FROM testing_game_stats");
 			if (lastGameNumber.next()) {
 				gameNumber = lastGameNumber.getInt("game_number");
-				
 			}
 			lastGameNumber.close();
-			stmt.close();
-			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -253,9 +270,12 @@ public class Database {
 	}
 
 	public void setRoundWins(int playerIndex){
+		
+		/*
+		 * Updates an array of how many rounds each player has won each game. 
+		 */
 
-        playerWins[playerIndex] = playerWins[playerIndex]++;
-		System.out.println( playerWins[playerIndex]);
+        playerWins[playerIndex]++;
 
     }
 

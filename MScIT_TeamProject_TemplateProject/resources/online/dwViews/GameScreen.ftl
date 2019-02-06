@@ -83,7 +83,7 @@
 
         <div class="game-stats">
             <p id="number-of-cards">number of cards left Placeholder</p>
-            <p id="count-of-rounds">Count of rounds Placedholder</p>
+            <p id="count-of-rounds">Count of rounds Placeholder</p>
             <div>
 
             </div>

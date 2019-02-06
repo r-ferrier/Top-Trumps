@@ -34,7 +34,7 @@ public class GamePlay {
 
 		createDeck();
 		setAIPlayers();
-		Database database = new Database();// setting up all the elements needed for the game
+		database = new Database();// setting up all the elements needed for the game
 		gameBegins(); // prints some output and prompts user entry of name
 
 		chooseFirstPlayer(); // shuffles player array so the order of players is random and fair
@@ -47,12 +47,8 @@ public class GamePlay {
 			roundCounter++;
 		}
 		gameWinner = decideWinner(); // once game is over, decide winner
+		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
 
-
-
-
-//		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
-//		database.uploadPlayerStats();
 	}
 
 	public static void main(String[] args) {
@@ -97,20 +93,24 @@ public class GamePlay {
 				+ players.get(0).getName() + ". \n" + "Please meet my friends: " + players.get(1).getName() + ", "
 				+ players.get(2).getName() + " and " + players.get(3).getName() + ".\n");
 
-//		startGame = false;
-//		// loops the start game question until the user selects that they want to start
-//		// a new game.
-//		while (startGame == false) {
-//			System.out.println("Would you like to start a new game or see previous game stats? "
-//					+ "Enter: 1 for a new game or 0 for previous game stats.");
-//			boolean gameStats = scanner.hasNextInt();
-//			if (gameStats) {
-//		//§		database.pullGameStats();
-//			} else {
-//				startGame = true;
-//				System.out.println("Ok, is everybody ready? Then let's play.");
-//			}
-//		}
+		startGame = false;
+		// loops the start game question until the user selects that they want to start
+		// a new game.
+		while (startGame == false) {
+			System.out.println("Would you like to start a new game or see previous game stats? "
+					+ "Enter: 1 for a new game or 0 for previous game stats.");
+			try {
+			int gameStats = scanner.nextInt();
+			if (gameStats == 0) {
+				database.pullGameStats();
+			} else {
+				startGame = true;
+				System.out.println("Ok, is everybody ready? Then let's play.");
+			}
+			}catch (InputMismatchException e) {
+				System.out.println("Oops that was not a number. \n");
+			}
+		}
 
 	}
 
@@ -142,7 +142,7 @@ public class GamePlay {
 				i = 0;
 			}
 		}
-
+		TestLog.logAllocatedHands(players);
 	}
 
 	private void playRound() {
@@ -253,6 +253,8 @@ public class GamePlay {
 			if (player.amIKnockedOut() == false) {
 				winner = player.getNumber();
 				System.out.println("The winner is " + player.getName());
+
+				TestLog.logWinner(player);
 			}
 		}
 		return winner;
@@ -300,6 +302,8 @@ public class GamePlay {
 
 		System.out.println(name + " has chosen category " + chosenCategory + ", "
 				+ topCard.getCategories()[chosenCategory - 1] + ".");
+		
+		TestLog.logSelectedCategory(chosenCategory, topCard.getCategories()[chosenCategory - 1], players);		
 	}
 
 	private void playCard() {
@@ -334,6 +338,7 @@ public class GamePlay {
 		} else {
 			System.out.println("\n" + "You have no cards left to play and have been knocked out of the game" + "\n");
 		}
+		TestLog.logCardsInPlay(players);
 	}
 
 	/**
@@ -357,7 +362,9 @@ public class GamePlay {
 
 			if (valueOfChosenCategory > currentHighestCategoryValue) {
 				currentHighestCategoryValue = valueOfChosenCategory;
-
+				
+				// I have tried this but I don't think it works quite right and I couldn't figure out what else to use. 
+				database.setRoundWins(p.getNumber());
 				winner = p;
 				winnerIndex = playerIndex;
 
@@ -406,7 +413,8 @@ public class GamePlay {
 				p.removeTopCardFromHand();
 			}
 		}
-
+		TestLog.logCommunalPile(communalPile);
+		TestLog.logHandsAfterRound(players);	
 	}
 
 }

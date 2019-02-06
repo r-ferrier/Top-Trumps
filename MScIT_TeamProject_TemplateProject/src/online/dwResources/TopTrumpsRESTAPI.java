@@ -1,25 +1,20 @@
 package online.dwResources;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import commandline.Card;
+import commandline.Database;
+import commandline.Deck;
+import commandline.Player;
+import online.configuration.TopTrumpsJSONConfiguration;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import commandline.*;
-import online.configuration.TopTrumpsJSONConfiguration;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 
 @Path("/toptrumps") // Resources specified here should be hosted at http://localhost:7777/toptrumps
 @Produces(MediaType.APPLICATION_JSON) // This resource returns JSON content
@@ -65,27 +60,27 @@ public class TopTrumpsRESTAPI {
     // Add relevant API methods here
     // ----------------------------------------------------
 
+
+
     @GET
     @Path("/start-game")
-    public String itsYourTurn() {
+    public String itsYourTurn(int numOfPlayers) {
 
         deck = new Deck();
         players = new ArrayList<>();
 
-        players.add(new Player("You", true, 0));
-        players.add(new Player("Clive", false, 1));
-        players.add(new Player("Brenda", false, 2));
-        players.add(new Player("Philip", false, 3));
-        players.add(new Player("Janet", false, 4));
+        for(int i=0;i<numOfPlayers;i++){
+            players.add(new Player(i));
+        }
 
         Database database = new Database();
 
         Collections.shuffle(players);
 
-        String name = players.get(0).getName();
+        String name = "Player " + (players.get(0).getNumber() + 1);
         String itsYourTurn;
 
-        if (name.equals("You")) {
+        if (players.get(0).getNumber() == 0) {
             itsYourTurn = "It's your turn!";
         } else {
             itsYourTurn = "It's " + name + "'s turn.";
@@ -97,10 +92,16 @@ public class TopTrumpsRESTAPI {
     @GET
     @Path("/category-values")
     public int[] categoryValues(){
+        //return int array containing values for each category on the "top card"
 
-        int[] categoryValues = new int[]{5,10,6,5,4,56,78};
+        int[] categoryValues = new int[5];
 
-        //put java method in here to return category values of current player's top card as an int array
+        Card topCard = players.get(0).getTopCard();
+        categoryValues[0] = topCard.getAnyCategory(1);
+        categoryValues[1] = topCard.getAnyCategory(2);
+        categoryValues[2] = topCard.getAnyCategory(3);
+        categoryValues[3] = topCard.getAnyCategory(4);
+        categoryValues[4] = topCard.getAnyCategory(5);
 
         return categoryValues;
     }
@@ -108,10 +109,12 @@ public class TopTrumpsRESTAPI {
     @GET
     @Path("/all-top-cards")
     public String[] topCards(){
-
+        //return string array containing the description name of every top card for this round
         String[] topCards = new String[5];
 
-        //put java method in here to return string array containing the description name of every top card for this round
+        for (int i = 0; i<5; i++) {
+            topCards[i] = players.get(i).getTopCard().getDescription();
+        }
 
         return topCards;
     }
@@ -136,9 +139,38 @@ public class TopTrumpsRESTAPI {
 
     @GET
     @Path("/winner")
-    public int winner(){
+    public String winner(){
+        //this method currently is not returning an int like requested but just returns a string stating what
+        //happened. Very open to changing this but thought i'd just put something in for now.
 
-        int winner = 0;
+        String winner="";
+        //i think this could be done by calling GamePlay.declareRoundWinOrDraw() as it would be a lot of the
+        //same code, but that may not work if the other variables aren't being set from GamePlay? obv would
+        //also have to make it a protected method so we could access it.
+
+        int category = 0;
+        int categoryValue;
+        int currentHighestCategoryValue = 0;
+        int index = 0;
+        String winnerName;
+
+        for (Player p : players) {
+
+            categoryValue = p.getTopCard().getAnyCategory(category);
+
+            if (categoryValue > currentHighestCategoryValue) {
+                currentHighestCategoryValue = categoryValue;
+
+                winnerName = p.getName();
+                winner = winnerName + " has won this round!";
+
+
+            } else if (categoryValue == currentHighestCategoryValue) {
+
+                winner = "It's a draw!!!";
+            }
+        }
+
 
         //put java method in here to return the number of the winner
 
