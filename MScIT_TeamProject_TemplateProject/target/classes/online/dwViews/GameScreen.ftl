@@ -19,8 +19,8 @@
 
 <div class="top-line">
     <input id="quit" type="submit" value="quit"></input>
-
     <h2 id="players-turn"></h2>
+    <h6 id="testing-area"></h6>
 </div>
 
 <div class="all-cards-played" style="display: none">
@@ -36,7 +36,7 @@
          width="170">
 </div>
 
-<div class="card-outline" style="display: block">
+<div class="card-outline" style="display: none">
     <div class="card-contents">
 
         <img id="sandwich" src="https://raw.githubusercontent.com/r-ferrier/topTrumpsCSS/master/jam_sandwich.png"
@@ -79,7 +79,7 @@
 </div>
 
 <div class="ai-card-outline" style="display: none">
-    <img id="winners-card" width="300">
+    <img id="human-card" width="300" src ="">
 </div>
 
 
@@ -100,57 +100,157 @@
 
         </div>
 
+
+    </div>
+
 </body>
-
-
-</div>
 
 <script type="text/javascript">
 
-    //    var words = new URLSearchParams(window.location.search);
+    //    let words = new URLSearchParams(window.location.search);
 
-    var cardImagesArray = ["https://github.com/r-ferrier/topTrumpsCSS/blob/master/imageofcard.png?raw=true", "https://github.com/r-ferrier/topTrumpsCSS/blob/master/imageofcard.png?raw=true"]
-    var imagesArray = ["https://github.com/r-ferrier/topTrumpsCSS/blob/master/hawaiian.png?raw=true", "https://github.com/r-ferrier/topTrumpsCSS/blob/master/smorrebrod.png?raw=true"]
-    var ifHuman;
-    var players;
-    var deck;
-   // var currentPlayer = players.get(0).getNumber();
-    var indexOfCurrentPlayer = 0;
-    var indexOfHumanPlayer = 0;
+    let cardImagesArray = ["https://github.com/r-ferrier/topTrumpsCSS/blob/master/imageofcard.png?raw=true", "https://github.com/r-ferrier/topTrumpsCSS/blob/master/imageofcard.png?raw=true"];
+    let imagesArray = ["https://github.com/r-ferrier/topTrumpsCSS/blob/master/hawaiian.png?raw=true", "https://github.com/r-ferrier/topTrumpsCSS/blob/master/smorrebrod.png?raw=true"];
 
+    let ifHuman;
+    let deck;
+    let listOfPlayers = [];
 
+    let indexOfCurrentPlayer = 0;
+    let indexOfHumanPlayer;
+
+    class Player {
+
+        constructor(name, number, hand, human) {
+            this._name = name;
+            this._number = number;
+            this._hand = hand;
+            this._knockedOut = false;
+            this._human = human;
+            this._roundsWon = 0;
+        }
+
+        get name() {
+            return this._name;
+        }
+
+        get hand() {
+            return this._hand;
+        }
+
+        get number() {
+            return this._number;
+        }
+
+        get knockedOut() {
+            return this._knockedOut;
+        }
+
+        get human() {
+            return this._human;
+        }
+
+        get roundsWon() {
+            return this._roundsWon;
+        }
+    }
 
     // Method that is called on page load
     function initalize() {
 
-        // --------------------------------------------------------------------------
-        // You can call other methods you want to run when the page first loads here
-        // --------------------------------------------------------------------------
-
-        //  var players = new URLSearchParams(window.location.search);
-
-        getDeck();
-        getPlayers();
+        setPlayers();
         getWhoIsInGame();
-
-    //    startGame(${players});
-
-
-
-
-        // getIfHuman();
-
-
-
-        // if(players.has('4')){
-        //     document.getElementById("players-turn").innerHTML = 'YES THAT\'S A MOTHERFLIPPING NUMBER 4';
-        // }
+        getDeck();
 
     }
 
-    // -----------------------------------------
-    // Add your other Javascript methods Here
-    // -----------------------------------------
+    function setPlayers() {
+        let aiName = ['Clive', 'Brenda', 'Janet', 'Philip'];
+        let hand = [];
+
+        listOfPlayers.push(new Player('you', 0, hand, true));
+
+        for (let i = 0; i < (${players}-1); i++) {
+            listOfPlayers.push(new Player(aiName[i], 0, hand, false))
+        }
+
+        shuffle(listOfPlayers);
+    }
+
+
+    function setDeck(deckFromRestApi) {
+
+        deck = JSON.parse(deckFromRestApi); //converts string into an object
+
+        let playerIndex = 0;
+
+        for (let i = 0; i < deck.length; i++) {  //iterates over the deck, dealing cards to players in order
+
+            listOfPlayers[playerIndex]._hand.push(deck[i]);
+            playerIndex++;
+            if (playerIndex >=${players}) {
+                playerIndex = 0;
+            }
+        }
+
+
+        findHuman();
+        beginGame();
+
+
+    }
+
+    function findHuman(){
+
+        for (let i = 0; i < listOfPlayers.length; i++){
+            if(listOfPlayers[i]._human){
+                indexOfHumanPlayer = i;
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    function beginGame(){
+
+        let categories = listOfPlayers[indexOfCurrentPlayer]._hand[0].categoryValues;
+        let name = listOfPlayers[indexOfCurrentPlayer]._hand[0].description;
+        let number = listOfPlayers[indexOfCurrentPlayer]._hand[0].cardNumber;
+
+        document.getElementById("testing-area").innerHTML = name + " "+ number;
+
+        if(indexOfCurrentPlayer===indexOfHumanPlayer){
+            setCardWithChoices(categories,name);
+        }else{
+            setCardWithoutChoices(0);
+        }
+    }
+
+    function setCardWithChoices(categories,name) {
+
+        document.getElementsByClassName("card-outline")[0].style.display = "block";
+        document.getElementsByClassName("ai-card-outline")[0].style.display = "none";
+
+        document.getElementById("category1").innerText = categories[0];
+        document.getElementById("category2").innerText = categories[1];
+        document.getElementById("category3").innerText = categories[2];
+        document.getElementById("category4").innerText = categories[3];
+        document.getElementById("category5").innerText = categories[4];
+
+        document.getElementById("caption").innerText = name;
+
+    }
+
+    function setCardWithoutChoices(number){
+
+        document.getElementById("human-card").src=cardImagesArray[number];
+        document.getElementsByClassName("card-outline")[0].style.display = "none";
+        document.getElementsByClassName("ai-card-outline")[0].style.display = "block";
+
+
+
+
+    }
 
 
     function startingGame(startMessage) {
@@ -175,14 +275,14 @@
             document.getElementsByClassName("winning-card")[0].style.display = "block";
             document.getElementById("play-card").setAttribute("value", "continue to next round");
 
-            getWinner();
+            //    getWinner();
 
         } else if (button === "continue to next round") {
 
-            if(ifHuman) {
+            if (ifHuman) {
                 document.getElementsByClassName("card-outline")[0].style.display = "block";
                 document.getElementsByClassName("ai-card-outline")[0].style.display = "none";
-            }else{
+            } else {
                 document.getElementsByClassName("card-outline")[0].style.display = "none";
                 document.getElementsByClassName("ai-card-outline")[0].style.display = "block";
             }
@@ -192,46 +292,41 @@
 
             playersTurn();
         }
-
     }
 
-    function setCategories(categories) {
 
 
-            document.getElementsByClassName("card-outline")[0].style.display = "block";
-            document.getElementsByClassName("ai-card-outline")[0].style.display = "none";
+    // function displayWinner(winnerInfo) {
+    //
+    //     var winnerArray = JSON.parse(winnerInfo);
+    //     var cardnumber = parseInt(winnerArray[1]);
+    //
+    //     document.getElementById("players-turn").innerText = "Player " + winnerArray[0] + " won.";
+    //     document.getElementById("winners-card").src = cardImagesArray[cardnumber];
+    //
+    // }
 
+    // function checkIfCurrentPlayerHuman(human){
+    //
+    //     if(human){
+    //         getCategories();
+    //     }else{
+    //         document.getElementsByClassName("card-outline")[0].style.display = "none";
+    //         document.getElementsByClassName("ai-card-outline")[0].style.display = "block";
+    //     }
+    // }
 
-        var categoriesArray = JSON.parse(categories);
+    function setPlayersTurn(playerInfo) {
 
-        document.getElementById("category1").innerText = categoriesArray[0];
-        document.getElementById("category2").innerText = categoriesArray[1];
-        document.getElementById("category3").innerText = categoriesArray[2];
-        document.getElementById("category4").innerText = categoriesArray[3];
-        document.getElementById("category5").innerText = categoriesArray[4];
+        var player = JSON.parse(playerInfo);
 
+        document.getElementById("players-turn").innerText = "it is " + player[0] + " turn";
 
-    }
+        setCategories(player);
 
-    function displayWinner(winnerInfo) {
+        var card = parseInt(player[6]);
 
-        var winnerArray = JSON.parse(winnerInfo);
-        var cardnumber = parseInt(winnerArray[1]);
-
-        document.getElementById("players-turn").innerText = "Player " + winnerArray[0] + " won.";
-        document.getElementById("winners-card").src = cardImagesArray[cardnumber];
-
-
-    }
-
-    function checkIfCurrentPlayerHuman(human){
-
-        if(human){
-            getCategories();
-        }else{
-            document.getElementsByClassName("card-outline")[0].style.display = "none";
-            document.getElementsByClassName("ai-card-outline")[0].style.display = "block";
-        }
+        document.getElementById("sandwich").src = imagesArray[card];
     }
 
 
@@ -260,22 +355,23 @@
         return xhr;
     }
 
-    function setPlayersTurn(playerInfo) {
+    function shuffle(array) {
+        let currentIndex = array.length, temporaryValue, randomIndex;
 
-        var player = JSON.parse(playerInfo);
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
 
-        document.getElementById("players-turn").innerText = "it is " + player[0] + " turn";
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
 
-        setCategories(player);
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
 
-        var card = parseInt(player[6]);
-
-        document.getElementById("sandwich").src = imagesArray[card];
-    }
-
-    function setDeck(deck){
-
-        this.deck = JSON.parse(deck);
+        return array;
     }
 
 
@@ -287,32 +383,12 @@
 <!-- Here are examples of how to call REST API Methods -->
 <script type="text/javascript">
 
-    function startGame(numOfPlayers) {
-
-        var htmlStart = "http://localhost:7777/toptrumps/start-game/";
-        var numberPathParam = numOfPlayers;
-
-        var xhr = createCORSRequest('GET', htmlStart + numberPathParam); //first create cors request to my new restapi method
-
-        if (!xhr) {
-            alert("CORS not supported");
-        }
-
-        xhr.onload = function (e) {
-
-            var responseText = xhr.response; // the text of the response
-            startingGame(responseText);
-
-        };
-
-        // We have done everything we need to prepare the CORS request, so send it
-        xhr.send();
-
-    }
-
-    // function getIfHuman() {
+    // function startGame(numOfPlayers) {
     //
-    //     var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/is-currentplayer-human"); //first create cors request to my new restapi method
+    //     var htmlStart = "http://localhost:7777/toptrumps/start-game/";
+    //     var numberPathParam = numOfPlayers;
+    //
+    //     var xhr = createCORSRequest('GET', htmlStart + numberPathParam); //first create cors request to my new restapi method
     //
     //     if (!xhr) {
     //         alert("CORS not supported");
@@ -321,8 +397,8 @@
     //     xhr.onload = function (e) {
     //
     //         var responseText = xhr.response; // the text of the response
-    //         checkIfCurrentPlayerHuman(responseText);
-    //         alert(responseText);
+    //         startingGame(responseText);
+    //
     //     };
     //
     //     // We have done everything we need to prepare the CORS request, so send it
@@ -330,46 +406,25 @@
     //
     // }
 
-    function getWinner() {
-
-        var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/get-winner"); //first create cors request to my new restapi method
-
-        if (!xhr) {
-            alert("CORS not supported");
-        }
-
-        xhr.onload = function (e) {
-
-            var responseText = xhr.response; // the text of the response
-            displayWinner(responseText);
-
-        };
-
-        // We have done everything we need to prepare the CORS request, so send it
-        xhr.send();
-
-    }
-
-    function getPlayers() {
-
-        var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/get-players/${players}"); //first create cors request to my new restapi method
-
-        if (!xhr) {
-            alert("CORS not supported");
-        }
-
-        xhr.onload = function (e) {
-
-            var responseText = xhr.response; // the text of the response
-         //   setPlayers(responseText);
-            alert(responseText);
-
-        };
-
-        // We have done everything we need to prepare the CORS request, so send it
-        xhr.send();
-
-    }
+    // function getWinner() {
+    //
+    //     var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/get-winner"); //first create cors request to my new restapi method
+    //
+    //     if (!xhr) {
+    //         alert("CORS not supported");
+    //     }
+    //
+    //     xhr.onload = function (e) {
+    //
+    //         var responseText = xhr.response; // the text of the response
+    //         displayWinner(responseText);
+    //
+    //     };
+    //
+    //     // We have done everything we need to prepare the CORS request, so send it
+    //     xhr.send();
+    //
+    // }
 
 
     function getCategories() {
@@ -423,7 +478,7 @@
         xhr.onload = function (e) {
 
             var responseText = xhr.response; // the text of the response
-             setDeck(responseText);
+            setDeck(responseText);
         };
 
         // We have done everything we need to prepare the CORS request, so send it
@@ -451,74 +506,7 @@
     }
 
 
-
-
-
-    // function getCard() {
-    //
-    //     var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/card"); //first create cors request to my new restapi method
-    //
-    //     if (!xhr) {
-    //         alert("CORS not supported");
-    //     }
-    //
-    //     xhr.onload = function(e) {
-    //
-    //         var responseText = xhr.response; // the text of the response
-    //         setTextAsCard(responseText);
-    //
-    //     };
-    //
-    //     // We have done everything we need to prepare the CORS request, so send it
-    //     xhr.send();
-    //
-    // }
-
-    // // This calls the helloJSONList REST method from TopTrumpsRESTAPI
-    // function helloJSONList() {
-    //
-    // 	// First create a CORS request, this is the message we are going to send (a get request in this case)
-    // 	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList"); // Request type and URL
-    //
-    // 	// Message is not sent yet, but we can check that the browser supports CORS
-    // 	if (!xhr) {
-    // 		alert("CORS not supported");
-    // 	}
-    //
-    // 	// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-    // 	// to do when the response arrives
-    // 	xhr.onload = function(e) {
-    // 		var responseText = xhr.response; // the text of the response
-    // 		alert(responseText); // lets produce an alert
-    // 	};
-    //
-    // 	// We have done everything we need to prepare the CORS request, so send it
-    // 	xhr.send();
-    // }
-    //
-    // // This calls the helloJSONList REST method from TopTrumpsRESTAPI
-    // function helloWord(word) {
-    //
-    // 	// First create a CORS request, this is the message we are going to send (a get request in this case)
-    // 	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloWord?Word="+word); // Request type and URL+parameters
-    //
-    // 	// Message is not sent yet, but we can check that the browser supports CORS
-    // 	if (!xhr) {
-    // 		alert("CORS not supported");
-    // 	}
-    //
-    // 	// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-    // 	// to do when the response arrives
-    // 	xhr.onload = function(e) {
-    // 		var responseText = xhr.response; // the text of the response
-    // 		alert(responseText); // lets produce an alert
-    // 	};
-    //
-    // 	// We have done everything we need to prepare the CORS request, so send it
-    // 	xhr.send();
-    // }
-
 </script>
 
-</body>
+
 </html>

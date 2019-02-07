@@ -8,7 +8,7 @@ public class Card {
 
 	private String description;
 	private String[] categories = new String[5];
-	private String[] categoryValues = new String[6];
+	private int categoryValues[];
 	private int cardNumber;
 
 	private int category1;
@@ -27,13 +27,17 @@ public class Card {
 	}
 
 	private void setCategories(String categoryInformation) {
-		categoryValues = categoryInformation.split(" ");
+
+	    String[] categoryValues = categoryInformation.split(" ");
+
 		description = categoryValues[0];
 		category1 = parseInt(categoryValues[1]);
 		category2 = parseInt(categoryValues[2]);
 		category3 = parseInt(categoryValues[3]);
 		category4 = parseInt(categoryValues[4]);
 		category5 = parseInt(categoryValues[5]);
+
+		this.categoryValues= new int[]{category1,category2,category3,category4,category5};
 	}
 
 	protected int findBestCategory() {
@@ -114,7 +118,7 @@ public class Card {
 		return categories;
 	}
 
-	public String[] getCategoryValues(){
+	public int[] getCategoryValues(){
 		return categoryValues;
 	}
 

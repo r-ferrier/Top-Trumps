@@ -72,7 +72,7 @@ public class TopTrumpsRESTAPI {
     }
 
     @GET
-    @Path("/players/{number}")
+    @Path("/get-players/{number}")
     public String players(@PathParam("number")int numOfPlayers) throws JsonProcessingException {
 
         ArrayList<Player> players;
