@@ -1,5 +1,6 @@
 <html>
 
+<<<<<<< HEAD
 <head>
     <!-- Web page title -->
     <title>Top Trumps</title>
@@ -75,6 +76,28 @@
                 <label for="Complexity" id="category5"></label>
             </div>
         </div>
+=======
+	<head>
+		<!-- Web page title -->
+    	<title>Top Trumps</title>
+    	
+    	<#--<!-- Import JQuery, as it provides functions you will probably find useful (see https://jquery.com/) &ndash;&gt;-->
+    	<#--<script src="https://code.jquery.com/jquery-2.1.1.js"></script>-->
+    	<#--<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>-->
+
+    	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">
+
+        <link rel="stylesheet" type = "text/css" href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsGameScreen.css">
+
+	</head>
+
+    <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
+
+    <div class="top-line">
+        <input id="quit" type = "submit" value="quit"></input>
+
+        <h2 id="players-turn"></h2>
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
     </div>
 </div>
 
@@ -500,8 +523,12 @@
             startingGame(responseText);
         };
 
+<<<<<<< HEAD
         // We have done everything we need to prepare the CORS request, so send it
         xhr.send();
+=======
+                document.getElementById("players-turn").innerText="it is " + player[0] + " turn";
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
 
     }
 

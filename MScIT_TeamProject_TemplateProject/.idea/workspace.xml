@@ -4,10 +4,23 @@
     <list default="true" id="fa6a7770-71c4-49b7-a5cb-d8a69353f0f2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/commandline/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commandline/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/online/dwViews/GameScreen.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/online/dwViews/GameScreen.ftl" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/MScIT_TeamProject_TemplateProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MScIT_TeamProject_TemplateProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commandline/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commandline/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/commandline/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/online/dwViews/GameScreen.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/online/dwViews/GameScreen.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/online/dwViews/SelectionScreen.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/online/dwViews/SelectionScreen.ftl" afterDir="false" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,6 +35,7 @@
     </SUITE>
     <SUITE FILE_PATH="coverage/MScIT_TeamProject_TemplateProject$.ic" NAME=" Coverage Results" MODIFIED="1547914106362" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
+<<<<<<< HEAD
   <component name="FUSProjectUsageTrigger">
     <session id="-1522259802">
       <usages-collector id="statistics.lifecycle.project">
@@ -252,6 +266,17 @@
                 <element signature="e#3450#3451#0" expanded="true" />
                 <element signature="e#3480#3481#0" expanded="true" />
                 <element signature="e#3504#3505#0" expanded="true" />
+=======
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/commandline/Card.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="58" column="39" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
               </folding>
             </state>
           </provider>
@@ -314,7 +339,10 @@
         <option value="$PROJECT_DIR$/src/commandline/Deck.java" />
         <option value="$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java" />
         <option value="$PROJECT_DIR$/src/commandline/Card.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl" />
+=======
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
       </list>
     </option>
   </component>
@@ -324,10 +352,23 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+<<<<<<< HEAD
   <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="545" />
     <option name="y" value="23" />
     <option name="width" value="871" />
+=======
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="424" />
+    <option name="width" value="1367" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
     <option name="height" value="863" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -336,6 +377,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="MScIT2019Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="MScIT2019Project" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -380,11 +433,17 @@
               <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="configuration" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="online" type="462c0819:PsiDirectoryNode" />
+              <item name="dwResources" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
             </path>
             <path>
               <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="MScIT_TeamProject_TemplateProject" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dwResources" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -410,18 +469,28 @@
             <path>
               <item name="MScIT2019Project" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="MScIT2019Project" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+=======
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MScIT_TeamProject_TemplateProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549544130286" />
+=======
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549463397892" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
     <property name="last.edited.regexp" value="[hello]" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -497,15 +566,19 @@
       <item itemvalue="Application.TopTrumpsOnline" />
       <item itemvalue="Application.TopTrumpsCLIApplication" />
       <item itemvalue="Application.GamePlay" />
-      <item itemvalue="JavaScript Debug.GameScreen.ftl" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.TopTrumpsOnline" />
         <item itemvalue="Application.TopTrumpsCLIApplication" />
+<<<<<<< HEAD
         <item itemvalue="JavaScript Debug.GameScreen.ftl" />
         <item itemvalue="Application.GamePlay" />
         <item itemvalue="Application.TopTrumpsOnline" />
+=======
+        <item itemvalue="Application.TopTrumps" />
+        <item itemvalue="Application.TopTrumps" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
       </list>
     </recent_temporary>
   </component>
@@ -543,10 +616,17 @@
     <option name="totallyTimeSpent" value="142976000" />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="545" y="23" width="871" height="863" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20024125" />
+=======
+    <frame x="-7" y="-7" width="1215" height="815" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1982684" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -554,6 +634,7 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Learn" order="7" />
+      <window_info anchor="bottom" id="ConsoleMavenPlugin" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.28280255" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3696498" />
@@ -561,12 +642,17 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.11818182" />
+=======
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.07467057" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.41709843" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
+      <window_info anchor="right" id="Maven" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -617,9 +703,6 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/compiler.xml" />
     <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
@@ -645,40 +728,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/TopTrumps.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="42" column="69" selection-start-line="42" selection-start-column="69" selection-end-line="42" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/TopTrumps.class" />
     <entry file="file://$PROJECT_DIR$/src/commandline/.classpath" />
     <entry file="file://$PROJECT_DIR$/src/commandline/Card.class" />
     <entry file="file://$PROJECT_DIR$/.classpath">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/online/dwResources/TopTrumpsRESTAPI.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-49" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/online/dwResources/GameWebPagesResource.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/online/TopTrumpsOnlineApplication.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-109" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/online/dwViews/GameScreenView.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/online/dwViews/SelectionScreenView.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/online/dwViews/StatisticsView.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/online/dwResources/TopTrumpsRESTAPI.class" />
+    <entry file="file://$PROJECT_DIR$/target/classes/online/dwResources/GameWebPagesResource.class" />
+    <entry file="file://$PROJECT_DIR$/target/classes/online/TopTrumpsOnlineApplication.class" />
+    <entry file="file://$PROJECT_DIR$/target/classes/online/dwViews/GameScreenView.class" />
+    <entry file="file://$PROJECT_DIR$/target/classes/online/dwViews/SelectionScreenView.class" />
+    <entry file="file://$PROJECT_DIR$/target/classes/online/dwViews/StatisticsView.class" />
     <entry file="file://$PROJECT_DIR$/target/classes/online/dwViews/Statistics.ftl">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -700,6 +761,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/Scanner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
@@ -725,6 +787,15 @@
             <element signature="e#15586#15587#0" expanded="true" />
             <element signature="e#15631#15632#0" expanded="true" />
           </folding>
+=======
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/Scanner.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/lang/String.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/ArrayList.java" />
+    <entry file="file://$PROJECT_DIR$/src/online/TopTrumpsOnlineApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
         </state>
       </provider>
     </entry>
@@ -773,6 +844,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/resources/online/dwViews/SelectionScreen.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -781,6 +853,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/commandline/GamePlay.java">
+=======
+    <entry file="file://$PROJECT_DIR$/Sandwich.txt">
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="143" column="9" lean-forward="true" selection-start-line="143" selection-start-column="9" selection-end-line="143" selection-end-column="9" />
@@ -797,6 +872,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/online/dwViews/StatisticsView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -807,14 +883,49 @@
     <entry file="file://$PROJECT_DIR$/src/snippet/Snippet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
+=======
+    <entry file="file://$PROJECT_DIR$/src/commandline/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="253" lean-forward="true" selection-start-line="253" selection-end-line="253" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commandline/.vscode/launch.json" />
+    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/SelectionScreen.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commandline/TestLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-482">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="180" column="2" lean-forward="true" selection-start-line="180" selection-start-column="2" selection-end-line="180" selection-end-column="2" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
           <folding>
             <element signature="e#0#151#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TopTrumps.java">
+    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/Statistics.ftl">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="117">
           <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
         </state>
@@ -834,6 +945,24 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="416">
+          <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="171" column="90" selection-start-line="171" selection-start-column="90" selection-end-line="171" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TopTrumps.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
         </state>
       </provider>
     </entry>
@@ -852,6 +981,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="jar://$MAVEN_REPOSITORY$/org/glassfish/jersey/core/jersey-server/2.25.1/jersey-server-2.25.1.jar!/org/glassfish/jersey/server/model/internal/AbstractJavaResourceMethodDispatcher.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -902,13 +1032,31 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/src/TopTrumps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commandline/TopTrumpsCLIApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/commandline/Player.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="182">
           <caret line="13" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="13" />
+=======
+        <state relative-caret-position="21">
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
           <folding>
             <element signature="e#1958#1959#0" expanded="true" />
             <element signature="e#1977#1978#0" expanded="true" />
@@ -916,6 +1064,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/commandline/TopTrumpsCLIApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -968,6 +1117,14 @@
             <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="e#4535#5211#0#HTML" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/commandline/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="58" column="39" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
           </folding>
         </state>
       </provider>

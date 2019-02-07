@@ -64,9 +64,9 @@ public class Card {
 
 	public String toString() {
 
-		String cardDetails = categories[0] + ": " + category1 + "\n" + categories[1] + ": " + category2 + "\n"
-				+ categories[2] + ": " + category3 + "\n" + categories[3] + ": " + category4 + "\n" + categories[4]
-				+ ": " + category5 + "\n";
+		String cardDetails = categories[0] + ": " + category1 + " \n" + categories[1] + ": " + category2 + " \n"
+				+ categories[2] + ": " + category3 + " \n" + categories[3] + ": " + category4 + " \n" + categories[4]
+				+ ": " + category5 + " \n";
 
 		return cardDetails;
 	}

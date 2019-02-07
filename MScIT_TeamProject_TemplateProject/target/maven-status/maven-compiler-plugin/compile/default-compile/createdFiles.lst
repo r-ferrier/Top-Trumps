@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 online/dwViews/SelectionScreenView.class
 online/dwResources/GameWebPagesResource.class
 commandline/Player.class
@@ -13,3 +14,20 @@ commandline/TestLog.class
 online/dwViews/GameScreenView.class
 TopTrumps.class
 online/TopTrumpsOnlineApplication.class
+=======
+commandline\TestLog.class
+online\configuration\TopTrumpsJSONConfiguration.class
+commandline\Card.class
+commandline\GamePlay.class
+online\dwResources\GameWebPagesResource.class
+commandline\Player.class
+online\dwResources\TopTrumpsRESTAPI.class
+online\TopTrumpsOnlineApplication.class
+online\dwViews\GameScreenView.class
+online\dwViews\StatisticsView.class
+commandline\TopTrumpsCLIApplication.class
+commandline\Database.class
+commandline\Deck.class
+online\dwViews\SelectionScreenView.class
+TopTrumps.class
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d

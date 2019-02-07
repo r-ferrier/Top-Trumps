@@ -76,6 +76,7 @@
         // startGame();
     }
 
+<<<<<<< HEAD
     // function startGame() {
     //
     //     document.getElementsByClassName("choose-players")[0].innerHTML=beginNewGame;
@@ -90,6 +91,16 @@
     // }
 
 
+=======
+    function startGame() {
+        document.getElementsByClassName("choose-players").innerHTML=beginNewGame
+        window.location.href = '<a href="' + window.location.protocol + '//' + window.location.hostname + ':7777'
+            + window.location.pathname + '" >New Game</a>');
+
+
+
+    }
+>>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
 
     // -----------------------------------------
     // Add your other Javascript methods Here
