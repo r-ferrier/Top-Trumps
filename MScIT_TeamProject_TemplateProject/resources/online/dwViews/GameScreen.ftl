@@ -20,8 +20,6 @@
 <div class="top-line">
     <input id="quit" type="submit" value="quit"></input>
     <h2 id="players-turn"></h2>
-    <h6 id="testing-area"></h6>
-    <h6 id="testing-area2"></h6>
 </div>
 
 <div class="all-cards-played" style="display: none">
@@ -90,8 +88,8 @@
     </div>
 
     <div class="game-stats">
-        <p id="number-of-cards">number of cards left Placeholder</p>
-        <p id="count-of-rounds">Count of rounds Placeholder</p>
+        <p id="number-of-cards"></p>
+        <p id="count-of-rounds"></p>
         <div>
 
         </div>
@@ -111,12 +109,20 @@
     const sandwichAddressStart = "https://raw.githack.com/r-ferrier/images-and-css-for-top-trumps/master/maincards/";
     const addressEnd = ".png";
 
-    let ifHuman;
     let deck;
     let listOfPlayers = [];
+    let communalPile = [];
+    let countOfRounds = 1;
 
     let indexOfCurrentPlayer = 0;
     let indexOfHumanPlayer;
+    let indexOfRoundWinner = 0;
+    let categoryIndexOfRoundWinner = 0;
+    let cardNumberOfRoundWinner = 0;
+    let winningCardName;
+    let winningCardCategory;
+    let winningCardDescription;
+    let categoryChoice;
 
     /*
     creating one class to create player objects from. The player will hold a hand of cards, a name, and other information
@@ -188,8 +194,6 @@
         shuffle(listOfPlayers);
     }
 
-
-
     function setDeckAndBeginGame(deckFromRestApi) {
 
         deck = JSON.parse(deckFromRestApi); //converts string into an object
@@ -208,7 +212,6 @@
             if (playerIndex >=${players}) {
                 playerIndex = 0;
             }
-
         }
 
         for (let i = 0; i<listOfPlayers[0]._hand.length;i++){
@@ -218,25 +221,19 @@
 
         findHuman();
         beginRound();
-
-
-
-
-
+        displayNumberOfCardsLeft();
     }
 
     /*
     returns position of human in the array, returns null if human knocked out
      */
     function findHuman(){
-
         for (let i = 0; i < listOfPlayers.length; i++){
             if(listOfPlayers[i]._human){
                 indexOfHumanPlayer = i;
                 return i;
             }
-        }
-        return null;
+        }return null;
     }
 
     /*
@@ -247,9 +244,10 @@
 
         let categories = listOfPlayers[indexOfCurrentPlayer]._hand[0].categoryValues;
         let name = listOfPlayers[indexOfCurrentPlayer]._hand[0].description;
-        let number = (listOfPlayers[indexOfCurrentPlayer]._hand[0].cardNumber)+1;
+        let number = (listOfPlayers[indexOfHumanPlayer]._hand[0].cardNumber)+1;
 
-        document.getElementById("testing-area2").innerHTML = listOfPlayers[0]._name;
+        document.getElementsByClassName("winning-card")[0].style.display = "none";
+        document.getElementById("count-of-rounds").innerText="Round "+countOfRounds;
 
         if(indexOfCurrentPlayer===indexOfHumanPlayer){
             setCardWithChoices(categories,name,number);
@@ -288,90 +286,157 @@
 
     function buttons() {
 
-        var button = document.getElementById("play-card").getAttribute("value");
-
+        const button = document.getElementById("play-card").getAttribute("value");
 
         if (button === "play card") {
 
+            calculateWinner();
+            everybodyPlayACard();
+
             document.getElementsByClassName("card-outline")[0].style.display = "none";
             document.getElementsByClassName("all-cards-played")[0].style.display = "block";
-            document.getElementsByClassName("winning-card")[0].style.display = "none";
             document.getElementsByClassName("ai-card-outline")[0].style.display = "none";
-
-
-            showAllCards();
-            calculateWinner();
 
             document.getElementById("play-card").setAttribute("value", "show winner");
 
 
         } else if (button === "show winner") {
+
+            addCardsToWinnersHand();
+            findHuman();
+            getWinner();
+
             document.getElementsByClassName("card-outline")[0].style.display = "none";
             document.getElementsByClassName("all-cards-played")[0].style.display = "none";
             document.getElementsByClassName("winning-card")[0].style.display = "block";
             document.getElementsByClassName("ai-card-outline")[0].style.display = "none";
+
             document.getElementById("play-card").setAttribute("value", "continue to next round");
 
-            //    getWinner();
 
         } else if (button === "continue to next round") {
 
-            if (ifHuman) {
-                document.getElementsByClassName("card-outline")[0].style.display = "block";
-                document.getElementsByClassName("ai-card-outline")[0].style.display = "none";
-            } else {
-                document.getElementsByClassName("card-outline")[0].style.display = "none";
-                document.getElementsByClassName("ai-card-outline")[0].style.display = "block";
-            }
-            document.getElementsByClassName("all-cards-played")[0].style.display = "none";
-            document.getElementsByClassName("winning-card")[0].style.display = "none";
-            document.getElementById("play-card").setAttribute("value", "play card");
+            countOfRounds++;
 
+            console.log(indexOfCurrentPlayer+": current player " + indexOfHumanPlayer+": human player");
+
+            beginRound();
+
+            document.getElementById("play-card").setAttribute("value", "play card");
 
         }
     }
 
-    function calculateWinner(){
+    function addCardsToWinnersHand(){
 
-        console.log (JSON.stringify(listOfPlayers));
+        let length = communalPile.length;
 
-        let choice = document.querySelector('input[name="choices"]:checked').value;
+        for(let i = 0; i<length; i++){
 
-        let categoryPosition;
-
-        switch(choice) {
-
-            case "Deliciousness":
-                categoryPosition = 0;
-                break;
-            case "Size":
-                categoryPosition = 1;
-                break;
-            case "Toastability":
-                categoryPosition = 2;
-                break;
-            case "Satiation":
-                categoryPosition = 3;
-                break;
-            case "Complexity":
-                categoryPosition = 4;
+            listOfPlayers[indexOfRoundWinner].hand.push(communalPile[0]);
+            communalPile.shift();
         }
 
-        alert(choice + ' was selected with a value of '+ listOfPlayers[indexOfCurrentPlayer]._hand[0].categoryValues[categoryPosition]);
+        displayNumberOfCardsLeft();
+    }
+
+    function getWinner() {
+
+        document.getElementById("winners-card").src = cardAddressStart + cardNumberOfRoundWinner + addressEnd;
+
+        document.getElementById("players-turn").innerHTML = winningCardName+" won this round, with the card "+winningCardDescription+" which had a "+
+        categoryChoice+ " value of "+winningCardCategory+".";
+
+    }
+
+    function everybodyPlayACard(){
+
+        for(let i = 0;i<listOfPlayers.length;i++){
+
+            communalPile[i] = listOfPlayers[i].hand[0];
+            listOfPlayers[i].hand.shift();
+        }
+
+        displayNumberOfCardsLeft();
+        indexOfCurrentPlayer = indexOfRoundWinner;
+
+    }
+
+    function displayNumberOfCardsLeft(){
+        document.getElementById("number-of-cards").innerHTML = "You have "+listOfPlayers[indexOfHumanPlayer].hand.length+" cards left in your hand.";
+    }
+
+
+    function calculateWinner(){
 
         let maxNumber = 0;
-        let winningPlayer;
 
-        for (let i = 0; i<listOfPlayers.length;i++) {
-            let playerScore = parseInt(listOfPlayers[i]._hand[0].categoryValues[categoryPosition]);
+        if(indexOfCurrentPlayer===indexOfHumanPlayer) {
+            categoryChoice = document.querySelector('input[name="choices"]:checked').value;
+            switch (categoryChoice) {
 
-            if(playerScore>maxNumber){
-                maxNumber = playerScore;
-                winningPlayer = listOfPlayers[i].name;
+                case "Deliciousness":
+                    categoryIndexOfRoundWinner = 0;
+                    break;
+                case "Size":
+                    categoryIndexOfRoundWinner = 1;
+                    break;
+                case "Toastability":
+                    categoryIndexOfRoundWinner = 2;
+                    break;
+                case "Satiation":
+                    categoryIndexOfRoundWinner = 3;
+                    break;
+                case "Complexity":
+                    categoryIndexOfRoundWinner = 4;
+            }
+        }else {
+            for (let i = 0; i < 5; i++) {
+
+                let value = listOfPlayers[indexOfCurrentPlayer]._hand[0].categoryValues[i];
+                if (value > maxNumber) {
+                    maxNumber = value;
+                    categoryIndexOfRoundWinner = i;
+                }
+            }
+
+            switch (categoryIndexOfRoundWinner) {
+
+                case 0:
+                    categoryChoice = "Deliciousness";
+                    break;
+                case 1:
+                    categoryChoice = "Size";
+                    break;
+                case 2:
+                    categoryChoice = "Toastability";
+                    break;
+                case 3:
+                    categoryChoice = "Satiation";
+                    break;
+                case 4:
+                    categoryChoice = "Complexity";
             }
         }
 
-        alert('The winner was '+winningPlayer+' with category '+choice+' which had a winning value of '+maxNumber);
+        maxNumber = 0;
+
+        for (let i = 0; i<listOfPlayers.length;i++) {
+
+            winningCardCategory = listOfPlayers[i]._hand[0].categoryValues[categoryIndexOfRoundWinner];
+
+            if(winningCardCategory > maxNumber){
+                maxNumber = winningCardCategory;
+                winningCardName = listOfPlayers[i].name;
+                indexOfRoundWinner = i;
+                cardNumberOfRoundWinner = (listOfPlayers[i]._hand[0].cardNumber)+1;
+                winningCardDescription = listOfPlayers[i]._hand[0].description;
+            }
+        }
+
+        winningCardCategory = maxNumber;
+
+        showAllCards();
 
     }
 
@@ -380,34 +445,12 @@
         for (let i = 0; i<listOfPlayers.length;i++) {
 
             let number = (listOfPlayers[i]._hand[0].cardNumber)+1;
-            console.log(number+"  "+i+listOfPlayers[i]._name);
             document.getElementById("player-"+(i+1)+"-card").src = cardAddressStart + number + addressEnd;
-
         }
+
+        let name = listOfPlayers[indexOfCurrentPlayer].name;
+        document.getElementById("players-turn").innerHTML = name+" chose "+categoryChoice;
     }
-
-
-
-    // function displayWinner(winnerInfo) {
-    //
-    //     var winnerArray = JSON.parse(winnerInfo);
-    //     var cardnumber = parseInt(winnerArray[1]);
-    //
-    //     document.getElementById("players-turn").innerText = "Player " + winnerArray[0] + " won.";
-    //     document.getElementById("winners-card").src = cardImagesArray[cardnumber];
-    //
-    // }
-
-    // function checkIfCurrentPlayerHuman(human){
-    //
-    //     if(human){
-    //         getCategories();
-    //     }else{
-    //         document.getElementsByClassName("card-outline")[0].style.display = "none";
-    //         document.getElementsByClassName("ai-card-outline")[0].style.display = "block";
-    //     }
-    // }
-
 
     // This is a reusable method for creating a CORS request. Do not edit this.
     function createCORSRequest(method, url) {
@@ -450,77 +493,6 @@
     }
 
 
-</script>
-
-<!-- this is how we get java into the website -->
-
-
-<!-- Here are examples of how to call REST API Methods -->
-<script type="text/javascript">
-
-    // function startGame(numOfPlayers) {
-    //
-    //     var htmlStart = "http://localhost:7777/toptrumps/start-game/";
-    //     var numberPathParam = numOfPlayers;
-    //
-    //     var xhr = createCORSRequest('GET', htmlStart + numberPathParam); //first create cors request to my new restapi method
-    //
-    //     if (!xhr) {
-    //         alert("CORS not supported");
-    //     }
-    //
-    //     xhr.onload = function (e) {
-    //
-    //         var responseText = xhr.response; // the text of the response
-    //         startingGame(responseText);
-    //
-    //     };
-    //
-    //     // We have done everything we need to prepare the CORS request, so send it
-    //     xhr.send();
-    //
-    // }
-
-    // function getWinner() {
-    //
-    //     var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/get-winner"); //first create cors request to my new restapi method
-    //
-    //     if (!xhr) {
-    //         alert("CORS not supported");
-    //     }
-    //
-    //     xhr.onload = function (e) {
-    //
-    //         var responseText = xhr.response; // the text of the response
-    //         displayWinner(responseText);
-    //
-    //     };
-    //
-    //     // We have done everything we need to prepare the CORS request, so send it
-    //     xhr.send();
-    //
-    // }
-
-
-    function getDeckAndBeginGame() {
-
-        const xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/deck"); //first create cors request to my new restapi method
-
-        if (!xhr) {
-            alert("CORS not supported");
-        }
-
-        xhr.onload = function (e) {
-
-            var responseText = xhr.response; // the text of the response
-            setDeckAndBeginGame(responseText);
-        };
-
-        // We have done everything we need to prepare the CORS request, so send it
-        xhr.send();
-
-    }
-
     function getWhoIsInGame() {
 
         let allPlayersNames = "";
@@ -545,6 +517,30 @@
         }
     }
 
+</script>
+
+<!-- this is how we get java into the website -->
+
+<script type="text/javascript">
+
+    function getDeckAndBeginGame() {
+
+        const xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/deck"); //first create cors request to my new restapi method
+
+        if (!xhr) {
+            alert("CORS not supported");
+        }
+
+        xhr.onload = function (e) {
+
+            var responseText = xhr.response; // the text of the response
+            setDeckAndBeginGame(responseText);
+        };
+
+        // We have done everything we need to prepare the CORS request, so send it
+        xhr.send();
+
+    }
 
 </script>
 
