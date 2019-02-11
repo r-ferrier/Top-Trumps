@@ -16,11 +16,18 @@ import io.dropwizard.views.View;
  */
 public class GameScreenView extends View {
 
+    public String players;
+
 	/**
 	 * Simple Constructor method, it simply specifies where the HTML page is to return.
 	 */
-    public GameScreenView() {
+    public GameScreenView(String players) {
         super("GameScreen.ftl");
+        this.players = players;
+    }
+
+    public String getPlayers(){
+        return players;
     }
 
 }

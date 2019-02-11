@@ -1,13 +1,13 @@
 package online.dwResources;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import online.dwViews.GameScreenView;
 import online.dwViews.SelectionScreenView;
 import online.dwViews.StatisticsView;
+
+import java.io.IOException;
 
 @Path("/toptrumps") // Resources specified here should be hosted at http://localhost:7777/toptrumps
 @Produces(MediaType.TEXT_HTML) // This resource returns HTML content
@@ -39,8 +39,9 @@ public class GameWebPagesResource {
 	 * Hosted at 'http://localhost:7777/toptrumps/game'
 	 * @return
 	 */
-    public GameScreenView getGameScreen() {
-        return new GameScreenView();
+    public GameScreenView getGameScreen(@QueryParam("players")String players) throws IOException {
+
+        return new GameScreenView(players);
     }
 
 	@GET

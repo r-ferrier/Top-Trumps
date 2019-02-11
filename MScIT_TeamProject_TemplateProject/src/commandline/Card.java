@@ -5,29 +5,39 @@ import java.util.Collections;
 import static java.lang.Integer.parseInt;
 
 public class Card {
+
+	private String description;
+	private String[] categories = new String[5];
+	private int categoryValues[];
+	private int cardNumber;
+
 	private int category1;
 	private int category2;
 	private int category3;
 	private int category4;
 	private int category5;
-	private String description;
-	private String[] categories = new String[5];
 
-	public Card(String CategoryInformation, String categoryDescriptions) {
+
+	public Card(String CategoryInformation, String categoryDescriptions, int cardNumber) {
 
 		setCategories(CategoryInformation);
 		setCategoryDescriptions(categoryDescriptions);
+		this.cardNumber = cardNumber;
 
 	}
 
 	private void setCategories(String categoryInformation) {
-		String[] cardDetails = categoryInformation.split(" ");
-		description = cardDetails[0];
-		category1 = parseInt(cardDetails[1]);
-		category2 = parseInt(cardDetails[2]);
-		category3 = parseInt(cardDetails[3]);
-		category4 = parseInt(cardDetails[4]);
-		category5 = parseInt(cardDetails[5]);
+
+	    String[] categoryValues = categoryInformation.split(" ");
+
+		description = categoryValues[0];
+		category1 = parseInt(categoryValues[1]);
+		category2 = parseInt(categoryValues[2]);
+		category3 = parseInt(categoryValues[3]);
+		category4 = parseInt(categoryValues[4]);
+		category5 = parseInt(categoryValues[5]);
+
+		this.categoryValues= new int[]{category1,category2,category3,category4,category5};
 	}
 
 	protected int findBestCategory() {
@@ -106,6 +116,14 @@ public class Card {
 
 	public String[] getCategories() {
 		return categories;
+	}
+
+	public int[] getCategoryValues(){
+		return categoryValues;
+	}
+
+	public int getCardNumber(){
+		return cardNumber;
 	}
 
 }
