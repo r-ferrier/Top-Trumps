@@ -352,42 +352,46 @@ public class GamePlay {
 		winner = players.get(currentPlayer);
 		int playerIndex = 0;
 
-		int valueOfChosenCategory;
+		Integer valueOfChosenCategory;
 		int currentHighestCategoryValue = 0;
 		int winnerIndex = 0;
+		ArrayList<Integer> topCardValues = new ArrayList<>();
 
 		for (Player p : players) {
 
 			valueOfChosenCategory = p.getTopCard().getAnyCategory(chosenCategory);
+			topCardValues.add(valueOfChosenCategory);
 
 			if (valueOfChosenCategory > currentHighestCategoryValue) {
 				currentHighestCategoryValue = valueOfChosenCategory;
-				
-				// I have tried this but I don't think it works quite right and I couldn't figure out what else to use. 
-				database.setRoundWins(p.getNumber());
+
 				winner = p;
 				winnerIndex = playerIndex;
-
-			} else if (valueOfChosenCategory == currentHighestCategoryValue) {
-
-				System.out.println("IT WAS A DRAW\n\n");
-
-				winner = null;
-				drawCounter++;
-				return false;
 			}
+
 
 			playerIndex++;
 		}
 
-		database.setRoundWins(winner.getNumber());
+		Collections.sort(topCardValues);
+		if (topCardValues.get(topCardValues.size()-1) == topCardValues.get(topCardValues.size()-2)) {
+			System.out.println("IT WAS A DRAW\n\n");
+			winner = null;
+			drawCounter++;
+			return false;
+		} else {
 
-		currentPlayer = winnerIndex;
+			// I have tried this but I don't think it works quite right and I couldn't figure out what else to use.
+			//database.setRoundWins(p.getNumber());
+			database.setRoundWins(winner.getNumber());
 
-		System.out.println(winner.getName() + " won this round with the card " + winner.getTopCard().getDescription()
-				+ " which had a " + winner.getTopCard().getCategories()[chosenCategory - 1] + " value of "
-				+ currentHighestCategoryValue + ".\n\n");
-		return true;
+			currentPlayer = winnerIndex;
+
+			System.out.println(winner.getName() + " won this round with the card " + winner.getTopCard().getDescription()
+					+ " which had a " + winner.getTopCard().getCategories()[chosenCategory - 1] + " value of "
+					+ currentHighestCategoryValue + ".\n\n");
+			return true;
+		}
 	}
 
 	private void addCardsToCommunalPile(boolean win) {

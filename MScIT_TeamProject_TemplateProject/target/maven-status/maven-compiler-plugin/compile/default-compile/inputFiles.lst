@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/online/dwViews/GameScreenView.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/commandline/TestLog.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/commandline/TopTrumpsCLIApplication.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/commandline/Card.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/online/TopTrumpsOnlineApplication.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/commandline/GamePlay.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/snippet/Snippet.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/commandline/Deck.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/online/dwViews/SelectionScreenView.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/online/dwResources/TopTrumpsRESTAPI.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/commandline/Database.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/commandline/Player.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/online/dwResources/GameWebPagesResource.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/online/configuration/TopTrumpsJSONConfiguration.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/TopTrumps.java
-/Users/rosemaryferrier/IdeaProjects/Top-Trumps/MScIT_TeamProject_TemplateProject/src/online/dwViews/StatisticsView.java
-=======
 C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\Team Project\Top-Trumps\MScIT_TeamProject_TemplateProject\src\online\dwResources\GameWebPagesResource.java
 C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\Team Project\Top-Trumps\MScIT_TeamProject_TemplateProject\src\commandline\Player.java
 C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\Team Project\Top-Trumps\MScIT_TeamProject_TemplateProject\src\online\dwViews\GameScreenView.java
@@ -32,4 +14,3 @@ C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\Team Project\Top-Trum
 C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\Team Project\Top-Trumps\MScIT_TeamProject_TemplateProject\src\online\dwViews\StatisticsView.java
 C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\Team Project\Top-Trumps\MScIT_TeamProject_TemplateProject\src\commandline\GamePlay.java
 C:\Users\teste\OneDrive - University of Glasgow\SEMESTER 2\Team Project\Top-Trumps\MScIT_TeamProject_TemplateProject\src\TopTrumps.java
->>>>>>> 831854736d5cdfb18140cc9d9e03f7208ac91b8d
