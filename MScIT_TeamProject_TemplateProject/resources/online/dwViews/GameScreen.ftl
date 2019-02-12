@@ -87,6 +87,10 @@
         <input id="play-card" type="submit" value="play card" name="choices" onclick="buttons()">
     </div>
 
+    <form action="http://localhost:7777/toptrumps" method="GET">
+        <button id="end-game" type="submit" name="winner" style="display: none">end game</button>
+    </form>
+
     <div class="game-stats">
         <p id="number-of-cards"></p>
         <p id="count-of-rounds"></p>
@@ -117,12 +121,14 @@
     let indexOfCurrentPlayer = 0;
     let indexOfHumanPlayer;
     let indexOfRoundWinner = 0;
-    let categoryIndexOfRoundWinner = 0;
+    let categoryIndexOfCardChoice = 0;
     let cardNumberOfRoundWinner = 0;
     let winningCardName;
     let winningCardCategory;
     let winningCardDescription;
     let categoryChoice;
+    let draw;
+    let humanIsGone = false;
 
     /*
     creating one class to create player objects from. The player will hold a hand of cards, a name, and other information
@@ -139,10 +145,6 @@
             this._knockedOut = false;
             this._human = human;
             this._roundsWon = 0;
-        }
-
-        addCard(){
-            this._hand.push()
         }
 
         get name() {
@@ -214,9 +216,9 @@
             }
         }
 
-        for (let i = 0; i<listOfPlayers[0]._hand.length;i++){
+        for (let i = 0; i < listOfPlayers[0]._hand.length; i++) {
 
-            console.log(listOfPlayers[0]._hand[i]+" card in "+listOfPlayers[0].name+"'s hand");
+            console.log(listOfPlayers[0]._hand[i] + " card in " + listOfPlayers[0].name + "'s hand");
         }
 
         findHuman();
@@ -227,44 +229,131 @@
     /*
     returns position of human in the array, returns null if human knocked out
      */
-    function findHuman(){
-        for (let i = 0; i < listOfPlayers.length; i++){
-            if(listOfPlayers[i]._human){
+    function findHuman() {
+        for (let i = 0; i < listOfPlayers.length; i++) {
+            if (listOfPlayers[i]._human) {
                 indexOfHumanPlayer = i;
                 return i;
             }
-        }return null;
+        }
+        indexOfHumanPlayer = null;
+        return null;
     }
 
     /*
     decides whether to show player a card they can make choices from if it's their turn, or a picture of card if not.
     Displays correct values.
      */
-    function beginRound(){
+    function beginRound() {
 
         let categories = listOfPlayers[indexOfCurrentPlayer]._hand[0].categoryValues;
         let name = listOfPlayers[indexOfCurrentPlayer]._hand[0].description;
-        let number = (listOfPlayers[indexOfHumanPlayer]._hand[0].cardNumber)+1;
+        let number = (listOfPlayers[indexOfHumanPlayer]._hand[0].cardNumber) + 1;
 
         document.getElementsByClassName("winning-card")[0].style.display = "none";
-        document.getElementById("count-of-rounds").innerText="Round "+countOfRounds;
+        document.getElementById("count-of-rounds").innerText = "Round " + countOfRounds;
 
-        if(indexOfCurrentPlayer===indexOfHumanPlayer){
-            setCardWithChoices(categories,name,number);
-        }else{
+        if (indexOfCurrentPlayer === indexOfHumanPlayer) {
+            setCardWithChoices(categories, name, number);
+        } else {
             setCardWithoutChoices(number);
         }
 
-        document.getElementById("players-turn").innerHTML= getWhoIsInGame()+getWhoseTurnItIs();
+        document.getElementById("players-turn").innerHTML = getWhoIsInGame() + getWhoseTurnItIs();
+    }
+
+
+    function endGame() {
+
+        document.getElementsByClassName("winning-card")[0].style.display = "none";
+        document.getElementById("play-card").style.display = "none";
+        document.getElementById("end-game").style.display = "block";
+
+        if(humanIsGone) {
+            findAIWinner();
+            document.getElementById("players-turn").innerHTML = "You've been knocked out! Click the button to let the ai players finish the game and find out who wins.";
+        }else{
+            document.getElementById("players-turn").innerHTML = "You've won! Click the button to record your win and return to the homescreen.";
+            document.getElementById("end-game").value = listOfPlayers[0].name;
+        }
+
+
+    }
+
+    function findAIWinner() {
+
+        while (listOfPlayers > 1) {
+            let maxNumber = 0;
+            for (let i = 0; i < 5; i++) {
+                let value = listOfPlayers[indexOfCurrentPlayer]._hand[0].categoryValues[i];
+                if (value > maxNumber) {
+                    maxNumber = value;
+                    categoryIndexOfCardChoice = i;
+                }
+            }
+
+            maxNumber = 0;
+            draw = false;
+
+            for (let i = 0; i < listOfPlayers.length; i++) {
+                winningCardCategory = listOfPlayers[i]._hand[0].categoryValues[categoryIndexOfCardChoice];
+
+                if (winningCardCategory > maxNumber) {
+                    draw = false;
+                    maxNumber = winningCardCategory;
+                    indexOfRoundWinner = i;
+
+                } else if (winningCardCategory === maxNumber) {
+                    draw = true;
+                    winningCardName = null;
+                    indexOfRoundWinner = null;
+                    cardNumberOfRoundWinner = null;
+                    winningCardDescription = null;
+                }
+            }
+
+            if (!draw) {
+                winningCardCategory = maxNumber;
+            }
+
+            for (let i = 0; i < listOfPlayers.length; i++) {
+                communalPile[i] = listOfPlayers[i].hand[0];
+                listOfPlayers[i].hand.shift();
+            }
+
+            if (!draw) {
+                indexOfCurrentPlayer = indexOfRoundWinner;
+                let length = communalPile.length;
+                for (let i = 0; i < length; i++) {
+                    listOfPlayers[indexOfRoundWinner].hand.push(communalPile[0]);
+                    communalPile.shift();
+                }
+            }
+
+            for (let i = 0; i < listOfPlayers.length; i++) {
+                if (listOfPlayers[i].hand === 0) {
+                    console.log(listOfPlayers[i].name + " was knocked out");
+                    listOfPlayers.splice(i, 1);
+                    console.log(listOfPlayers.length);
+                    if (indexOfCurrentPlayer >= i) {
+                        indexOfCurrentPlayer -= 1;
+                    }
+
+                }
+            }
+        }
+
+        document.getElementById("end-game").value = listOfPlayers[0].name;
+
     }
 
     //helper method to set categories correctly and choose correct image for a card with choices
-    function setCardWithChoices(categories,name,number) {
+    function setCardWithChoices(categories, name, number) {
 
         document.getElementsByClassName("card-outline")[0].style.display = "block";
         document.getElementsByClassName("ai-card-outline")[0].style.display = "none";
 
-        document.getElementById("sandwich").src = sandwichAddressStart+number+addressEnd;
+        document.getElementById("sandwich").src = sandwichAddressStart + number + addressEnd;
 
         document.getElementById("category1").innerText = categories[0];
         document.getElementById("category2").innerText = categories[1];
@@ -276,9 +365,9 @@
     }
 
     //helper method to choose correct image for a card without choices
-    function setCardWithoutChoices(number){
+    function setCardWithoutChoices(number) {
 
-        document.getElementById("human-card").src=cardAddressStart+number+addressEnd;
+        document.getElementById("human-card").src = cardAddressStart + number + addressEnd;
         document.getElementsByClassName("card-outline")[0].style.display = "none";
         document.getElementsByClassName("ai-card-outline")[0].style.display = "block";
 
@@ -286,9 +375,9 @@
 
     function buttons() {
 
-        const button = document.getElementById("play-card").getAttribute("value");
+        const buttonClicked = document.getElementById("play-card").getAttribute("value");
 
-        if (button === "play card") {
+        if (buttonClicked === "play card") {
 
             calculateWinner();
             everybodyPlayACard();
@@ -300,10 +389,10 @@
             document.getElementById("play-card").setAttribute("value", "show winner");
 
 
-        } else if (button === "show winner") {
+        } else if (buttonClicked === "show winner") {
+
 
             addCardsToWinnersHand();
-            findHuman();
             getWinner();
 
             document.getElementsByClassName("card-outline")[0].style.display = "none";
@@ -314,93 +403,133 @@
             document.getElementById("play-card").setAttribute("value", "continue to next round");
 
 
-        } else if (button === "continue to next round") {
+        } else if (buttonClicked === "continue to next round") {
 
             countOfRounds++;
 
-            console.log(indexOfCurrentPlayer+": current player " + indexOfHumanPlayer+": human player");
-
-            beginRound();
-
-            document.getElementById("play-card").setAttribute("value", "play card");
+            if (!humanIsGone && listOfPlayers.length > 1) {
+                beginRound();
+                document.getElementById("play-card").setAttribute("value", "play card");
+            } else {
+                endGame();
+            }
 
         }
+
+
     }
 
-    function addCardsToWinnersHand(){
 
-        let length = communalPile.length;
+    function addCardsToWinnersHand() {
 
-        for(let i = 0; i<length; i++){
+        if (!draw) {
 
-            listOfPlayers[indexOfRoundWinner].hand.push(communalPile[0]);
-            communalPile.shift();
+            let length = communalPile.length;
+
+            for (let i = 0; i < length; i++) {
+
+                listOfPlayers[indexOfRoundWinner].hand.push(communalPile[0]);
+                communalPile.shift();
+            }
         }
 
         displayNumberOfCardsLeft();
+
+        for (let i = 0; i < listOfPlayers.length; i++) {
+
+            if (listOfPlayers[i].hand.length === 0) {
+                if (listOfPlayers[i].human) {
+                    humanIsGone = true;
+                }
+                console.log(listOfPlayers[i].name + " was knocked out");
+                listOfPlayers.splice(i, 1);
+                console.log(listOfPlayers.length);
+                if (indexOfCurrentPlayer >= i) {
+                    indexOfCurrentPlayer -= 1;
+                }
+                i -= 1;
+            }
+        }
+        findHuman();
     }
 
     function getWinner() {
 
-        document.getElementById("winners-card").src = cardAddressStart + cardNumberOfRoundWinner + addressEnd;
 
-        document.getElementById("players-turn").innerHTML = winningCardName+" won this round, with the card "+winningCardDescription+" which had a "+
-        categoryChoice+ " value of "+winningCardCategory+".";
+        if (!draw) {
+
+            document.getElementById("winners-card").style.display = "block";
+            document.getElementById("winners-card").src = cardAddressStart + cardNumberOfRoundWinner + addressEnd;
+
+            document.getElementById("players-turn").innerHTML = winningCardName + " won this round, with the card " + winningCardDescription + " which had a " +
+                    categoryChoice + " value of " + winningCardCategory + ".";
+        } else {
+            document.getElementById("winners-card").style.display = "none";
+
+            document.getElementById("players-turn").innerHTML = "This round was a draw!";
+
+        }
+
 
     }
 
-    function everybodyPlayACard(){
+    function everybodyPlayACard() {
 
-        for(let i = 0;i<listOfPlayers.length;i++){
+        for (let i = 0; i < listOfPlayers.length; i++) {
 
             communalPile[i] = listOfPlayers[i].hand[0];
             listOfPlayers[i].hand.shift();
         }
 
         displayNumberOfCardsLeft();
-        indexOfCurrentPlayer = indexOfRoundWinner;
+
+        if (!draw) {
+            indexOfCurrentPlayer = indexOfRoundWinner;
+        }
 
     }
 
-    function displayNumberOfCardsLeft(){
-        document.getElementById("number-of-cards").innerHTML = "You have "+listOfPlayers[indexOfHumanPlayer].hand.length+" cards left in your hand.";
+    function displayNumberOfCardsLeft() {
+        document.getElementById("number-of-cards").innerHTML = "You have " + listOfPlayers[indexOfHumanPlayer].hand.length + " cards left in your hand.";
     }
 
 
-    function calculateWinner(){
+    function calculateWinner() {
 
         let maxNumber = 0;
 
-        if(indexOfCurrentPlayer===indexOfHumanPlayer) {
+        if (indexOfCurrentPlayer === indexOfHumanPlayer) {
+
             categoryChoice = document.querySelector('input[name="choices"]:checked').value;
+
             switch (categoryChoice) {
 
                 case "Deliciousness":
-                    categoryIndexOfRoundWinner = 0;
+                    categoryIndexOfCardChoice = 0;
                     break;
                 case "Size":
-                    categoryIndexOfRoundWinner = 1;
+                    categoryIndexOfCardChoice = 1;
                     break;
                 case "Toastability":
-                    categoryIndexOfRoundWinner = 2;
+                    categoryIndexOfCardChoice = 2;
                     break;
                 case "Satiation":
-                    categoryIndexOfRoundWinner = 3;
+                    categoryIndexOfCardChoice = 3;
                     break;
                 case "Complexity":
-                    categoryIndexOfRoundWinner = 4;
+                    categoryIndexOfCardChoice = 4;
             }
-        }else {
+        } else {
             for (let i = 0; i < 5; i++) {
 
                 let value = listOfPlayers[indexOfCurrentPlayer]._hand[0].categoryValues[i];
                 if (value > maxNumber) {
                     maxNumber = value;
-                    categoryIndexOfRoundWinner = i;
+                    categoryIndexOfCardChoice = i;
                 }
             }
 
-            switch (categoryIndexOfRoundWinner) {
+            switch (categoryIndexOfCardChoice) {
 
                 case 0:
                     categoryChoice = "Deliciousness";
@@ -420,37 +549,50 @@
         }
 
         maxNumber = 0;
+        draw = false;
 
-        for (let i = 0; i<listOfPlayers.length;i++) {
+        for (let i = 0; i < listOfPlayers.length; i++) {
 
-            winningCardCategory = listOfPlayers[i]._hand[0].categoryValues[categoryIndexOfRoundWinner];
+            console.log("winningCardCategory = listOfPlayers[" + i + "]._hand[0].categoryValues[" + categoryIndexOfCardChoice + "]");
 
-            if(winningCardCategory > maxNumber){
+            winningCardCategory = listOfPlayers[i]._hand[0].categoryValues[categoryIndexOfCardChoice];
+
+            if (winningCardCategory > maxNumber) {
+                draw = false;
                 maxNumber = winningCardCategory;
                 winningCardName = listOfPlayers[i].name;
                 indexOfRoundWinner = i;
-                cardNumberOfRoundWinner = (listOfPlayers[i]._hand[0].cardNumber)+1;
+                cardNumberOfRoundWinner = (listOfPlayers[i]._hand[0].cardNumber) + 1;
                 winningCardDescription = listOfPlayers[i]._hand[0].description;
+            } else if (winningCardCategory === maxNumber) {
+                draw = true;
+                winningCardName = null;
+                indexOfRoundWinner = null;
+                cardNumberOfRoundWinner = null;
+                winningCardDescription = null;
             }
         }
 
-        winningCardCategory = maxNumber;
+        if (!draw) {
+            winningCardCategory = maxNumber;
+        }
 
         showAllCards();
 
     }
 
-    function showAllCards(){
+    function showAllCards() {
 
-        for (let i = 0; i<listOfPlayers.length;i++) {
+        for (let i = 0; i < listOfPlayers.length; i++) {
 
-            let number = (listOfPlayers[i]._hand[0].cardNumber)+1;
-            document.getElementById("player-"+(i+1)+"-card").src = cardAddressStart + number + addressEnd;
+            let number = (listOfPlayers[i]._hand[0].cardNumber) + 1;
+            document.getElementById("player-" + (i + 1) + "-card").src = cardAddressStart + number + addressEnd;
         }
 
         let name = listOfPlayers[indexOfCurrentPlayer].name;
-        document.getElementById("players-turn").innerHTML = name+" chose "+categoryChoice;
+        document.getElementById("players-turn").innerHTML = name + " chose " + categoryChoice;
     }
+
 
     // This is a reusable method for creating a CORS request. Do not edit this.
     function createCORSRequest(method, url) {
@@ -497,16 +639,16 @@
 
         let allPlayersNames = "";
 
-        for(let i = 0; i<${players}-2; i++){
-            allPlayersNames += listOfPlayers[i]._name+", ";
+        for (let i = 0; i < listOfPlayers.length - 2; i++) {
+            allPlayersNames += listOfPlayers[i]._name + ", ";
         }
-        allPlayersNames+= listOfPlayers[${players}-2]._name+" and "+listOfPlayers[${players}-1]._name+".<br>";
+        allPlayersNames += listOfPlayers[listOfPlayers.length - 2]._name + " and " + listOfPlayers[listOfPlayers.length - 1]._name + ".<br>";
 
-        return "There are ${players} players left in the game: "+allPlayersNames;
+        return "There are " + listOfPlayers.length + " players left in the game: " + allPlayersNames;
 
     }
 
-    function getWhoseTurnItIs(){
+    function getWhoseTurnItIs() {
 
         findHuman();
 

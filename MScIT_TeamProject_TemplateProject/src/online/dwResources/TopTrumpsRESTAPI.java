@@ -33,6 +33,8 @@ import java.util.List;
  */
 public class TopTrumpsRESTAPI {
 
+    private Database database;
+
 
     /**
      * A Jackson Object writer. It allows us to turn Java objects
@@ -90,6 +92,40 @@ public class TopTrumpsRESTAPI {
 
         return oWriter.writeValueAsString(players);
     }
+
+
+
+
+    @GET
+    @Path("/writeDatabase/{databaseArray}")
+    public void databaseWriter(@PathParam("databaseArray")String databaseData){
+
+        String[] databaseArray = databaseData.split(",");
+        int[] databaseArrayAsInt = new int[10];
+
+        int i = 0;
+        for(String s: databaseArray){
+            databaseArrayAsInt[i]  = Integer.parseInt(s);
+            i++;
+        }
+
+        database = new Database();
+
+        int draw = 0;
+        int gameWinner = 0;
+        int roundCounter = 0;
+
+        database.uploadGameStats(draw,gameWinner,roundCounter);
+    }
+
+    @GET
+    @Path ("/updateRoundCountsForPlayer/{playerIndex}")
+    public void databaseRoundCountUpdater(@PathParam("playerIndex")int playerIndex){
+
+        database.setRoundWins(playerIndex);
+
+    }
+
 
 
     @GET

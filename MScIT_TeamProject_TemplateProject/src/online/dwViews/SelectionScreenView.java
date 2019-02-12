@@ -17,10 +17,18 @@ import io.dropwizard.views.View;
 
 public class SelectionScreenView extends View {
 
+    public String winner = "";
+
 	/**
 	 * Simple Constructor method, it simply specifies where the HTML page is to return.
 	 */
-    public SelectionScreenView() {
+    public SelectionScreenView(String winner) {
+
         super("SelectionScreen.ftl");
+        this.winner = winner;
+    }
+
+    public String getWinner(){
+        return winner;
     }
 }

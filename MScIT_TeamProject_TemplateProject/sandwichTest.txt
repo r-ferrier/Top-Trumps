@@ -1,0 +1,6 @@
+Description Deliciousness Size Toastability Satiation Complexity
+Ham 3 2 3 5 0
+Reuben 8 6 7 8 5
+Club_Sandwich 6 0 8 9 9
+Cheese_and_Pickle 7 3 5 6 3
+Marmite 10 0 10 0 0

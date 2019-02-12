@@ -11,7 +11,7 @@ import java.util.Collections;
 public class Deck {
 
     private ArrayList<Card> deck = new ArrayList<>();
-    private  String fileName = "Sandwich.txt";
+    private  String fileName = "sandwichTest.txt";
 
     /**
      * constructor for deck needs to open and read the file. If it can do this successfully, it will pass each line of the file
