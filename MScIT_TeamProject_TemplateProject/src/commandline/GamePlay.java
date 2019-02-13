@@ -34,7 +34,7 @@ public class GamePlay {
 
 		createDeck();
 		setAIPlayers();
-		Database database = new Database();// setting up all the elements needed for the game
+		database = new Database();// setting up all the elements needed for the game
 		gameBegins(); // prints some output and prompts user entry of name
 
 		chooseFirstPlayer(); // shuffles player array so the order of players is random and fair
@@ -48,14 +48,11 @@ public class GamePlay {
 		}
 		gameWinner = decideWinner(); // once game is over, decide winner
 		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
-		//database.uploadPlayerStats();
+
 	}
 
 	public static void main(String[] args) {
-		boolean writeLog = true;
-		TestLog testlog = new TestLog(writeLog);
 		new GamePlay();
-		
 	}
 
 	/**
@@ -96,24 +93,25 @@ public class GamePlay {
 				+ players.get(0).getName() + ". \n" + "Please meet my friends: " + players.get(1).getName() + ", "
 				+ players.get(2).getName() + " and " + players.get(3).getName() + ".\n");
 
-//		startGame = false;
-//		// loops the start game question until the user selects that they want to start
-//		// a new game.
-//		while (startGame == false) {
-//			System.out.println("Would you like to start a new game or see previous game stats? "
-//					+ "Enter: 1 for a new game or 0 for previous game stats.");
-//			try {
-//			int gameStats = scanner.getInt();
-//			if (gameStats == 0) {
-//				database.pullGameStats();
-//			} else {
-//				startGame = true;
-//				System.out.println("Ok, is everybody ready? Then let's play.");
-//			}
-//			}catch (InputMismatchException e) {
-//				System.out.println("Oops that was not a number. \n");
-//			}
-//		}
+		startGame = false;
+		// loops the start game question until the user selects that they want to start
+		// a new game.
+		while (startGame == false) {
+			System.out.println("Would you like to start a new game or see previous game stats? "
+					+ "Enter: 1 for a new game or 0 for previous game stats.");
+			try {
+			int gameStats = scanner.nextInt();
+			if (gameStats == 0) {
+				database.pullGameStats();
+				database.printGameStats();
+			} else {
+				startGame = true;
+				System.out.println("Ok, is everybody ready? Then let's play.");
+			}
+			}catch (InputMismatchException e) {
+				System.out.println("Oops that was not a number. \n");
+			}
+		}
 
 	}
 
@@ -355,40 +353,46 @@ public class GamePlay {
 		winner = players.get(currentPlayer);
 		int playerIndex = 0;
 
-		int valueOfChosenCategory;
+		Integer valueOfChosenCategory;
 		int currentHighestCategoryValue = 0;
 		int winnerIndex = 0;
+		ArrayList<Integer> topCardValues = new ArrayList<>();
 
 		for (Player p : players) {
 
 			valueOfChosenCategory = p.getTopCard().getAnyCategory(chosenCategory);
+			topCardValues.add(valueOfChosenCategory);
 
 			if (valueOfChosenCategory > currentHighestCategoryValue) {
 				currentHighestCategoryValue = valueOfChosenCategory;
 
 				winner = p;
 				winnerIndex = playerIndex;
-
-			} else if (valueOfChosenCategory == currentHighestCategoryValue) {
-
-				System.out.println("IT WAS A DRAW\n\n");
-
-				winner = null;
-				drawCounter++;
-				return false;
 			}
+
 
 			playerIndex++;
 		}
 
-//		database.setRoundWins(winner.getNumber());
+		Collections.sort(topCardValues);
+		if (topCardValues.get(topCardValues.size()-1) == topCardValues.get(topCardValues.size()-2)) {
+			System.out.println("IT WAS A DRAW\n\n");
+			winner = null;
+			drawCounter++;
+			return false;
+		} else {
 
-		currentPlayer = winnerIndex;
+			// I have tried this but I don't think it works quite right and I couldn't figure out what else to use.
+			//database.setRoundWins(p.getNumber());
+			database.setRoundWins(winner.getNumber());
 
-		System.out.println(winner.getName() + " won this round with the card " + winner.getTopCard().getDescription()
-				+ " which had a " + winner.getTopCard().getCategories()[chosenCategory - 1] + " value of "
-				+ currentHighestCategoryValue + ".\n\n");
-		return true;
+			currentPlayer = winnerIndex;
+
+			System.out.println(winner.getName() + " won this round with the card " + winner.getTopCard().getDescription()
+					+ " which had a " + winner.getTopCard().getCategories()[chosenCategory - 1] + " value of "
+					+ currentHighestCategoryValue + ".\n\n");
+			return true;
+		}
 	}
 
 	private void addCardsToCommunalPile(boolean win) {
