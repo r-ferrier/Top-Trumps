@@ -103,6 +103,7 @@ public class GamePlay {
 			int gameStats = scanner.nextInt();
 			if (gameStats == 0) {
 				database.pullGameStats();
+				database.printGameStats();
 			} else {
 				startGame = true;
 				System.out.println("Ok, is everybody ready? Then let's play.");
