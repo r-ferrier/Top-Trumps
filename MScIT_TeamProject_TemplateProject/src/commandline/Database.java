@@ -65,11 +65,16 @@ public class Database {
 			System.out.println("Controlling your database...");
 			Statement statement = c.createStatement();
 			String sqlStringGameStats = "CREATE TABLE IF NOT EXISTS game_stats ( "
-					+ " game_number integer PRIMARY KEY NOT NULL, " + " game_winner integer NOT NULL, "
-					+ " number_of_rounds integer NOT NULL, " + " number_of_draws integer, "
-					+ " computer_player_1_rounds_won integer, " + " computer_player_2_rounds_won integer, "
-					+ " computer_player_3_rounds_won integer, " + " computer_player_4_rounds_won integer, "
-					+ " human_player_rounds_won integer" + ");";
+					+ " game_number integer PRIMARY KEY NOT NULL, " 
+					+ " game_winner integer NOT NULL, "
+					+ " number_of_rounds integer NOT NULL, " 
+					+ " number_of_draws integer, "
+					+ " human_player_rounds_won integer, " 
+					+" computer_player_1_rounds_won integer, " 
+					+ " computer_player_2_rounds_won integer, "
+					+ " computer_player_3_rounds_won integer, " 
+					+ " computer_player_4_rounds_won integer"
+					+  ");";
 			statement.executeUpdate(sqlStringGameStats);
 		} catch (SQLException e) {
 			System.out.println("Connection Failed - create new table");
@@ -157,7 +162,7 @@ public class Database {
 			largestRound.close();
 			stmt.close();
 			c.close();
-			// printGameStats(); ======== HAVE BEEN PUT INTO GAMEPLAY database.printGameStats();
+			// printGameStats(); ======== HAVE BEEN PUT INTO GAMEPLAY
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -233,4 +238,3 @@ public class Database {
 	}
 
 }
-
