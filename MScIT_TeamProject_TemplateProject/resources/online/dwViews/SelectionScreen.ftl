@@ -35,7 +35,10 @@
 </div>
 
 <div class="buttonsContainer">
+
+    <form action="http://localhost:7777/toptrumps/stats" method="GET">
     <input id="view_stats" type = submit value="view stats" class = "buttons"><br>
+    </form>
 
     <form action="http://localhost:7777/toptrumps/game" method="GET">
         <!--form to chose how many players are in game-->
@@ -58,7 +61,6 @@
 
     function initialize(){
 
-
         let n = window.location.search.lastIndexOf("=");
         let result = window.location.search.substring(n + 1);
 
@@ -67,9 +69,6 @@
             document.getElementById("This person won").innerText = result+" won! Game over.";
 
         }
-
-
-
     }
 
     function createCORSRequest(method, url) {
