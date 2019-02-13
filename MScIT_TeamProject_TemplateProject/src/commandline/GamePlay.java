@@ -2,6 +2,7 @@ package commandline;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GamePlay {
@@ -10,7 +11,7 @@ public class GamePlay {
 	private int drawCounter;
 	private int chosenCategory;
 	private ArrayList<Card> communalPile = new ArrayList<>();
-	private ArrayList<Player> players;
+	public ArrayList<Player> players;
 	private Player winner;
 	private Deck deck;
 	private int humanIndex;
@@ -33,7 +34,7 @@ public class GamePlay {
 
 		createDeck();
 		setAIPlayers();
-		Database database = new Database();// setting up all the elements needed for the game
+		database = new Database();// setting up all the elements needed for the game
 		gameBegins(); // prints some output and prompts user entry of name
 
 		chooseFirstPlayer(); // shuffles player array so the order of players is random and fair
@@ -47,7 +48,7 @@ public class GamePlay {
 		}
 		gameWinner = decideWinner(); // once game is over, decide winner
 		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
-		database.uploadPlayerStats();
+
 	}
 
 	public static void main(String[] args) {
@@ -57,7 +58,7 @@ public class GamePlay {
 	/**
 	 * creates the array for our players and adds in all of the AI players
 	 */
-	private void setAIPlayers() {
+	public void setAIPlayers() {
 
 		players = new ArrayList<>();
 
@@ -68,11 +69,11 @@ public class GamePlay {
 
 	}
 
-	private void createDeck() {
+	public void createDeck() {
 		deck = new Deck();
 	}
 
-	private void announceRoundNumber() {
+	public void announceRoundNumber() {
 		System.out.println("Round " + roundCounter + ": Players have drawn their cards.");
 	}
 
@@ -99,7 +100,7 @@ public class GamePlay {
 			System.out.println("Would you like to start a new game or see previous game stats? "
 					+ "Enter: 1 for a new game or 0 for previous game stats.");
 			try {
-			int gameStats = scanner.getInt();
+			int gameStats = scanner.nextInt();
 			if (gameStats == 0) {
 				database.pullGameStats();
 			} else {
@@ -113,14 +114,14 @@ public class GamePlay {
 
 	}
 
-//    private ArrayList<commandline.Player> dealHands(){
-//        return players;
-//    }
+    private ArrayList<commandline.Player> dealHands(){
+        return players;
+    }
 
 	/**
 	 * shuffles the order of the players.
 	 */
-	private void chooseFirstPlayer() {
+	public void chooseFirstPlayer() {
 
 		Collections.shuffle(players);
 		setHumanPlayerIndex();
@@ -141,7 +142,7 @@ public class GamePlay {
 				i = 0;
 			}
 		}
-
+		TestLog.logAllocatedHands(players);
 	}
 
 	private void playRound() {
@@ -155,6 +156,9 @@ public class GamePlay {
 		chooseCategory(); // ask the human to pick a category OR ask the computer to select the highest
 		// category from the card
 
+		if(!humanKnockedOut) {
+			playCard(); // ask the human to press enter to advance the round as long as they are still in the game
+		}
 		addCardsToCommunalPile(declareRoundWinOrDraw());
 		/*
 		 * run two methods. First is to declare whether or not the round had a winner or
@@ -173,6 +177,7 @@ public class GamePlay {
 		// players
 		// array, current player index is changed to reflect new position and we check
 		// if the human is still in the game.
+
 
 	}
 
@@ -248,6 +253,8 @@ public class GamePlay {
 			if (player.amIKnockedOut() == false) {
 				winner = player.getNumber();
 				System.out.println("The winner is " + player.getName());
+
+				TestLog.logWinner(player);
 			}
 		}
 		return winner;
@@ -262,19 +269,32 @@ public class GamePlay {
 		Card topCard = players.get(currentPlayer).getTopCard();
 		String name = players.get(currentPlayer).getName();
 
-		Scanner categorySelection = new Scanner(System.in);
+
 
 		if (players.get(currentPlayer).checkHuman() == true) {
 
 			System.out.println("Please select your category, the categories are:" + "\n" + topCard.chooseACategory());
 
-			chosenCategory = categorySelection.nextInt();
+			boolean categorySelected = false;
 
-			while(chosenCategory>5||chosenCategory<1){
-			    System.out.println("I'm sorry, that is not a valid category! Please choose again, your number must be between" +
-                        " 1 and 5.");
-                chosenCategory = categorySelection.nextInt();
-            }
+			while(!categorySelected) {
+
+				try {
+					Scanner categorySelection = new Scanner(System.in);
+					chosenCategory = categorySelection.nextInt();
+
+					while (chosenCategory > 5 || chosenCategory < 1) {
+						System.out.println("I'm sorry, that is not a valid category! Please choose again, your number must be between" +
+								" 1 and 5.");
+						chosenCategory = categorySelection.nextInt();
+					}
+					categorySelected=true;
+
+				} catch (InputMismatchException i) {
+					System.out.println("I'm sorry, that is not a valid category! Please choose again, your number must be between" +
+							" 1 and 5.");
+				}
+			}
 
 		} else {
 			chosenCategory = topCard.findBestCategory();
@@ -282,9 +302,31 @@ public class GamePlay {
 
 		System.out.println(name + " has chosen category " + chosenCategory + ", "
 				+ topCard.getCategories()[chosenCategory - 1] + ".");
+		
+		TestLog.logSelectedCategory(chosenCategory, topCard.getCategories()[chosenCategory - 1], players);		
 	}
 
-	private void showHumanTopCard() {
+	private void playCard() {
+
+		System.out.println("Press enter to play your card, or type q to quit");
+		Scanner scan = new Scanner(System.in);
+
+		String readString = scan.nextLine();
+
+		if (readString == null) {
+			return;
+		} else if (readString.isEmpty()) {
+			return;
+		}else if(readString.charAt(0)=='q') {
+				System.exit(0);
+				return;
+			}
+
+			return;
+
+	}
+
+	private void showHumanTopCard(){
 
 		if (!humanKnockedOut) {
 
@@ -296,6 +338,7 @@ public class GamePlay {
 		} else {
 			System.out.println("\n" + "You have no cards left to play and have been knocked out of the game" + "\n");
 		}
+		TestLog.logCardsInPlay(players);
 	}
 
 	/**
@@ -309,40 +352,46 @@ public class GamePlay {
 		winner = players.get(currentPlayer);
 		int playerIndex = 0;
 
-		int valueOfChosenCategory;
+		Integer valueOfChosenCategory;
 		int currentHighestCategoryValue = 0;
 		int winnerIndex = 0;
+		ArrayList<Integer> topCardValues = new ArrayList<>();
 
 		for (Player p : players) {
 
 			valueOfChosenCategory = p.getTopCard().getAnyCategory(chosenCategory);
+			topCardValues.add(valueOfChosenCategory);
 
 			if (valueOfChosenCategory > currentHighestCategoryValue) {
 				currentHighestCategoryValue = valueOfChosenCategory;
 
 				winner = p;
 				winnerIndex = playerIndex;
-
-			} else if (valueOfChosenCategory == currentHighestCategoryValue) {
-
-				System.out.println("IT WAS A DRAW\n\n");
-
-				winner = null;
-				drawCounter++;
-				return false;
 			}
+
 
 			playerIndex++;
 		}
 
-		database.setRoundWins(winner.getNumber());
+		Collections.sort(topCardValues);
+		if (topCardValues.get(topCardValues.size()-1) == topCardValues.get(topCardValues.size()-2)) {
+			System.out.println("IT WAS A DRAW\n\n");
+			winner = null;
+			drawCounter++;
+			return false;
+		} else {
 
-		currentPlayer = winnerIndex;
+			// I have tried this but I don't think it works quite right and I couldn't figure out what else to use.
+			//database.setRoundWins(p.getNumber());
+			database.setRoundWins(winner.getNumber());
 
-		System.out.println(winner.getName() + " won this round with the card " + winner.getTopCard().getDescription()
-				+ " which had a " + winner.getTopCard().getCategories()[chosenCategory - 1] + " value of "
-				+ currentHighestCategoryValue + ".\n\n");
-		return true;
+			currentPlayer = winnerIndex;
+
+			System.out.println(winner.getName() + " won this round with the card " + winner.getTopCard().getDescription()
+					+ " which had a " + winner.getTopCard().getCategories()[chosenCategory - 1] + " value of "
+					+ currentHighestCategoryValue + ".\n\n");
+			return true;
+		}
 	}
 
 	private void addCardsToCommunalPile(boolean win) {
@@ -368,6 +417,8 @@ public class GamePlay {
 				p.removeTopCardFromHand();
 			}
 		}
-
+		TestLog.logCommunalPile(communalPile);
+		TestLog.logHandsAfterRound(players);	
 	}
+
 }

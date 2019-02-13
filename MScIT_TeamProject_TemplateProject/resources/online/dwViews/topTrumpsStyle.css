@@ -13,6 +13,12 @@ h1{
     vertical-align: center;
 }
 
+.choose-players{
+    padding: 10px;
+    color: #ffa088;
+    align-items: center;
+}
+
 .buttons{
     padding: 10px;
     color: #ffa088;

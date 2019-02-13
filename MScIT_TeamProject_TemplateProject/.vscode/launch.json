@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - TopTrumps",
+            "request": "launch",
+            "mainClass": "TopTrumps",
+            "projectName": "MScIT2019Project"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - TopTrumpsCLIApplication",
             "request": "launch",
             "mainClass": "commandline.TopTrumpsCLIApplication",
