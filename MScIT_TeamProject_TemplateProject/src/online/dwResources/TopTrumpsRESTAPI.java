@@ -99,6 +99,23 @@ public class TopTrumpsRESTAPI {
         return oWriter.writeValueAsString(players);
     }
 
+    @GET
+    @Path("/pull-game-stats")
+    public String pullGameStats() throws JsonProcessingException{
+
+        database.pullGameStats();
+
+        int[] statsArray = new int[5];
+
+        statsArray[0] = database.getTotalNumberGames();
+        statsArray[1] = database.getNumComputerWon();
+        statsArray[2] = database.getNumHumanWon();
+        statsArray[3] = (int)database.getAverageDraws();
+        statsArray[4] = database.getLargestNumberRound();
+
+        return oWriter.writeValueAsString(statsArray);
+    }
+
 
 
 

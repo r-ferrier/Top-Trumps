@@ -162,7 +162,6 @@ public class Database {
 			largestRound.close();
 			stmt.close();
 			c.close();
-			// printGameStats(); ======== HAVE BEEN PUT INTO GAMEPLAY
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -176,7 +175,7 @@ public class Database {
 		System.out.println("Number of games played overall: " + totalNumberGames);
 		System.out.println("How many times the computer has won: " + numComputerWon);
 		System.out.println("How many times the human has won: " + numHumanWon);
-		System.out.println("The average number of draws: " + averageDraws);
+		System.out.println("The average number of draws: " + (int)averageDraws);
 		System.out.println("The largest number of rounds played in a single game: " + largestNumberRound);
 	}
 
@@ -230,7 +229,7 @@ public class Database {
 		return numHumanWon;
 	}
 
-	public double getAvergaeDraws() {
+	public double getAverageDraws() {
 		return averageDraws;
 	}
 

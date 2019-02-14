@@ -497,7 +497,7 @@
             } else {
                 endGame();
             }
-            
+
             countOfRounds++;
 
         }

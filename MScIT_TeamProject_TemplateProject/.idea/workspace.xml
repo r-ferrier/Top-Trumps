@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa6a7770-71c4-49b7-a5cb-d8a69353f0f2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/target/classes/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commandline/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commandline/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commandline/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commandline/GamePlay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/online/dwViews/CSSPlayerButton.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/online/dwViews/GameScreen.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/online/dwViews/GameScreen.ftl" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,26 +28,26 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="ftl" value="2" />
-          <entry key="java" value="1" />
+          <entry key="ftl" value="3" />
+          <entry key="java" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="FTL" value="2" />
-          <entry key="JAVA" value="1" />
+          <entry key="FTL" value="3" />
+          <entry key="JAVA" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="ftl" value="24" />
-          <entry key="java" value="4" />
+          <entry key="ftl" value="163" />
+          <entry key="java" value="215" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="FTL" value="24" />
-          <entry key="JAVA" value="4" />
+          <entry key="FTL" value="163" />
+          <entry key="JAVA" value="215" />
         </counts>
       </usages-collector>
     </session>
@@ -68,6 +64,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/online/dwViews/Statistics.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="347">
+              <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/online/TopTrumpsOnlineApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/commandline/Card.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
@@ -79,11 +96,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/online/dwResources/GameWebPagesResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="365">
+              <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7485">
-              <caret line="499" column="12" lean-forward="true" selection-start-line="499" selection-start-column="12" selection-end-line="499" selection-end-column="12" />
+            <state relative-caret-position="7078">
+              <caret line="499" lean-forward="true" selection-start-line="499" selection-end-line="499" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/commandline/Database.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="178" column="87" lean-forward="true" selection-start-line="178" selection-start-column="87" selection-end-line="178" selection-end-column="87" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -109,11 +147,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="27" lean-forward="true" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+            <state relative-caret-position="349">
+              <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -147,6 +188,7 @@
       <find>endgam</find>
       <find>endgame</find>
       <find>updater</find>
+      <find>printg</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -170,15 +212,15 @@
         <option value="$PROJECT_DIR$/target/classes/online/dwViews/SelectionScreen.ftl" />
         <option value="$PROJECT_DIR$/resources/online/dwViews/topTrumpsStyle.css" />
         <option value="$PROJECT_DIR$/src/commandline/TopTrumpsCLIApplication.java" />
-        <option value="$PROJECT_DIR$/resources/online/dwViews/Statistics.ftl" />
         <option value="$PROJECT_DIR$/resources/online/dwViews/SelectionScreen.ftl" />
         <option value="$PROJECT_DIR$/src/commandline/Deck.java" />
-        <option value="$PROJECT_DIR$/src/commandline/Database.java" />
         <option value="$PROJECT_DIR$/src/commandline/TestLog.java" />
         <option value="$PROJECT_DIR$/src/commandline/GamePlay.java" />
         <option value="$PROJECT_DIR$/src/commandline/Card.java" />
-        <option value="$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java" />
         <option value="$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl" />
+        <option value="$PROJECT_DIR$/resources/online/dwViews/Statistics.ftl" />
+        <option value="$PROJECT_DIR$/src/commandline/Database.java" />
+        <option value="$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java" />
       </list>
     </option>
   </component>
@@ -264,7 +306,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550159393439" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550160387031" />
     <property name="last.edited.regexp" value="[hello]" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -430,12 +472,12 @@
       <workItem from="1549285315176" duration="3905000" />
       <workItem from="1549314630532" duration="209000" />
       <workItem from="1549451212793" duration="6318000" />
-      <workItem from="1550157145380" duration="2486000" />
+      <workItem from="1550157145380" duration="3503000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103150000" />
+    <option name="totallyTimeSpent" value="104167000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -572,13 +614,6 @@
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/Scanner.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/lang/String.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/src.zip!/java/util/ArrayList.java" />
-    <entry file="file://$PROJECT_DIR$/src/online/TopTrumpsOnlineApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/online/dwViews/topTrumpsStyle.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -607,27 +642,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/online/dwResources/GameWebPagesResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sandwich.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/commandline/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="253" lean-forward="true" selection-start-line="253" selection-end-line="253" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -639,13 +657,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/Statistics.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -742,17 +753,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java">
+    <entry file="file://$PROJECT_DIR$/src/online/TopTrumpsOnlineApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="27" lean-forward="true" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+        <state relative-caret-position="360">
+          <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/online/dwResources/GameWebPagesResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/online/dwViews/GameScreen.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7485">
-          <caret line="499" column="12" lean-forward="true" selection-start-line="499" selection-start-column="12" selection-end-line="499" selection-end-column="12" />
+        <state relative-caret-position="7078">
+          <caret line="499" lean-forward="true" selection-start-line="499" selection-end-line="499" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/online/dwViews/Statistics.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commandline/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="178" column="87" lean-forward="true" selection-start-line="178" selection-start-column="87" selection-end-line="178" selection-end-column="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/online/dwResources/TopTrumpsRESTAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
