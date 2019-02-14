@@ -14,17 +14,19 @@ public class Deck {
     private  String fileName = "Sandwich.txt";
 
     /**
-     * Constructor for deck needs to open and read the file. If it can do this successfully, it will pass each line of the file
-     * to a new card object, storing the information and creating a list of categories with positive integer values. 
+     * Constructor for Deck opens and reads in a file. 
+     * If it can do this successfully each line of the file is used
+     * to create a Card object. 
      * Once all the objects have been made they are
-     * stored as an arraylist and shuffled.
+     * stored as an Arraylist 'deck' and shuffled.
      */
     public Deck(){
         readFile();
     }
 
     /**
-     * The readFile () method reads in file line by line. It uses the first line to generate category titles. 
+     * The readFile() method processes a file line by line, making use of the readLine() method. 
+     * It uses the first line of the file to generate category titles. 
      * It then creates a commandline.Card object 
      * from every subsequent line. It stores these objects in a 'deck' Arraylist.
      */
@@ -52,15 +54,15 @@ public class Deck {
     }
 
     /**
-     * The addCard() method adds a new card object to the deck Arraylist
-     * @param nextCard commandline.Card object is created as file is read in.
+     * The addCard() method adds new card objects to the deck Arraylist.
+     * @param nextCard commandline.Card object is created as the .txt file is read in.
      */
     private void addCard(Card nextCard){
         deck.add(nextCard);
     }
 
     /** 
-     * shuffleCards() shuffles the Arraylist of cards, making use of the Collections shuffle method.
+     * shuffleCards() shuffles the Arraylist of cards, making use of the Collections.shuffle() method.
      */
     private void shuffleCards(){
         Collections.shuffle(deck);

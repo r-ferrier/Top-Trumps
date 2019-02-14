@@ -23,30 +23,28 @@ public class GamePlay {
 	private Database database;
 
 	/**
-	 * constructor for this class. It creates a deck of cards from the file chosen
-	 * in the commandline.Deck class, stores the categories for the cards, creates
-	 * the AI players and begins the game. Once the user has entered their name
-	 * they're added to an array of players, players are shuffled and have cards
-	 * dealt to them, and then they can begin to play rounds.
+	 * Constructor for GamePlay class. It creates a deck of cards from the .txt file in
+	 * in the commandline.Deck class and stores the categories for the cards. It also creates
+	 * the AI players and uses gameBegins() method to start gameplay.
 	 */
 
 	public GamePlay() {
 
 		createDeck();
 		setAIPlayers();
-		database = new Database();// setting up all the elements needed for the game
-		gameBegins(); // prints some output and prompts user entry of name
+		database = new Database();// Setting up all the elements needed for the game
+		gameBegins(); // Prints output and prompts user entry of name
 
-		chooseFirstPlayer(); // shuffles player array so the order of players is random and fair
+		chooseFirstPlayer(); // Shuffles player ArrayList so the order of players is random
 		dealCardsToPlayers();
 
-		while (!isGameOver()) {// play rounds while game is not over
+		while (!isGameOver()) {// Play rounds while game is not over
 
 			announceRoundNumber();
 			playRound();
 			roundCounter++;
 		}
-		gameWinner = decideWinner(); // once game is over, decide winner
+		gameWinner = decideWinner(); // Once game is over decide winner
 		database.uploadGameStats(drawCounter, gameWinner, roundCounter);
 
 	}
@@ -56,7 +54,7 @@ public class GamePlay {
 	}
 
 	/**
-	 * creates the array for our players and adds in all of the AI players
+	 * Creates the ArrayList for players and then populate it with AI players
 	 */
 	public void setAIPlayers() {
 
@@ -68,18 +66,23 @@ public class GamePlay {
 		players.add(new Player("Janet", false, 4));
 
 	}
-
+	/**
+	 * Creates Deck of cards from file.
+	 */
 	public void createDeck() {
 		deck = new Deck();
 	}
-
+	/**
+	 * Prints the number of current round using roundCounter.
+	 */
 	public void announceRoundNumber() {
 		System.out.println("Round " + roundCounter + ": Players have drawn their cards.");
 	}
 
 	/**
-	 * prints out prompts and collects the users name. Creates a new human player
-	 * and adds to the player arraylist.
+	 * Once the user has entered a name
+	 * they are added to an ArrayList of players. Players ArrayList is shuffled and cards
+	 * dealt into player's 'hand'. User offered the option to begin game or view stats. 
 	 */
 	private void gameBegins() {
 
@@ -94,7 +97,7 @@ public class GamePlay {
 				+ players.get(2).getName() + " and " + players.get(3).getName() + ".\n");
 
 		startGame = false;
-		// loops the start game question until the user selects that they want to start
+		// Loops start game question until user selects that they want to start
 		// a new game.
 		while (startGame == false) {
 			System.out.println("Would you like to start a new game or see previous game stats? "
@@ -114,13 +117,15 @@ public class GamePlay {
 		}
 
 	}
-
+	/**
+	 * NEED TO REVIEW!
+	 */
     private ArrayList<commandline.Player> dealHands(){
         return players;
     }
 
 	/**
-	 * shuffles the order of the players.
+	 * Shuffles the ArrayList of players and sets the index of human player.
 	 */
 	public void chooseFirstPlayer() {
 
@@ -129,8 +134,7 @@ public class GamePlay {
 	}
 
 	/**
-	 * takes the shuffled pack of cards and hands them out one at a time to the
-	 * players in the order they have been set for this game in the array.
+	 * Takes the shuffled ArrayList of card objects and distributes them to players in set order.
 	 */
 	private void dealCardsToPlayers() {
 
@@ -148,40 +152,35 @@ public class GamePlay {
 
 	private void playRound() {
 
-		setHumanPlayerIndex(); // at beginning of each round, check where the human is in the player array
-		announceCurrentPlayer(); // announce which player will be playing round (player in position 0 for first
-		// round,
-		// after that always the most recent winner. draws are ignored.
+		setHumanPlayerIndex(); // At beginning of each round, set where the human is in the ArrayList.
+		announceCurrentPlayer(); // Announce which player will be choosing the category (ie. player in position 0 for first
+		// round). After that the most recent winner will choose category. 
 
-		showHumanTopCard(); // print the human player's card into the terminal
-		chooseCategory(); // ask the human to pick a category OR ask the computer to select the highest
+		showHumanTopCard(); // Print the human player's card.
+		chooseCategory(); // Ask the human to pick a category OR ask the computer to select the highest
 		// category from the card
 
 		if(!humanKnockedOut) {
-			playCard(); // ask the human to press enter to advance the round as long as they are still in the game
+			playCard(); // Ask the human to press enter to advance the round as long as they are still in the game.
 		}
 		addCardsToCommunalPile(declareRoundWinOrDraw());
 		/*
-		 * run two methods. First is to declare whether or not the round had a winner or
-		 * was a draw. If the method finds any two scores that match it will immediately
-		 * return false, set the winner as null and exit the method without making any
-		 * further changes. If the method returns as true, it will change the
-		 * currentPlayer index to reflect the position of the round winner. The
-		 * true/false result is passed to the second method which removes every player's
-		 * top card. If the player won the round, the top cards go onto that player's
-		 * pile, along with any cards currently in the communal pile. If there was no
-		 * winner, cards go onto a communal pile.
-		 *
+		 * This runs two methods. The declareRoundWinOrDraw() method returns a boolean, true for win, false for a draw.
+		 * This boolean is passed to the addCardsToCommunalPile() method which removes every player's
+		 * top card. If the player won the round, the top cards go to the end of that player's
+		 * 'hand' ArrayList, along with any cards currently in the communal pile ArrayList. If there was no
+		 * winner, cards go into the same communal pile .
 		 */
 
-		removeKnockedOutPlayers(); // any players with no cards left at the end of the game are removed from the
-		// players
-		// array, current player index is changed to reflect new position and we check
-		// if the human is still in the game.
+		removeKnockedOutPlayers(); 
 
 
 	}
-
+	/**
+	 * Any players with no cards left at the end of the game are removed from the
+	 * players ArrayList. Current player index is changed to reflect new position. Check 
+	 * if the human is still in the game.
+	 */
 	private void removeKnockedOutPlayers() {
 		for (int i = 0; i < players.size(); i++) {
 
@@ -194,23 +193,22 @@ public class GamePlay {
 				System.out.println(players.get(i).getName() + " was knocked out.");
 				players.remove(i);
 
-				i--; // if array is shortened during loop, remove 1 from the counter so we look at
-				// every position
+				i--; // If array is shortened during loop, remove 1 from the counter so we look at every position
 
 				if (currentPlayer > i) {
-					currentPlayer--; // if current player's position was after i or if it WAS i and current player
+					currentPlayer--; // If current player's position was after i or if it was i and current player
 					// is being knocked out after a series of draws, current player position is
-					// moved one position down
-					// in the array to reflect either their change in position or the turn moving to
-					// the next person at
-					// the table.
+					// moved one position down in the ArrayList to reflect either their change in position or the turn moving to
+					// the next player.
 				}
 
 			}
 		}
 
 	}
-
+	/**
+	 * Scans through ArrayList checking the ArrayList index for human player.
+	 */
 	private void setHumanPlayerIndex() {
 		int humanIndex = 0;
 
@@ -226,8 +224,8 @@ public class GamePlay {
 	}
 
 	/**
-	 * call this method each time a player is knocked out. checks the number of
-	 * active players and set gameOver to true when there is only one active player
+	 * Call this method each time a player is knocked out. Method checks the number of
+	 * active players and sets gameOver to true when there is only one active player remaining.
 	 */
 	private boolean isGameOver() {
 
@@ -242,10 +240,8 @@ public class GamePlay {
 	}
 
 	/**
-	 * when game is over, loop through players and return the player who is not
-	 * knocked out
-	 *
-	 * @return winner
+	 * When game is over, loop through players and return the player who has not been knocked out
+	 * @return winner as player number.
 	 */
 	private int decideWinner() {
 		int winner = -1;
@@ -265,11 +261,14 @@ public class GamePlay {
 
 		System.out.println("It's " + players.get(currentPlayer).getName() + "'s turn.");
 	}
-
+	/**
+	 * Get current player's top card and name. If the current player is human game prompts them to choose a category from top card.
+	 * Takes keyboard input and checks for a valid integer.
+	 * If current player is AI it calls findBestCategory() method on topCard.
+	 */
 	private void chooseCategory() {
 		Card topCard = players.get(currentPlayer).getTopCard();
 		String name = players.get(currentPlayer).getName();
-
 
 
 		if (players.get(currentPlayer).checkHuman() == true) {
@@ -307,6 +306,9 @@ public class GamePlay {
 		TestLog.logSelectedCategory(chosenCategory, topCard.getCategories()[chosenCategory - 1], players);		
 	}
 
+	/**
+	 * Gives human player the option to play their card or quit the game.
+	 */
 	private void playCard() {
 
 		System.out.println("Press enter to play your card, or type q to quit");
@@ -327,6 +329,9 @@ public class GamePlay {
 
 	}
 
+	/**
+	 * If human player is still in the game, print their top card.
+	 */
 	private void showHumanTopCard(){
 
 		if (!humanKnockedOut) {
@@ -343,10 +348,10 @@ public class GamePlay {
 	}
 
 	/**
-	 * says if the round has been won or drew, sets the player for the next round
-	 * (currentplayer) and sets the winner to the winner of this round (winner)
-	 *
-	 * @return true if win, false if draw
+	 * Compares the value of the chosen category on each player's top card and finds the highest positive value. It checks if the
+	 * round is draw by looking for two matching positive integers of the highest value. If the round is a draw, the winner is set
+	 * to null and the method returns false. If it is not a draw, the currentPlayer index is updated to reflect the position of the 
+	 * round winner and the method returns true.
 	 */
 	private boolean declareRoundWinOrDraw() {
 
@@ -395,9 +400,14 @@ public class GamePlay {
 		}
 	}
 
+	/**
+	 * If the round was won, loop through players and if player is not the winner, get their top card, remove it, and add it 
+	 * to the winners 'hand'. Add any cards from the communal pile to the winner's hand.
+	 * If the round was a draw, get the top card from each player and add to the communal pile.
+	 * 
+	 * @param win boolean true/win false/draw
+	 */
 	private void addCardsToCommunalPile(boolean win) {
-		// for each player, if player is not the winner, get their top card, remove it,
-		// and add it to the winner.Hand
 
 		if (win) {
 

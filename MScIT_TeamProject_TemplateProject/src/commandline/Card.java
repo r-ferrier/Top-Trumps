@@ -19,7 +19,7 @@ public class Card {
 
 	/**
 	 * Constructor for card object. Makes cardNumber local.
-	 * @param CategoryInformation
+	 * @param CategoryInformation 
 	 * @param categoryDescriptions
 	 * @param cardNumber
 	 */
@@ -34,7 +34,7 @@ public class Card {
 	 * Takes in a line of the deck as a String and creates an array of elements.  
 	 * First index of the array becomes the card description.
 	 * Subsequent elements of the array are parsed as integers to set each category value.
-	 * int[] categoryValues is initialised with category ints. 
+	 * ArrayList categoryValues is initialised with category ints. 
 	 * @param categoryInformation
 	 */
 	private void setCategories(String categoryInformation) {
@@ -48,7 +48,7 @@ public class Card {
 		category4 = parseInt(categoryInfo[4]);
 		category5 = parseInt(categoryInfo[5]);
 
-		// add values to ArrayList
+		//Adds values to ArrayList
 		categoryValues.add(category1);
 		categoryValues.add(category2);
 		categoryValues.add(category3);
@@ -56,17 +56,27 @@ public class Card {
 		categoryValues.add(category5);
 	}
 
+<<<<<<< HEAD
 		/**
 		 * When it is an AI player's turn findBestCategory() method is called to locate.
 		 * the highest positive integer from an array of category values.
 		 * It returns the position in the list by adding one to the array index. 
 		 * @return bestCategory
 		 */
+=======
+	/**
+	 * When it is an AI player's turn findBestCategory() method is called to locate
+	 * the highest positive integer from an ArrayList of category values.
+	 * It returns the position in the list by adding one to the array index. 
+	 * @return bestCategory
+	 */
+>>>>>>> 67daada047e30c1d351f170b418f679c78ac4696
 	public int findBestCategory(){
 		int max = Collections.max(categoryValues);
-		int bestCategory = categoryValues.indexOf(max) + 1;
+		int bestCategory = categoryValues.indexOf(max) + 1; 
 		return bestCategory;
 	}
+
 	/**
 	 * toString() method to display card.
 	 */
@@ -83,6 +93,7 @@ public class Card {
 	 * when it is their turn.
 	 * @return cardCategories 
 	 */
+
 	public String chooseACategory() {
 
 		String cardCategories = "1. " + category1 + "\n2. " + category2 + "\n3. " + category3 + "\n4. " + category4
@@ -91,8 +102,8 @@ public class Card {
 	}
 	/**
 	 * 
-	 * @param categoryToReturn
-	 * @return
+	 * @param categoryToReturn Takes in an integer for each category.
+	 * @return Returns an integer that corresponds to the value in the chosen category.
 	 */
 	public int getAnyCategory(int categoryToReturn) {
 
@@ -114,17 +125,23 @@ public class Card {
 //		return categoryValues.get(categoryToReturn - 1);
 //		}
 
+<<<<<<< HEAD
 
 
 	public String getDescription() {
+=======
+	/**
+	 * @return Returns String description ie. name of each sandwich.
+	 */
+		public String getDescription() {
+>>>>>>> 67daada047e30c1d351f170b418f679c78ac4696
 		return description;
 	}
 
 	/**
-	 * Sets the five categories for the deck and stores them as an array of Strings in
-	 * the correct order. Has to create a two arrays to remove the first entry which
-	 * just reads 'description'
-	 * 
+	 * setCategoryDescriptions() sets the five categories for the deck and stores them as an array of Strings in
+	 * the correct order. The method creates two arrays to remove the first entry, which
+	 * just reads 'description'.
 	 * @param categoryDescriptions first line of the imported file
 	 */
 	public void setCategoryDescriptions(String categoryDescriptions) {

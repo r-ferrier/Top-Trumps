@@ -25,8 +25,8 @@ public class TestLog {
     }
 
     /**
-     * Set up logger formatting and file handler Use LogManager to prevent print out
-     * in console
+     * Set up logger formatting and file handler. Use LogManager to prevent print out
+     * in console.
      */
     public void setUpLogger() {
         LogManager.getLogManager().reset(); // comment out to test in console
@@ -42,7 +42,7 @@ public class TestLog {
     }
 
     /**
-     * The contents of the complete deck once it has been read in and constructed
+     * Log the contents of the complete deck once it has been read in and constructed.
      * 
      */
     public static void logDeck(ArrayList<Card> deck) {
@@ -55,7 +55,7 @@ public class TestLog {
     }
 
     /**
-     * The contents of the complete deck after it has been shuffled
+     * Log the contents of the complete deck after it has been shuffled.
      * 
      */
     public static void logShuffle(ArrayList<Card> deck) {
@@ -82,8 +82,8 @@ public class TestLog {
     }
 
     /**
-     * The contents of the user's deck and the computer's deck(s) once they have
-     * been allocated. Be sure to indicate which the user's deck is and which the
+     * Log the contents of the user's deck and the computer's deck(s) once they have
+     * been allocated. Indicate which the user's deck is and which the
      * computer's deck(s) is.
      * 
      */
@@ -104,7 +104,7 @@ public class TestLog {
     }
 
     /**
-     * The contents of the communal pile when cards are added or removed from it
+     * Log the contents of the communal pile when cards are added or removed from it.
      * 
      */
     public static void logCommunalPile(ArrayList<Card> communalPile) {
@@ -117,8 +117,8 @@ public class TestLog {
     }
 
     /**
-     * The contents of the current cards in play (the cards from the top of the
-     * user's deck and the computer's deck(s))
+     * Log the contents of the current cards in play (the cards from the top of the
+     * user's deck and the computer's deck(s)).
      * 
      */
     public static void logCardsInPlay(ArrayList<Player> players) {
@@ -132,8 +132,8 @@ public class TestLog {
     }
 
     /**
-     * The category selected and corresponding values when a user or computer
-     * selects a category
+     * Log the category selected and corresponding values when a user or computer
+     * selects a category.
      * 
      */
     public static void logSelectedCategory(int selectedCategory, String categoryDescription,
@@ -152,7 +152,7 @@ public class TestLog {
     }
 
     /**
-     * The contents of each deck after a round
+     * Log the contents of each deck after a round.
      * 
      */
     public static void logHandsAfterRound(ArrayList<Player> players) {
@@ -172,7 +172,7 @@ public class TestLog {
     }
 
     /**
-     * The winner of the game
+     * Log the winner of the game.
      * 
      */
     public static void logWinner(Player winner) {
