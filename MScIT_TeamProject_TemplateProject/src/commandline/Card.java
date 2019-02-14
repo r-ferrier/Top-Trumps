@@ -55,10 +55,7 @@ public class Card {
 		categoryValues.add(category4);
 		categoryValues.add(category5);
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> edecb0a701aaa7a7aad0e0611cf871eee11dd01a
 		/**
 		 * When it is an AI player's turn findBestCategory() method is called to locate.
 		 * the highest positive integer from an array of category values.
@@ -111,11 +108,13 @@ public class Card {
 			return category5;
 		}
 	}
-
+// Possible new method to replace one above..........
 //	public int getAnyCategory(int categoryToReturn) {
 //
 //		return categoryValues.get(categoryToReturn - 1);
 //		}
+
+
 
 	public String getDescription() {
 		return description;
