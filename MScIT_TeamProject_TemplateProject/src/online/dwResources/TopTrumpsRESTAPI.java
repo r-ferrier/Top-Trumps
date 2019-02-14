@@ -68,7 +68,8 @@ public class TopTrumpsRESTAPI {
     @GET
     @Path("/deck")
     public String getDeck() {
-        database = new Database();
+
+    	database = new Database();
 
         try {
             return oWriter.writeValueAsString(new Deck().getDeck());
@@ -106,7 +107,6 @@ public class TopTrumpsRESTAPI {
     public String databaseWriter(@PathParam("databaseArray")String databaseData){
 
         String[] databaseArray = databaseData.split(",");
-
         int draw = Integer.parseInt(databaseArray[0]);
         int gameWinner = Integer.parseInt(databaseArray[1]);
         int roundCounter = Integer.parseInt(databaseArray[2]);

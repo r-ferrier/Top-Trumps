@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class GamePlay {
 
-	private int roundCounter = 1;
+	private int roundCounter = 0;
 	private int drawCounter;
 	private int chosenCategory;
 	private ArrayList<Card> communalPile = new ArrayList<>();
