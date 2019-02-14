@@ -266,8 +266,8 @@
 
         listOfPlayers.push(new Player('You', 0, true));
 
-        for (let i = 0; i < (${players}-1); i++) {
-            listOfPlayers.push(new Player(aiName[i], 0, false))
+        for (let i = 1; i < ${players}; i++) {
+            listOfPlayers.push(new Player(aiName[i-1], i, false))
         }
 
         shuffle(listOfPlayers);
@@ -488,15 +488,15 @@
             if(!draw) {
                 updateRoundCount(listOfPlayers[indexOfRoundWinner].number);
             }
-
-            countOfRounds++;
-
+            
             if (!humanIsGone && listOfPlayers.length > 1) {
                 beginRound();
                 document.getElementById("play-card").setAttribute("value", "play your card");
             } else {
                 endGame();
             }
+            
+            countOfRounds++;
         }
     }
 

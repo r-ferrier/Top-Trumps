@@ -207,6 +207,7 @@ public class Database {
 	 */
 	public void setRoundWins(int playerIndex) {
 		playerWins[playerIndex]++;
+		System.out.println("Player: " + playerIndex + " won a round. They have now won " + playerWins[playerIndex] + " rounds total." );
 	}
 
 	public int getRoundWins(int playerIndex) {
