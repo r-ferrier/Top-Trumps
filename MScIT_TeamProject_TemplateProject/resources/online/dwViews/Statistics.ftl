@@ -33,17 +33,23 @@
 
 <script type="text/javascript">
 
+    let array;
+
     // Method that is called on page load
-    function initalize() {
+    function initialize() {
 
         pullGameStats();
-
 
     }
 
     function setGameStats(responseText){
 
-        document.getElementById("overall-games-played").innerText = responseText;
+        array = JSON.parse(responseText);
+        document.getElementById("overall-games-played").innerText = 'Number of Games Played overall: '+array[0];
+        document.getElementById("overall-games-played").innerText = 'Number of Computer wins: '+array[1];
+        document.getElementById("overall-games-played").innerText = 'Number of Human wins: '+array[2];
+        document.getElementById("overall-games-played").innerText = 'Average number of draws: '+array[3];
+        document.getElementById("overall-games-played").innerText = 'Largest number of rounds played in a single game: '+array[4];
 
     }
 
@@ -84,7 +90,7 @@
 
     function pullGameStats(){
 
-        let xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/pull-game-stats); // Request type and URL+parameters
+        let xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/pull-game-stats");
 
         if (!xhr) {
             alert("CORS not supported");

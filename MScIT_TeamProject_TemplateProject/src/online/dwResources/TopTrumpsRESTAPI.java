@@ -103,6 +103,7 @@ public class TopTrumpsRESTAPI {
     @Path("/pull-game-stats")
     public String pullGameStats() throws JsonProcessingException{
 
+        database = new Database();
         database.pullGameStats();
 
         int[] statsArray = new int[5];
