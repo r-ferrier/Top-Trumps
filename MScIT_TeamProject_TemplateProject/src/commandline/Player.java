@@ -1,23 +1,28 @@
 package commandline;
 
 import java.util.ArrayList;
-
+/**
+ * Constructor for Player. 
+ * Each Player has a String name, integer and Arraylist called 'hand' containing commandline.Card objects.
+ * In addition booleans for are human, knocked out status and a counter for rounds won are associated with 
+ * each Player.
+ */
 public class Player {
 
 	private String name;
 	private int number;
-	private ArrayList<Card> hand = new ArrayList<>(); // this arrayList contains all of the player's cards
+	private ArrayList<Card> hand = new ArrayList<>(); // This ArrayList contains the player's card objects
 
-	private boolean knockedOut = false; // when the ArrayList is 0, the player will be knocked out
+	private boolean knockedOut = false; // When the 'hand' ArrayList contains no cards the player will be knocked out
 	private boolean human;
-	private int roundsWon;
+	private int roundsWon; // A counter for the amount of rounds won by each player.
 
 	/**
-	 * constructor just takes a name and wants to know if we're dealing with a human
+	 * Constructor takes a name and wants to know if we're dealing with a human
 	 * or an AI player
 	 * 
-	 * @param name  name of player
-	 * @param human if true, it's a human, if false, it's an AI player
+	 * @param name  name of each Player
+	 * @param human if true, the Player is human, if false, the Player is an AI.
 	 */
 	public Player(String name, boolean human, int number) {
 		this.name = name;
@@ -100,7 +105,12 @@ public class Player {
 	public ArrayList<Card> getHand() {
 		return this.hand;
 	}
-
+	/**
+	 * The removeTopCardFromHand() method makes use of the trimToSize() method 
+	 * to resize Array once card is removed from index 0 of 'hand' ArrayList.
+	 * When no commandline.Card objects remain in 'hand' ArrayList boolean knockedOut
+	 * is set to true.
+	 */
 	public void removeTopCardFromHand() {
 
 		hand.remove(0);

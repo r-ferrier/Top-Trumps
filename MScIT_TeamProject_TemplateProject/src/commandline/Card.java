@@ -19,7 +19,7 @@ public class Card {
 
 	/**
 	 * Constructor for card object. Makes cardNumber local.
-	 * @param CategoryInformation
+	 * @param CategoryInformation 
 	 * @param categoryDescriptions
 	 * @param cardNumber
 	 */
@@ -93,8 +93,8 @@ public class Card {
 	}
 	/**
 	 * 
-	 * @param categoryToReturn
-	 * @return
+	 * @param categoryToReturn Takes in an integer for each category.
+	 * @return Returns an integer that corresponds to the value in the chosen category.
 	 */
 	public int getAnyCategory(int categoryToReturn) {
 
@@ -110,16 +110,17 @@ public class Card {
 			return category5;
 		}
 	}
-
+	/**
+	 * @return Returns String description ie. name of each sandwich.
+	 */
 	public String getDescription() {
 		return description;
 	}
 
 	/**
-	 * Sets the five categories for the deck and stores them as an array of Strings in
-	 * the correct order. Has to create a two arrays to remove the first entry which
-	 * just reads 'description'
-	 * 
+	 * setCategoryDescriptions() sets the five categories for the deck and stores them as an array of Strings in
+	 * the correct order. The method creates two arrays to remove the first entry, which
+	 * just reads 'description'.
 	 * @param categoryDescriptions first line of the imported file
 	 */
 	public void setCategoryDescriptions(String categoryDescriptions) {

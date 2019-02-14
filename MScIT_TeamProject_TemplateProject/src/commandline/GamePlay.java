@@ -23,11 +23,9 @@ public class GamePlay {
 	private Database database;
 
 	/**
-	 * constructor for this class. It creates a deck of cards from the file chosen
-	 * in the commandline.Deck class, stores the categories for the cards, creates
-	 * the AI players and begins the game. Once the user has entered their name
-	 * they're added to an array of players, players are shuffled and have cards
-	 * dealt to them, and then they can begin to play rounds.
+	 * Constructor for GamePlay class. It creates a deck of cards from the .txt file in
+	 * in the commandline.Deck class and stores the categories for the cards. It also creates
+	 * the AI players and uses gameBegins() method to start gameplay.
 	 */
 
 	public GamePlay() {
@@ -78,6 +76,9 @@ public class GamePlay {
 	}
 
 	/**
+	 * Once the user has entered a name
+	 * they are added to an array of players. Players are shuffled and have cards
+	 * dealt to them, and then they can begin to play rounds.
 	 * prints out prompts and collects the users name. Creates a new human player
 	 * and adds to the player arraylist.
 	 */
