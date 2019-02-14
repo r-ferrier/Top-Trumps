@@ -68,7 +68,9 @@ public class TopTrumpsRESTAPI {
     @GET
     @Path("/deck")
     public String getDeck() {
+
     	database = new Database();
+
         try {
             return oWriter.writeValueAsString(new Deck().getDeck());
         } catch (IOException e) {
@@ -97,6 +99,23 @@ public class TopTrumpsRESTAPI {
         return oWriter.writeValueAsString(players);
     }
 
+    @GET
+    @Path("/pull-game-stats")
+    public String pullGameStats() throws JsonProcessingException{
+
+        database.pullGameStats();
+
+        int[] statsArray = new int[5];
+
+        statsArray[0] = database.getTotalNumberGames();
+        statsArray[1] = database.getNumComputerWon();
+        statsArray[2] = database.getNumHumanWon();
+        statsArray[3] = (int)database.getAverageDraws();
+        statsArray[4] = database.getLargestNumberRound();
+
+        return oWriter.writeValueAsString(statsArray);
+    }
+
 
 
 
@@ -105,19 +124,11 @@ public class TopTrumpsRESTAPI {
     public String databaseWriter(@PathParam("databaseArray")String databaseData){
 
         String[] databaseArray = databaseData.split(",");
-
-        
-
         int draw = Integer.parseInt(databaseArray[0]);
         int gameWinner = Integer.parseInt(databaseArray[1]);
         int roundCounter = Integer.parseInt(databaseArray[2]);
 
-
-
         database.uploadGameStats(draw, gameWinner, roundCounter);
-
-
-
 
         return "draws: "+draw+" winner: "+gameWinner+" number of rounds: "+roundCounter;
     }
