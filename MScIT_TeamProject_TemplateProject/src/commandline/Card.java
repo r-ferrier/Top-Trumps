@@ -61,10 +61,12 @@ public class Card {
 		 * It returns the position in the list by adding one to the array index. 
 		 * @return bestCategory
 		 */
+		public int findBestCategory() {
 		int max = Collections.max(categoryValues);
-		int bestCategory = categoryValues.indexOf(max) + 1;
+		int bestCategory = categoryValues.indexOf(max) + 1; 
 		return bestCategory;
 	}
+
 	/**
 	 * toString() method to display card.
 	 */
