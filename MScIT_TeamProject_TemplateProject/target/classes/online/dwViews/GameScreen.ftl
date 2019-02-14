@@ -356,7 +356,7 @@
             document.getElementById("end-game").value = [countOfRounds,listOfPlayers[0].name];
         }
 
-        setDatabase(numberOfDraws + "," + listOfPlayers[0]._number + "," + countOfRounds);
+        setDatabase(numberOfDraws + "," + listOfPlayers[0]._number + "," + (countOfRounds-1));
 
     }
 
@@ -485,11 +485,12 @@
 
         } else if (buttonClicked === "continue to next round") {
 
-            countOfRounds++;
-
             if(!draw) {
                 updateRoundCount(listOfPlayers[indexOfRoundWinner].number);
             }
+
+            countOfRounds++;
+
             if (!humanIsGone && listOfPlayers.length > 1) {
                 beginRound();
                 document.getElementById("play-card").setAttribute("value", "play your card");
@@ -750,20 +751,6 @@
         return array;
     }
 
-
-    // function getWhoIsInGame() {
-    //
-    //     let allPlayersNames = "";
-    //
-    //     for (let i = 0; i < listOfPlayers.length - 2; i++) {
-    //         allPlayersNames += listOfPlayers[i]._name + ", ";
-    //     }
-    //     allPlayersNames += listOfPlayers[listOfPlayers.length - 2]._name + " and " + listOfPlayers[listOfPlayers.length - 1]._name + ".<br>";
-    //
-    //     return "There are " + listOfPlayers.length + " players left in the game: " + allPlayersNames;
-    //
-    // }
-
     function getWhoseTurnItIs() {
 
         findHuman();
@@ -793,9 +780,10 @@
             alert("CORS not supported");
         }
 
+
         xhr.onload = function (e) {
 
-            var responseText = xhr.response; // the text of the response
+            let responseText = xhr.response; // the text of the response
             setDeckAndBeginGame(responseText);
         };
 
@@ -805,8 +793,8 @@
     }
 
 
-    function updateRoundCount(playerIndex) {
-        const xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updateRoundCountsForPlayer/" + playerIndex); //first create cors request to my new restapi method
+    function updateRoundCount(playerNumber) {
+        const xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updateRoundCountsForPlayer/" + playerNumber); //first create cors request to my new restapi method
 
         if (!xhr) {
             alert("CORS not supported");
@@ -824,9 +812,8 @@
 
         xhr.onload = function (e) {
 
-            var responseText = xhr.response; // the text of the response
+            let responseText = xhr.response; // the text of the response
             confirmDatabaseUpdated(responseText);
-            alert(responseText);
         };
 
         // We have done everything we need to prepare the CORS request, so send it
