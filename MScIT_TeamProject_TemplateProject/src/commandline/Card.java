@@ -45,7 +45,6 @@ public class Card {
 		categoryValues.add(category5);
 	}
 
-	protected int findBestCategory() {
 		/**
 		 * When it is a computer player's turn, this method will be called which finds
 		 * the highest value across the categories and returns the index it is assigned
@@ -56,6 +55,7 @@ public class Card {
 		 * also cannot be a private method as it makes most sense just to call the
 		 * method from the GamePlay class when AI.
 		 */
+	public int findBestCategory(){
 		int max = Collections.max(categoryValues);
 		int bestCategory = categoryValues.indexOf(max) + 1;
 		return bestCategory;
@@ -91,6 +91,11 @@ public class Card {
 			return category5;
 		}
 	}
+
+//	public int getAnyCategory(int categoryToReturn) {
+//
+//		return categoryValues.get(categoryToReturn - 1);
+//		}
 
 	public String getDescription() {
 		return description;
