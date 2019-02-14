@@ -8,7 +8,7 @@ public class Card {
 
 	private String description;
 	private String[] categories = new String[5];
-	private int categoryValues[];
+	private ArrayList<Integer> categoryValues = new ArrayList<Integer>();
 	private int cardNumber;
 
 	private int category1;
@@ -39,16 +39,21 @@ public class Card {
 	 */
 	private void setCategories(String categoryInformation) {
 
-	    String[] categoryValues = categoryInformation.split(" ");
+	    String[] categoryInfo = categoryInformation.split(" ");
 
-		description = categoryValues[0];
-		category1 = parseInt(categoryValues[1]);
-		category2 = parseInt(categoryValues[2]);
-		category3 = parseInt(categoryValues[3]);
-		category4 = parseInt(categoryValues[4]);
-		category5 = parseInt(categoryValues[5]);
+		description = categoryInfo[0];
+		category1 = parseInt(categoryInfo[1]);
+		category2 = parseInt(categoryInfo[2]);
+		category3 = parseInt(categoryInfo[3]);
+		category4 = parseInt(categoryInfo[4]);
+		category5 = parseInt(categoryInfo[5]);
 
-		this.categoryValues= new int[]{category1,category2,category3,category4,category5};
+		// add values to ArrayList
+		categoryValues.add(category1);
+		categoryValues.add(category2);
+		categoryValues.add(category3);
+		categoryValues.add(category4);
+		categoryValues.add(category5);
 	}
 		/**
 		 * When it is an AI player's turn findBestCategory() method is called to locate.
@@ -56,17 +61,8 @@ public class Card {
 		 * It returns the position in the list by adding one to the array index. 
 		 * @return bestCategory
 		 */
-
-	public int findBestCategory() {
-		
-		ArrayList<Integer> categoryList = new ArrayList<>();
-		categoryList.add(category1);
-		categoryList.add(category2);
-		categoryList.add(category3);
-		categoryList.add(category4);
-		categoryList.add(category5);
-		int max = Collections.max(categoryList);
-		int bestCategory = categoryList.indexOf(max) + 1;
+		int max = Collections.max(categoryValues);
+		int bestCategory = categoryValues.indexOf(max) + 1;
 		return bestCategory;
 	}
 	/**
@@ -137,7 +133,7 @@ public class Card {
 		return categories;
 	}
 
-	public int[] getCategoryValues(){
+	public ArrayList<Integer> getCategoryValues(){
 		return categoryValues;
 	}
 
