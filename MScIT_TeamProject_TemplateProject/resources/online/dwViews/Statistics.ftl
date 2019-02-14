@@ -46,10 +46,10 @@
 
         array = JSON.parse(responseText);
         document.getElementById("overall-games-played").innerText = 'Number of Games Played overall: '+array[0];
-        document.getElementById("overall-games-played").innerText = 'Number of Computer wins: '+array[1];
-        document.getElementById("overall-games-played").innerText = 'Number of Human wins: '+array[2];
-        document.getElementById("overall-games-played").innerText = 'Average number of draws: '+array[3];
-        document.getElementById("overall-games-played").innerText = 'Largest number of rounds played in a single game: '+array[4];
+        document.getElementById("computer-wins").innerText = 'Number of Computer wins: '+array[1];
+        document.getElementById("human-wins").innerText = 'Number of Human wins: '+array[2];
+        document.getElementById("average-draws").innerText = 'Average number of draws: '+array[3];
+        document.getElementById("largest-round").innerText = 'Largest number of rounds played in a single game: '+array[4];
 
     }
 
