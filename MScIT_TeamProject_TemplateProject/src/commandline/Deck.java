@@ -11,7 +11,7 @@ import java.util.Collections;
 public class Deck {
 
     private ArrayList<Card> deck = new ArrayList<>();
-    private  String fileName = "Sandwich.txt";
+    private  String fileName = "sandwichTest.txt";
 
     /**
      * Constructor for Deck opens and reads in a file. 

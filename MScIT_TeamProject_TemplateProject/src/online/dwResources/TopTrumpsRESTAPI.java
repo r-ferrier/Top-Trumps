@@ -1,8 +1,12 @@
 package online.dwResources;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import commandline.Card;
 import commandline.Database;
 import commandline.Deck;
@@ -14,6 +18,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,6 +37,8 @@ import java.util.List;
  * methods that allow a TopTrumps game to be controled from a Web page.
  */
 public class TopTrumpsRESTAPI {
+
+    private Database database;
 
 
     /**
@@ -90,6 +97,40 @@ public class TopTrumpsRESTAPI {
 
         return oWriter.writeValueAsString(players);
     }
+
+
+
+
+    @GET
+    @Path("/writeDatabase/{databaseArray}")
+    public String databaseWriter(@PathParam("databaseArray")String databaseData){
+
+        String[] databaseArray = databaseData.split(",");
+
+        database = new Database();
+
+        int draw = Integer.parseInt(databaseArray[0]);
+        int gameWinner = Integer.parseInt(databaseArray[1]);
+        int roundCounter = Integer.parseInt(databaseArray[2]);
+
+
+
+        database.uploadGameStats(draw, gameWinner, roundCounter);
+
+
+
+
+        return "draws: "+draw+" winner: "+gameWinner+" number of rounds: "+roundCounter;
+    }
+
+    @GET
+    @Path ("/updateRoundCountsForPlayer/{playerIndex}")
+    public void databaseRoundCountUpdater(@PathParam("playerIndex")int playerNumber){
+
+        database.setRoundWins(playerNumber);
+
+    }
+
 
 
     @GET

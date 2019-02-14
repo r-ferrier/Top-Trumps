@@ -1,7 +1,7 @@
 Description Deliciousness Size Toastability Satiation Complexity
 Ham 3 2 3 5 0
 Reuben 8 6 7 8 5
-Club_Sandwich 6 0 8 9 9
+Club_Sandwich 6 9 8 9 9
 Cheese_and_Pickle 7 3 5 6 3
 Marmite 10 0 10 0 0
 Cheese_and_Jam 8 3 6 5 2
@@ -29,13 +29,13 @@ Hawaiian_Toast 7 3 7 7 3
 Burrito 6 7 3 8 8
 Super_burrito 7 8 4 9 9
 Bacon_roll 9 8 4 5 2
-Cucumber 2 2 0 0 7
+Cucumber 2 2 1 3 7
 Boxing_Day_Sandwich 9 9 3 3 4
 Hummus_Pita 3 4 3 7 2
 Peanut_Butter_and_Jelly 5 4 6 7 2
 Crisp_Sandwich 7 3 2 7 2
 Roast_Beef_and_Mustard 6 4 3 6 5
-Nutella 5 3 6 4 0
+Nutella 5 3 6 4 1
 Marmalade_on_Toast 7 2 7 1 3 
 Hot_Buttered_Crumpet 8 2 8 3 1
 3AM_Big_Mac 10 4 3 2 1
