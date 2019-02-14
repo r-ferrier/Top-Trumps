@@ -55,13 +55,21 @@ public class Card {
 		categoryValues.add(category4);
 		categoryValues.add(category5);
 	}
+<<<<<<< HEAD
+
+=======
+>>>>>>> edecb0a701aaa7a7aad0e0611cf871eee11dd01a
 		/**
 		 * When it is an AI player's turn findBestCategory() method is called to locate.
 		 * the highest positive integer from an array of category values.
 		 * It returns the position in the list by adding one to the array index. 
 		 * @return bestCategory
 		 */
+<<<<<<< HEAD
 		public int findBestCategory() {
+=======
+	public int findBestCategory(){
+>>>>>>> d1569dcedb22566dde6c6c6d1e378e6d5ccc00d5
 		int max = Collections.max(categoryValues);
 		int bestCategory = categoryValues.indexOf(max) + 1; 
 		return bestCategory;
@@ -108,9 +116,18 @@ public class Card {
 			return category5;
 		}
 	}
+<<<<<<< HEAD
 	/**
 	 * @return Returns String description ie. name of each sandwich.
 	 */
+=======
+
+//	public int getAnyCategory(int categoryToReturn) {
+//
+//		return categoryValues.get(categoryToReturn - 1);
+//		}
+
+>>>>>>> d1569dcedb22566dde6c6c6d1e378e6d5ccc00d5
 	public String getDescription() {
 		return description;
 	}
