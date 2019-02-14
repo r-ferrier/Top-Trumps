@@ -17,7 +17,12 @@ public class Card {
 	private int category4;
 	private int category5;
 
-
+	/**
+	 * Constructor for card object. Makes cardNumber local.
+	 * @param CategoryInformation
+	 * @param categoryDescriptions
+	 * @param cardNumber
+	 */
 	public Card(String CategoryInformation, String categoryDescriptions, int cardNumber) {
 
 		setCategories(CategoryInformation);
@@ -25,7 +30,13 @@ public class Card {
 		this.cardNumber = cardNumber;
 
 	}
-
+	/**
+	 * Takes in a line of the deck as a String and creates an array of elements.  
+	 * First index of the array becomes the card description.
+	 * Subsequent elements of the array are parsed as integers to set each category value.
+	 * int[] categoryValues is initialised with category ints. 
+	 * @param categoryInformation
+	 */
 	private void setCategories(String categoryInformation) {
 
 	    String[] categoryInfo = categoryInformation.split(" ");
@@ -44,23 +55,24 @@ public class Card {
 		categoryValues.add(category4);
 		categoryValues.add(category5);
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> edecb0a701aaa7a7aad0e0611cf871eee11dd01a
 		/**
-		 * When it is a computer player's turn, this method will be called which finds
-		 * the highest value across the categories and returns the index it is assigned
-		 * to.
-		 *
-		 * Sarah's note to team: I did have bestCategory as a class attribute but
-		 * realised it didn't really need to be one as it is only accessed here. This
-		 * also cannot be a private method as it makes most sense just to call the
-		 * method from the GamePlay class when AI.
+		 * When it is an AI player's turn findBestCategory() method is called to locate.
+		 * the highest positive integer from an array of category values.
+		 * It returns the position in the list by adding one to the array index. 
+		 * @return bestCategory
 		 */
 	public int findBestCategory(){
 		int max = Collections.max(categoryValues);
 		int bestCategory = categoryValues.indexOf(max) + 1;
 		return bestCategory;
 	}
-
+	/**
+	 * toString() method to display card.
+	 */
 	public String toString() {
 
 		String cardDetails = categories[0] + ": " + category1 + " \n" + categories[1] + ": " + category2 + " \n"
@@ -69,14 +81,22 @@ public class Card {
 
 		return cardDetails;
 	}
-
+	/**
+	 * chooseACategory() method. Method is used to present human player category numbers and corresponding values
+	 * when it is their turn.
+	 * @return cardCategories 
+	 */
 	public String chooseACategory() {
 
 		String cardCategories = "1. " + category1 + "\n2. " + category2 + "\n3. " + category3 + "\n4. " + category4
 				+ "\n5. " + category5 + "\n";
 		return cardCategories;
 	}
-
+	/**
+	 * 
+	 * @param categoryToReturn
+	 * @return
+	 */
 	public int getAnyCategory(int categoryToReturn) {
 
 		if (categoryToReturn == 1) {
@@ -102,7 +122,7 @@ public class Card {
 	}
 
 	/**
-	 * sets the 5 categories for the deck and stores them as an array of strings in
+	 * Sets the five categories for the deck and stores them as an array of Strings in
 	 * the correct order. Has to create a two arrays to remove the first entry which
 	 * just reads 'description'
 	 * 

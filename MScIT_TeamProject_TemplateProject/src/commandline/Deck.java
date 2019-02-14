@@ -14,17 +14,19 @@ public class Deck {
     private  String fileName = "Sandwich.txt";
 
     /**
-     * constructor for deck needs to open and read the file. If it can do this successfully, it will pass each line of the file
-     * to a new card object to store the information and create a list of categories. Once all the objects have been made they are
-     * stored here as an arraylist and then shuffled.
+     * Constructor for deck needs to open and read the file. If it can do this successfully, it will pass each line of the file
+     * to a new card object, storing the information and creating a list of categories with positive integer values. 
+     * Once all the objects have been made they are
+     * stored as an arraylist and shuffled.
      */
     public Deck(){
         readFile();
     }
 
     /**
-     * reads file line by line. Uses the first line to create categories, and creates a commandline.Card object with every line
-     * after that, storing these objects in an Arraylist (deck).
+     * The readFile () method reads in file line by line. It uses the first line to generate category titles. 
+     * It then creates a commandline.Card object 
+     * from every subsequent line. It stores these objects in a 'deck' Arraylist.
      */
     public void readFile(){
 
@@ -50,20 +52,23 @@ public class Deck {
     }
 
     /**
-     * adds a new card object to the deck arraylist
-     * @param nextCard commandline.Card object created as file is read
+     * The addCard() method adds a new card object to the deck Arraylist
+     * @param nextCard commandline.Card object is created as file is read in.
      */
     private void addCard(Card nextCard){
         deck.add(nextCard);
     }
 
-    /**
-     * shuffles the Arraylist of cards using the Collections method shuffle
+    /** 
+     * shuffleCards() shuffles the Arraylist of cards, making use of the Collections shuffle method.
      */
     private void shuffleCards(){
         Collections.shuffle(deck);
     }
 
+    /** 
+     * Getter for deck Arraylist.
+     */
     public ArrayList<Card> getDeck(){
         return deck;
     }
