@@ -11,9 +11,7 @@ import commandline.Card;
 import commandline.Database;
 import commandline.Deck;
 import commandline.Player;
-import jdk.nashorn.internal.parser.JSONParser;
 import online.configuration.TopTrumpsJSONConfiguration;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.File;
@@ -70,6 +68,8 @@ public class TopTrumpsRESTAPI {
     @GET
     @Path("/deck")
     public String getDeck() {
+        database = new Database();
+
         try {
             return oWriter.writeValueAsString(new Deck().getDeck());
         } catch (IOException e) {
@@ -107,18 +107,11 @@ public class TopTrumpsRESTAPI {
 
         String[] databaseArray = databaseData.split(",");
 
-        database = new Database();
-
         int draw = Integer.parseInt(databaseArray[0]);
         int gameWinner = Integer.parseInt(databaseArray[1]);
         int roundCounter = Integer.parseInt(databaseArray[2]);
 
-
-
         database.uploadGameStats(draw, gameWinner, roundCounter);
-
-
-
 
         return "draws: "+draw+" winner: "+gameWinner+" number of rounds: "+roundCounter;
     }
