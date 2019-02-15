@@ -22,8 +22,7 @@ public class Database {
 	}
 
 	/**
-	 * This method will connect our program to the database so our data can be
-	 * updated and/or received.
+	 * Method to connect the program to database so data can be updated and/or received.
 	 */
 	private void connectToDatabase() {
 		c = null;
@@ -55,10 +54,7 @@ public class Database {
 	}
 
 	/**
-	 * This method creates a new table for the persistent game data if one does not
-	 * already exist I am currently working under the assumption that we don't want
-	 * a new table each time we call the program to run - but this can easily be
-	 * changed.
+	 * The createNewTable() method generates a table for the persistent game data if one does not already exist.
 	 */
 	private void createNewTable() {
 		try {
@@ -85,9 +81,7 @@ public class Database {
 	}
 
 	/**
-	 * This methodo will take the results from the game just played and upload them
-	 * to the database. roundsPerPlayer as an array with the index relating to the
-	 * player - linked to the number of rounds they won
+	 * uploadGameStats() method takes the results from the most recent game and uploads them to the database. 
 	 */
 	public void uploadGameStats(int gameDraws, int gameWinner, int gameRounds) {
 		connectToDatabase();
@@ -119,8 +113,7 @@ public class Database {
 	}
 
 	/**
-	 * This method will print the information about the previous games, while the
-	 * game is not in progress.
+	 * pullGameStats() method will print the information about the previous games while game is not in progress.
 	 */
 	public void pullGameStats() {
 		connectToDatabase();
@@ -162,7 +155,6 @@ public class Database {
 			largestRound.close();
 			stmt.close();
 			c.close();
-			// printGameStats(); ======== HAVE BEEN PUT INTO GAMEPLAY
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -170,21 +162,20 @@ public class Database {
 	}
 
 	/**
-	 * Prints the persistent game data that has been obtained from the database.
+	 * printGameStats() prints the persistent game data obtained from the database.
 	 */
 	public void printGameStats() {
 		System.out.println("Number of games played overall: " + totalNumberGames);
 		System.out.println("How many times the computer has won: " + numComputerWon);
 		System.out.println("How many times the human has won: " + numHumanWon);
-		System.out.println("The average number of draws: " + averageDraws);
+		System.out.println("The average number of draws: " + (int)averageDraws);
 		System.out.println("The largest number of rounds played in a single game: " + largestNumberRound);
 	}
 
 	// ---------------- GETTERS AND SETTERS ----------------- \\
 
 	/**
-	 * Connects to the database and gets the game number of the last game and adds 1
-	 * to give the most recent game number.
+	 * Connects to the database. It uses the game number from the previous game to generate the most recent game number by adding 1.
 	 */
 	public int setGameNumber() {
 		connectToDatabase();
@@ -204,9 +195,11 @@ public class Database {
 
 	/**
 	 * Updates an array of how many rounds each player has won each game.
+	 * @param playerIndex
 	 */
 	public void setRoundWins(int playerIndex) {
 		playerWins[playerIndex]++;
+		System.out.println("Player: " + playerIndex + " won a round. They have now won " + playerWins[playerIndex] + " rounds total." );
 	}
 
 	public int getRoundWins(int playerIndex) {
@@ -229,7 +222,7 @@ public class Database {
 		return numHumanWon;
 	}
 
-	public double getAvergaeDraws() {
+	public double getAverageDraws() {
 		return averageDraws;
 	}
 

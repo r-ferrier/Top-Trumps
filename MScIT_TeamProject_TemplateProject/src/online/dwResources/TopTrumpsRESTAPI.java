@@ -3,20 +3,13 @@ package online.dwResources;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import commandline.Card;
-import commandline.Database;
-import commandline.Deck;
-import commandline.Player;
-import jdk.nashorn.internal.parser.JSONParser;
+import commandline.*;
 import online.configuration.TopTrumpsJSONConfiguration;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 @Path("/toptrumps") // Resources specified here should be hosted at http://localhost:7777/toptrumps
 @Produces(MediaType.APPLICATION_JSON) // This resource returns JSON content
@@ -33,6 +26,7 @@ import java.util.List;
  */
 public class TopTrumpsRESTAPI {
 
+    private Database database;
 
     /**
      * A Jackson Object writer. It allows us to turn Java objects
@@ -49,127 +43,79 @@ public class TopTrumpsRESTAPI {
      */
     public TopTrumpsRESTAPI(TopTrumpsJSONConfiguration conf) {
 
-        conf.setDeckFile("Sandwich.txt");
-        conf.setNumAIPlayers(4);
-        // ----------------------------------------------------
-        // Add relevant initialisation here
-        // ----------------------------------------------------
-    }
-
-    // ---------------------------------------------------
-    // Add relevant API methods here
-    // ----------------------------------------------------
-
-    @GET
-    @Path("/deck")
-    public String getDeck() {
-        try {
-            return oWriter.writeValueAsString(new Deck().getDeck());
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "soz";
-        }
     }
 
     @GET
     @Path("/get-players/{number}")
-    public String players(@PathParam("number")int numOfPlayers) throws JsonProcessingException {
+    public String players(@PathParam("number") int numOfPlayers) throws JsonProcessingException {
 
-        ArrayList<Player> players;
+        database = new Database();
 
-        players = new ArrayList<>();
-        String playerNames[] = new String[]{"Clive","Janet","Brenda","Philip"};
+        ArrayList<Card> deck = new Deck().getDeck();
+        Collections.shuffle(deck);
 
-        players.add(new Player("you",true,0));
+        ArrayList<Player> players = new ArrayList<>();
+        String playerNames[] = new String[]{"Clive", "Janet", "Brenda", "Philip"};
 
-        for(int i=1;i<numOfPlayers;i++){
-            players.add(new Player(playerNames[i],false,i));
+        players.add(new Player("You", true, 0));
+
+        for (int i = 0; i < numOfPlayers-1; i++) {
+            players.add(new Player(playerNames[i], false, i));
         }
 
         Collections.shuffle(players);
 
+        int i = 0;
+        for (Card card : deck) {
+            players.get(i).dealCard(card);
+            i++;
+            if (i > numOfPlayers-1) {
+                i = 0;
+            }
+        }
+
         return oWriter.writeValueAsString(players);
     }
 
-
     @GET
-    @Path("/category-values/{card}")
-    public int[] categoryValues(@PathParam("card")String card){
-        //return int array containing values for each category on the "top card"
+    @Path("/pull-game-stats")
+    public String pullGameStats() throws JsonProcessingException {
 
-        String[] cards = card.split(",");
+        database = new Database();
+        database.pullGameStats();
 
-        int[] categoryValues = new int[5];
+        int[] statsArray = new int[5];
 
-        categoryValues[0] = 1;
-        categoryValues[1] = 2;
-        categoryValues[2] = 3;
-        categoryValues[3] = 4;
-        categoryValues[4] = 5;
+        statsArray[0] = database.getTotalNumberGames();
+        statsArray[1] = database.getNumComputerWon();
+        statsArray[2] = database.getNumHumanWon();
+        statsArray[3] = (int) database.getAverageDraws();
+        statsArray[4] = database.getLargestNumberRound();
 
-        return categoryValues;
-    }
-
-//    @GET
-//    @Path("/all-top-cards")
-//    public String[] topCards(){
-//        //return string array containing the description name of every top card for this round
-////        String[] topCards = new String[5];
-////
-////        for (int i = 0; i<5; i++) {
-////            topCards[i] = players.get(i).getTopCard().getDescription();
-////        }
-////
-////        return topCards;
-//    }
-
-    @GET
-    @Path ("/get-winner")
-    public String[] getWinner(){
-        String[] winnerInfo = new String[]{"winner","1"};
-        return winnerInfo;
-    }
-
-    @GET
-    @Path ("/players-turn")
-    public String[] playerTurn() {
-        String[] playerInfo = new String[]{"playerNumber", "1", "276", "3", "4", "5", "1"};
-        return playerInfo;
+        return oWriter.writeValueAsString(statsArray);
     }
 
 
-//    @GET
-//    @Path("/winner")
-//    public String winner(){
-//        //this method currently is not returning an int like requested but just returns a string stating what
-//        //happened. Very open to changing this but thought i'd just put something in for now.
-//
-//        String winner="";
-//        //i think this could be done by calling GamePlay.declareRoundWinOrDraw() as it would be a lot of the
-//        //same code, but that may not work if the other variables aren't being set from GamePlay? obv would
-//        //also have to make it a protected method so we could access it.
-//
-//        int category = 0;
-//        int categoryValue;
-//        int currentHighestCategoryValue = 0;
-//        int index = 0;
-//        String winnerName;
-//
-//        for (Player p : players) {
-//            categoryValue = p.getTopCard().getAnyCategory(category);
-//
-//            if (categoryValue > currentHighestCategoryValue) {
-//                currentHighestCategoryValue = categoryValue;
-//                winnerName = p.getName();
-//                winner = winnerName + " has won this round!";
-//
-//            } else if (categoryValue == currentHighestCategoryValue) {
-//                winner = "It's a draw!!!";
-//            }
-//        }
-//        //put java method in here to return the number of the winner
-//        return winner;
-//    }
+    @GET
+    @Path("/writeDatabase/{databaseArray}")
+    public String databaseWriter(@PathParam("databaseArray") String databaseData) {
 
+        String[] databaseArray = databaseData.split(",");
+        int draw = Integer.parseInt(databaseArray[0]);
+        int gameWinner = Integer.parseInt(databaseArray[1]);
+        int roundCounter = Integer.parseInt(databaseArray[2]);
+
+        database.uploadGameStats(draw, gameWinner, roundCounter);
+
+        return "draws: " + draw + " winner: " + gameWinner + " number of rounds: " + roundCounter;
+    }
+
+    @GET
+    @Path("/updateRoundCountsForPlayer/{playerIndex}")
+    public void databaseRoundCountUpdater(@PathParam("playerIndex") int playerNumber) {
+
+        database.setRoundWins(playerNumber);
+
+    }
 
 }

@@ -18,84 +18,66 @@
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
 
-    <link rel="stylesheet" type = "text/css" href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsStyle.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsStyle.css">
 
 </head>
 
-<body onload="initalize()"> <!-- Call the initalize method when the page loads -->
-
-<div class="title">
-    <h1 id="firstWord">Top Trumps:</h1>
-    <h1 id="secondWord"><br>Sandwiches<br>edition</h1>
-</div>
+<body onload="initialize()"> <!-- Call the initalize method when the page loads -->
+<img id="title" src="https://github.com/r-ferrier/topTrumpsCSS/blob/master/titlePlaceholder.png?raw=true" alt="Top trumps: Sandwiches edition" width="400px">
 <br>
 
+
 <div class="winner-message">
+    <img id="winner-image" src="https://github.com/r-ferrier/topTrumpsCSS/blob/master/winnerPlaceholder.png?raw=true" width="200px" style="display:none">
     <h2 id="This person won"></h2>
 </div>
 
-
-
-
-
 <div class="buttonsContainer">
-    <input id="view_stats" type = submit value="view stats" class = "buttons"><br>
 
-    <form action="http://localhost:7777/toptrumps/game" method="GET">
-
+    <!--form to chose how many players are in game-->
     <div class="choose_players">
-        <label for="choose_players">choose players</label>
-        <select id="choose_players" name="players" required>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <input id="start_new_game" type = submit value="start new game" class = "buttons"">
+        <form action="http://localhost:7777/toptrumps/game" method="GET">
+            <label for="choose_players">Number of players for this game:</label>
+            <select id="choose_players" name="players" required>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <input type=submit value="start new game">
+        </form>
     </div>
-    </form>
+
+    <div class="view-stats">
+        <form action="http://localhost:7777/toptrumps/stats" method="GET">
+            <input type=submit value="view stats"><br>
+        </form>
+    </div>
 
 </div>
-
-
-<!--form to chose how many players are in game-->
-
 <script type="text/javascript">
 
     // Method that is called on page load
-    function initalize() {
 
-        // --------------------------------------------------------------------------
-        // You can call other methods you want to run when the page first loads here
-        // --------------------------------------------------------------------------
+    function initialize() {
 
-        // For example, lets call our sample methods
-        // helloJSONList();
-        // helloWord("Student");
-        // getCard();
-        // startGame();
+        let n = window.location.search.lastIndexOf("=");
+        let result = window.location.search.substring(n + 1);
+        let results = result.split(".");
+        let rounds = "rounds.";
+
+        if (results[0] === "1") {
+            rounds = "round.";
+        }
+
+        if (result) {
+
+            document.getElementById("This person won").innerHTML = results[1] + " won! <br>Game over in " + results[0] + " " + rounds;
+            document.getElementById("winner-image").style.display = "block";
+
+        }
     }
-
-    // function startGame() {
-    //
-    //     document.getElementsByClassName("choose-players")[0].innerHTML=beginNewGame;
-    //
-    //
-    //
-    //     // window.location.href = '<a href="' + window.location.protocol + '//' + window.location.hostname + ':7777'
-    //     //     + window.location.pathname + '" >New Game</a>');
-    //
-    //
-    //
-    // }
-
-
-
-    // -----------------------------------------
-    // Add your other Javascript methods Here
-    // -----------------------------------------
-
-    // This is a reusable method for creating a CORS request. Do not edit this.
 
     function createCORSRequest(method, url) {
         var xhr = new XMLHttpRequest();
@@ -114,77 +96,9 @@
         }
         return xhr;
     }
-
-
 </script>
-
-<!-- Here are examples of how to call REST API Methods -->
-<script type="text/javascript">
-
-    // function beginNewGame(numOfPlayers) {
-    //     var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/start-game");
-    //
-    //     if (!xhr){
-    //         alert("CORS not supported");
-    //     }
-    //
-    //     xhr.onload = function(e) {
-    //         var responseText = xhr.response;
-    //         startGame(responseText);
-    //     };
-    //
-    //     xhr.send();
-    // }
-
-
-
-
-
-
-
-    // // This calls the helloJSONList REST method from TopTrumpsRESTAPI
-    // function helloJSONList() {
-    //
-    //     // First create a CORS request, this is the message we are going to send (a get request in this case)
-    //     var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList"); // Request type and URL
-    //
-    //     // Message is not sent yet, but we can check that the browser supports CORS
-    //     if (!xhr) {
-    //         alert("CORS not supported");
-    //     }
-    //     // CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-    //     // to do when the response arrives
-    //     xhr.onload = function(e) {
-    //         var responseText = xhr.response; // the text of the response
-    //         alert(responseText); // lets produce an alert
-    //     };
-    //
-    //     // We have done everything we need to prepare the CORS request, so send it
-    //     xhr.send();
-    // }
-    //
-    // // This calls the helloJSONList REST method from TopTrumpsRESTAPI
-    // function helloWord(word) {
-    //
-    //     // First create a CORS request, this is the message we are going to send (a get request in this case)
-    //     var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloWord?Word="+word); // Request type and URL+parameters
-    //
-    //     // Message is not sent yet, but we can check that the browser supports CORS
-    //     if (!xhr) {
-    //         alert("CORS not supported");
-    //     }
-    //     // CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-    //     // to do when the response arrives
-    //     xhr.onload = function(e) {
-    //         var responseText = xhr.response; // the text of the response
-    //         alert(responseText); // lets produce an alert
-    //     };
-    //
-    //     // We have done everything we need to prepare the CORS request, so send it
-    //     xhr.send();
-    // }
-</script>
-
 </body>
+
+
 </html>
 

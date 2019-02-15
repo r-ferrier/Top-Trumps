@@ -28,8 +28,8 @@ public class GameWebPagesResource {
 	 * play a game. Hosted at 'http://localhost:7777/toptrumps/'
 	 * @return
 	 */
-    public SelectionScreenView getSelectionScreen() {
-        return new SelectionScreenView();
+    public SelectionScreenView getSelectionScreen(@QueryParam("winner")String winner) throws IOException {
+        return new SelectionScreenView(winner);
     }
 
 	@GET
