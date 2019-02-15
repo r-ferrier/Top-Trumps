@@ -8,14 +8,14 @@
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 
     <link rel="stylesheet" type="text/css"
-          href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsStyle.css">
+          href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/stats.css">
 
 </head>
 
 <body onload="initialize()"> <!-- Call the initalize method when the page loads -->
 
 <form action="http://localhost:7777/toptrumps" method="GET">
-    <input id="view_stats" type=submit value="home" class="buttons"><br>
+    <input id="home" type=submit value="home" class="buttons"><br>
 </form>
 
 <div class="title">
@@ -29,6 +29,8 @@
     <h4 id="average-draws">Average number of draws</h4>
     <h4 id="largest-round">Largest number of rounds played in a single game</h4>
 </div>
+
+<img id="stats-image" src="https://github.com/r-ferrier/topTrumpsCSS/blob/master/winnerPlaceholder.png?raw=true">
 
 
 <script type="text/javascript">

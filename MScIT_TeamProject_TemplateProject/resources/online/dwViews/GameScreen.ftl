@@ -356,10 +356,10 @@
         } else {
             document.getElementById("players-turn-text").innerHTML = "You've won! Click the button to return to the homescreen.";
 
-            document.getElementById("end-game").value = [countOfRounds, listOfPlayers[0].name];
+            document.getElementById("end-game").value = countOfRounds+"."+listOfPlayers[0].name;
         }
 
-        setDatabase(numberOfDraws + "," + listOfPlayers[0]._number + "," + (countOfRounds - 1));
+        setDatabase(numberOfDraws + "," + listOfPlayers[0]._number + "," + countOfRounds);
 
     }
 
@@ -426,7 +426,7 @@
             }
         }
 
-        document.getElementById("end-game").value = [countOfRounds, listOfPlayers[0].name];
+        document.getElementById("end-game").value = countOfRounds+"."+listOfPlayers[0].name;
 
     }
 
