@@ -29,7 +29,7 @@
 
 
 <div class="winner-message">
-    <img id="winner-image" src="https://github.com/r-ferrier/topTrumpsCSS/blob/master/winnerPlaceholder.png?raw=true" width="200px">
+    <img id="winner-image" src="https://github.com/r-ferrier/topTrumpsCSS/blob/master/winnerPlaceholder.png?raw=true" width="200px" style="display:none">
     <h2 id="This person won"></h2>
 </div>
 
@@ -38,7 +38,7 @@
     <!--form to chose how many players are in game-->
     <div class="choose_players">
         <form action="http://localhost:7777/toptrumps/game" method="GET">
-            <label for="choose_players">choose players</label>
+            <label for="choose_players">Number of players for this game:</label>
             <select id="choose_players" name="players" required>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -74,6 +74,7 @@
         if (result) {
 
             document.getElementById("This person won").innerHTML = results[1] + " won! <br>Game over in " + results[0] + " " + rounds;
+            document.getElementById("winner-image").style.display = "block";
 
         }
     }

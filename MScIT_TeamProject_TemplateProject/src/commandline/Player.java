@@ -1,16 +1,17 @@
 package commandline;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 
 public class Player {
 
-	private String name;
+	public String name;
 	private int number;
-	private ArrayList<Card> hand = new ArrayList<>(); // This ArrayList contains the player's card objects
+	public ArrayList<Card> hand = new ArrayList<>(); // This ArrayList contains the player's card objects
 
-	private boolean knockedOut = false; // When the 'hand' ArrayList contains no cards the player will be knocked out
-	private boolean human;
-	private int roundsWon; // A counter for the amount of rounds won by each player.
+	public boolean knockedOut = false; // When the 'hand' ArrayList contains no cards the player will be knocked out
+	public boolean human; //these are public so that the api will get them back correctly
 
 	/**
  	 * Constructor for Player. 
@@ -26,9 +27,7 @@ public class Player {
 		this.human = human;
 		this.number = number;
 	}
-	public Player(int number){
-		this.number = number;
-	}
+
 	/**
 	 * Method to set player number - set after construction so that they can be
 	 * randomly assigned an order and number.
@@ -52,32 +51,11 @@ public class Player {
 	 * Top card is in position 0. Bottom card is in position size-1. 
 	 * @return commandline.Card object
 	 */
+	@JsonIgnore
 	public Card getTopCard() {
-
 		return hand.get(0);
 	}
 
-	/**
-	 * Get the amount of Card objects in 'hand' ArrayList.
-	 */
-
-	public int getNumberOfCardsInHand() {
-		return hand.size();
-	}
-
-	/**
-	 * Counter for number of rounds won by each player.
-	 */
-	public void winRound() {
-		roundsWon++;
-	}
-
-	//public int roundsWon() {
-	//	return roundsWon;
-	//}
-	/*
-	not currently in use
-	 */
 	
 	 /**
 	  * Boolean method to return if a player is still in the game.
@@ -131,6 +109,7 @@ public class Player {
 	 * When no commandline.Card objects remain in 'hand' ArrayList boolean knockedOut
 	 * is set to true.
 	 */
+	@JsonIgnore
 	public void removeTopCardFromHand() {
 
 		hand.remove(0);
