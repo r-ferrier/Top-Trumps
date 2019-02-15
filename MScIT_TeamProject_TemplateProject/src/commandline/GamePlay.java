@@ -24,11 +24,10 @@ public class GamePlay {
 	private boolean playGame;
 
 	/**
-	 * Constructor for GamePlay class. It creates a deck of cards from the .txt file
+	 * Constructor for commandline version of GamePlay class. It creates a deck of cards from the .txt file
 	 * in in the commandline.Deck class and stores the categories for the cards. It
 	 * also creates the AI players and uses gameBegins() method to start gameplay.
 	 */
-
 	public GamePlay() {
 
 		playGame = true;
@@ -53,7 +52,6 @@ public class GamePlay {
 			// database.uploadGameStats(drawCounter, gameWinner, roundCounter);
 
 		}
-
 	}
 
 	public static void main(String[] args) {
@@ -147,7 +145,7 @@ public class GamePlay {
 	 * Takes the shuffled ArrayList of card objects and distributes them to players
 	 * in set order.
 	 */
-	private void dealCardsToPlayers() {
+	public void dealCardsToPlayers() {
 		int i = 0;
 		for (Card card : deck.getDeck()) {
 			players.get(i).dealCard(card);

@@ -40,31 +40,31 @@
     <div class="all-cards-played" style="display: none">
         <div class="row">
             <div class="card-1" style="margin-left: 15px" style="margin-right: 15px">
-                <img id="player-1-card" width="170">
+                <img id="player-1-card" width="200">
                 <p id="card-1-caption"></p>
             </div>
         </div>
         <div class="row">
             <div class="card-2" style="margin-left: 15px" style="margin-right: 15px">
-                <img id="player-2-card" width="170">
+                <img id="player-2-card" width="200">
                 <p id="card-2-caption"></p>
             </div>
         </div>
         <div class="row">
             <div class="card-3" style="margin-left: 15px" style="margin-right: 15px">
-                <img id="player-3-card" width="170">
+                <img id="player-3-card" width="200">
                 <p id="card-3-caption"></p>
             </div>
         </div>
         <div class="row">
             <div class="card-4" style="margin-left: 15px" style="margin-right: 15px">
-                <img id="player-4-card" width="170">
+                <img id="player-4-card" width="200">
                 <p id="card-4-caption"></p>
             </div>
         </div>
         <div class="row">
             <div class="card-5" style="margin-left: 15px" style="margin-right: 15px">
-                <img id="player-5-card" width="170">
+                <img id="player-5-card" width="200">
                 <p id="card-5-caption"></p>
             </div>
         </div>
@@ -114,7 +114,7 @@
     </div>
 
     <div class="winning-card" style="display: none">
-        <img id="winners-card" width="200px">
+        <img id="winners-card" width="250px">
         <p id="winners-card-caption"></p>
     </div>
 
@@ -172,7 +172,7 @@
             <div id="number-communal">
                 <p id="communal-6" style="text-align: center">23</p>
             </div>
-            <p>On the table</p>
+            <p><strong>On the table</strong></p>
         </div>
     </div>
 
@@ -190,7 +190,6 @@
     const sandwichAddressStart = "https://raw.githack.com/r-ferrier/images-and-css-for-top-trumps/master/maincards/";
     const addressEnd = ".png";
 
-    let deck;
     let listOfPlayers = [];
     let communalPile = [];
     let countOfRounds = 1;
@@ -209,101 +208,24 @@
 
     let numberOfDraws = 0;
 
-    /*
-    creating one class to create player objects from. The player will hold a hand of cards, a name, and other information
-    required to run the game.
-     */
-    class Player {
-
-        constructor(name, number, human) {
-
-            let hand = [];
-            this._name = name;
-            this._number = number;
-            this._hand = hand;
-            this._knockedOut = false;
-            this._human = human;
-            this._roundsWon = 0;
-        }
-
-        get name() {
-            return this._name;
-        }
-
-        get hand() {
-            return this._hand;
-        }
-
-        get number() {
-            return this._number;
-        }
-
-        get knockedOut() {
-            return this._knockedOut;
-        }
-
-        get human() {
-            return this._human;
-        }
-
-        get roundsWon() {
-            return this._roundsWon;
-        }
-    }
 
     /*
     Method that is called on page load
     */
     function initalize() {
 
-        setPlayers(); //creates as many Player objects as required for game, stores them in an array (players) and prints out two lines at top of game announcing turns
-        getDeckAndBeginGame(); //calls on the rest api to upload a deck, which is then shuffled and dealt to players. changes display depending on whose turn it is and shows human's top card.
+        getPlayers(); //creates as many Player objects as required for game, stores them in an array (players) and prints out two lines at top of game announcing turns
+     //also calls on the rest api to upload a deck, which is then shuffled and dealt to players. changes display depending on whose turn it is and shows human's top card.
 
     }
 
-    function setPlayers() {
+    function setPlayers(playersFromRestApi){
 
-        let aiName = ['Clive', 'Brenda', 'Janet', 'Philip'];
-
-        listOfPlayers.push(new Player('You', 0, true));
-
-
-        for (let i = 1; i < ${players}; i++) {
-            listOfPlayers.push(new Player(aiName[i - 1], i, false))
-
-        }
-
-        shuffle(listOfPlayers);
-    }
-
-    function setDeckAndBeginGame(deckFromRestApi) {
-
-        deck = JSON.parse(deckFromRestApi); //converts string into an object
-
-        let playerIndex = 0;
-
-        for (let i = 0; i < deck.length; i++) {  //iterates over the deck, dealing cards to players in order
-            console.log(deck[i]);
-            listOfPlayers[playerIndex]._hand.push(deck[i]);
-
-            console.log(listOfPlayers[playerIndex].name);
-            playerIndex++;
-
-            console.log(i);
-
-            if (playerIndex >=${players}) {
-                playerIndex = 0;
-            }
-        }
-
-        for (let i = 0; i < listOfPlayers[0]._hand.length; i++) {
-
-            console.log(listOfPlayers[0]._hand[i] + " card in " + listOfPlayers[0].name + "'s hand");
-        }
-
+        listOfPlayers = JSON.parse(playersFromRestApi);
         findHuman();
         beginRound();
         displayNumberOfCardsLeft();
+
     }
 
     /*
@@ -311,7 +233,7 @@
      */
     function findHuman() {
         for (let i = 0; i < listOfPlayers.length; i++) {
-            if (listOfPlayers[i]._human) {
+            if (listOfPlayers[i].human) {
                 indexOfHumanPlayer = i;
                 return i;
             }
@@ -326,9 +248,9 @@
      */
     function beginRound() {
 
-        let categories = listOfPlayers[indexOfCurrentPlayer]._hand[0].categoryValues;
-        let name = listOfPlayers[indexOfCurrentPlayer]._hand[0].description.replace('_', ' ');
-        let number = (listOfPlayers[indexOfHumanPlayer]._hand[0].cardNumber) + 1;
+        let categories = listOfPlayers[indexOfCurrentPlayer].hand[0].categoryValues;
+        let name = listOfPlayers[indexOfCurrentPlayer].hand[0].description.replace(/_/g, ' ');
+        let number = (listOfPlayers[indexOfHumanPlayer].hand[0].cardNumber) + 1;
 
         document.getElementsByClassName("winning-card")[0].style.display = "none";
 
@@ -351,24 +273,29 @@
         document.getElementById("end-game").style.display = "block";
 
         if (humanIsGone) {
-            findAIWinner();
-            document.getElementById("players-turn-text").innerHTML = "You've been knocked out! Click the button to let the ai players finish the game and find out who wins.";
+            if(listOfPlayers.length<2){
+                document.getElementById("players-turn-text").innerHTML = "<br><br>You've been knocked out by "+listOfPlayers[0].name+"! <br><br>Click the button to return to the homescreen.";
+                document.getElementById("end-game").value = countOfRounds+"."+listOfPlayers[0].name;
+            }else{
+                findAIWinner();
+                document.getElementById("players-turn-text").innerHTML = "<br><br>You've been knocked out! <br><br>Click the button to let the ai players finish the game and find out who wins.";
+            }
         } else {
-            document.getElementById("players-turn-text").innerHTML = "You've won! Click the button to return to the homescreen.";
-
-            document.getElementById("end-game").value = [countOfRounds, listOfPlayers[0].name];
+            document.getElementById("players-turn-text").innerHTML = "<br><br>You've won! <br><br>Click the button to return to the homescreen.";
+            document.getElementById("end-game").value = countOfRounds+"."+listOfPlayers[0].name;
         }
-
-        setDatabase(numberOfDraws + "," + listOfPlayers[0]._number + "," + (countOfRounds - 1));
-
+        setDatabase(numberOfDraws + "," + listOfPlayers[0].number + "," + countOfRounds);
     }
 
     function findAIWinner() {
 
         while (listOfPlayers > 1) {
+
+            countOfRounds++;
+
             let maxNumber = 0;
             for (let i = 0; i < 5; i++) {
-                let value = listOfPlayers[indexOfCurrentPlayer]._hand[0].categoryValues[i];
+                let value = listOfPlayers[indexOfCurrentPlayer].hand[0].categoryValues[i];
                 if (value > maxNumber) {
                     maxNumber = value;
                     categoryIndexOfCardChoice = i;
@@ -379,7 +306,7 @@
             draw = false;
 
             for (let i = 0; i < listOfPlayers.length; i++) {
-                winningCardCategory = listOfPlayers[i]._hand[0].categoryValues[categoryIndexOfCardChoice];
+                winningCardCategory = listOfPlayers[i].hand[0].categoryValues[categoryIndexOfCardChoice];
 
                 if (winningCardCategory > maxNumber) {
                     draw = false;
@@ -415,9 +342,7 @@
 
             for (let i = 0; i < listOfPlayers.length; i++) {
                 if (listOfPlayers[i].hand === 0) {
-                    console.log(listOfPlayers[i].name + " was knocked out");
                     listOfPlayers.splice(i, 1);
-                    console.log(listOfPlayers.length);
                     if (indexOfCurrentPlayer >= i) {
                         indexOfCurrentPlayer -= 1;
                     }
@@ -425,8 +350,7 @@
                 }
             }
         }
-
-        document.getElementById("end-game").value = [countOfRounds, listOfPlayers[0].name];
+        document.getElementById("end-game").value = countOfRounds+"."+listOfPlayers[0].name;
 
     }
 
@@ -488,6 +412,8 @@
 
         } else if (buttonClicked === "continue to next round") {
 
+            displayNumberOfCardsLeft();
+
             if (!draw) {
                 updateRoundCount(listOfPlayers[indexOfRoundWinner].number);
             }
@@ -495,11 +421,12 @@
             if (!humanIsGone && listOfPlayers.length > 1) {
                 beginRound();
                 document.getElementById("play-card").setAttribute("value", "play your card");
+                countOfRounds++;
             } else {
                 endGame();
             }
 
-            countOfRounds++;
+
 
         }
     }
@@ -526,9 +453,7 @@
                 if (listOfPlayers[i].human) {
                     humanIsGone = true;
                 }
-                console.log(listOfPlayers[i].name + " was knocked out");
                 listOfPlayers.splice(i, 1);
-                console.log(listOfPlayers.length);
                 if (indexOfCurrentPlayer >= i) {
                     indexOfCurrentPlayer -= 1;
                 }
@@ -561,6 +486,7 @@
                     categoryChoice + " value of " + winningCardCategory + ".";
         } else {
             document.getElementById("winners-card").style.display = "none";
+            document.getElementById("winners-card-caption").innerText = "";
 
             document.getElementById("players-turn-text").innerHTML = "This round was a draw!";
             numberOfDraws++;
@@ -601,8 +527,6 @@
 
             document.getElementById("cards-left-" + i).style.display = "none";
         }
-
-
         document.getElementById("communal-6").innerHTML = communalPile.length + "";
     }
 
@@ -633,7 +557,7 @@
 
         } else {
             for (let i = 0; i < 5; i++) {
-                let value = listOfPlayers[indexOfCurrentPlayer]._hand[0].categoryValues[i];
+                let value = listOfPlayers[indexOfCurrentPlayer].hand[0].categoryValues[i];
                 if (value > maxNumber) {
                     maxNumber = value;
                     categoryIndexOfCardChoice = i;
@@ -663,17 +587,15 @@
 
         for (let i = 0; i < listOfPlayers.length; i++) {
 
-            console.log("winningCardCategory = listOfPlayers[" + i + "]._hand[0].categoryValues[" + categoryIndexOfCardChoice + "]");
-
-            winningCardCategory = listOfPlayers[i]._hand[0].categoryValues[categoryIndexOfCardChoice];
+            winningCardCategory = listOfPlayers[i].hand[0].categoryValues[categoryIndexOfCardChoice];
 
             if (winningCardCategory > maxNumber) {
                 draw = false;
                 maxNumber = winningCardCategory;
                 winningCardName = listOfPlayers[i].name;
                 indexOfRoundWinner = i;
-                cardNumberOfRoundWinner = (listOfPlayers[i]._hand[0].cardNumber) + 1;
-                winningCardDescription = listOfPlayers[i]._hand[0].description.replace('_', ' ');
+                cardNumberOfRoundWinner = (listOfPlayers[i].hand[0].cardNumber) + 1;
+                winningCardDescription = listOfPlayers[i].hand[0].description.replace(/_/g, ' ');
             } else if (winningCardCategory === maxNumber) {
                 draw = true;
                 winningCardName = null;
@@ -695,7 +617,7 @@
 
         for (let i = 0; i < listOfPlayers.length; i++) {
 
-            let number = (listOfPlayers[i]._hand[0].cardNumber) + 1;
+            let number = (listOfPlayers[i].hand[0].cardNumber) + 1;
             document.getElementById("player-" + (i + 1) + "-card").src = cardAddressStart + number + addressEnd;
             document.getElementById("card-" + (i + 1) + "-caption").innerText = listOfPlayers[i].name;
             if (listOfPlayers[i].name === "You") {
@@ -759,9 +681,9 @@
         findHuman();
 
         if (indexOfCurrentPlayer === indexOfHumanPlayer) {
-            return "\nIt's your turn! Your top card is " + listOfPlayers[indexOfHumanPlayer].hand[0].description.replace('_', ' ') + ".";
+            return "\nIt's your turn! Your top card is " + listOfPlayers[indexOfHumanPlayer].hand[0].description.replace(/_/g, ' ') + ".";
         } else {
-            return "\nIt's " + listOfPlayers[indexOfCurrentPlayer]._name + "'s turn. Your top card is " + listOfPlayers[indexOfHumanPlayer].hand[0].description.replace('_', ' ') + ".";
+            return "\nIt's " + listOfPlayers[indexOfCurrentPlayer].name + "'s turn. Your top card is " + listOfPlayers[indexOfHumanPlayer].hand[0].description.replace(/_/g, ' ') + ".";
         }
     }
 
@@ -775,9 +697,9 @@
 
 <script type="text/javascript">
 
-    function getDeckAndBeginGame() {
+    function getPlayers() {
 
-        const xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/deck"); //first create cors request to my new restapi method
+        const xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/get-players/"+${players}); //first create cors request to my new restapi method
 
         if (!xhr) {
             alert("CORS not supported");
@@ -787,7 +709,7 @@
         xhr.onload = function (e) {
 
             let responseText = xhr.response; // the text of the response
-            setDeckAndBeginGame(responseText);
+            setPlayers(responseText);
         };
 
         // We have done everything we need to prepare the CORS request, so send it

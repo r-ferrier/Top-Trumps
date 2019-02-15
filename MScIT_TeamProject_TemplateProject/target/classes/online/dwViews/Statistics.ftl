@@ -8,14 +8,14 @@
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 
     <link rel="stylesheet" type="text/css"
-          href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsStyle.css">
+          href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/stats.css">
 
 </head>
 
 <body onload="initialize()"> <!-- Call the initalize method when the page loads -->
 
 <form action="http://localhost:7777/toptrumps" method="GET">
-    <input id="view_stats" type=submit value="home" class="buttons"><br>
+    <input id="home" type=submit value="home" class="buttons"><br>
 </form>
 
 <div class="title">
@@ -23,12 +23,14 @@
 </div>
 
 <div class="summary">
-    <h4 id="overall-games-played">Number of Games Played overall</h4>
-    <h4 id="computer-wins">Number of Computer wins</h4>
-    <h4 id="human-wins">Number of Human wins</h4>
-    <h4 id="average-draws">Average number of draws</h4>
-    <h4 id="largest-round">Largest number of rounds played in a single game</h4>
+    <h4 id="overall-games-played">Database unable to load. <br><br> Please check your connection and try reloading this page.</h4>
+    <h4 id="computer-wins"></h4>
+    <h4 id="human-wins"></h4>
+    <h4 id="average-draws"></h4>
+    <h4 id="largest-round"></h4>
 </div>
+
+<img id="stats-image" src="https://github.com/r-ferrier/topTrumpsCSS/blob/master/winnerPlaceholder.png?raw=true">
 
 
 <script type="text/javascript">
@@ -45,11 +47,14 @@
     function setGameStats(responseText){
 
         array = JSON.parse(responseText);
-        document.getElementById("overall-games-played").innerText = 'Number of Games Played overall: '+array[0];
-        document.getElementById("computer-wins").innerText = 'Number of Computer wins: '+array[1];
-        document.getElementById("human-wins").innerText = 'Number of Human wins: '+array[2];
-        document.getElementById("average-draws").innerText = 'Average number of draws: '+array[3];
-        document.getElementById("largest-round").innerText = 'Largest number of rounds played in a single game: '+array[4];
+
+        if(array[0]!==undefined) {
+            document.getElementById("overall-games-played").innerText = 'Number of Games Played overall: ' + array[0];
+            document.getElementById("computer-wins").innerText = 'Number of Computer wins: ' + array[1];
+            document.getElementById("human-wins").innerText = 'Number of Human wins: ' + array[2];
+            document.getElementById("average-draws").innerText = 'Average number of draws: ' + array[3];
+            document.getElementById("largest-round").innerText = 'Largest number of rounds played in a single game: ' + array[4];
+        }
 
     }
 
