@@ -29,104 +29,105 @@
         </form>
     </div>
 </div>
-<div id="players-turn">
-    <h2 id=></h2>
-</div>
-
-<div class="all-cards-played" style="display: none">
-    <div class="row">
-        <div class="card-1" style="margin-left: 15px" style="margin-right: 15px">
-            <img id="player-1-card" width="170">
-            <p id="card-1-caption"></p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="card-2" style="margin-left: 15px" style="margin-right: 15px">
-            <img id="player-2-card" width="170">
-            <p id="card-2-caption"></p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="card-3" style="margin-left: 15px" style="margin-right: 15px">
-            <img id="player-3-card" width="170">
-            <p id="card-3-caption"></p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="card-4" style="margin-left: 15px" style="margin-right: 15px">
-            <img id="player-4-card" width="170">
-            <p id="card-4-caption"></p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="card-5" style="margin-left: 15px" style="margin-right: 15px">
-            <img id="player-5-card" width="170">
-            <p id="card-5-caption"></p>
-        </div>
-    </div>
-</div>
-
-<div class="card-outline" style="display: none">
-    <div class="card-contents">
-
-        <img id="sandwich" src="https://raw.githubusercontent.com/r-ferrier/topTrumpsCSS/master/jam_sandwich.png"
-             width="200" height="150">
-        <p id="caption"></p>
 
 
-        <div class="radio-labels">
-            <div class="this-label">
-                <label for="Deliciousness">Deliciousness</label>
-                <input type="radio" id="Deliciousness" name="choices" value="Deliciousness">
-                <label for="Deliciousness" id="category1"></label>
+<div class="middle-line">
+
+    <div class="players-turn">
+        <h2 id="players-turn-text"></h2>
+    </div>
+
+    <div class="all-cards-played" style="display: none">
+        <div class="row">
+            <div class="card-1" style="margin-left: 15px" style="margin-right: 15px">
+                <img id="player-1-card" width="170">
+                <p id="card-1-caption"></p>
             </div>
-            <br>
-            <div class="this-label">
-                <label for="Size">Size</label>
-                <input type="radio" id="Size" name="choices" value="Size">
-                <label for="Size" id="category2"></label>
+        </div>
+        <div class="row">
+            <div class="card-2" style="margin-left: 15px" style="margin-right: 15px">
+                <img id="player-2-card" width="170">
+                <p id="card-2-caption"></p>
             </div>
-            <br>
-            <div class="this-label">
-                <label for="Toastability">Toastability</label>
-                <input type="radio" id="Toastability" name="choices" value="Toastability">
-                <label for="Toastability" id="category3"></label>
+        </div>
+        <div class="row">
+            <div class="card-3" style="margin-left: 15px" style="margin-right: 15px">
+                <img id="player-3-card" width="170">
+                <p id="card-3-caption"></p>
             </div>
-            <br>
-            <div class="this-label">
-                <label for="Satiation">Satiation</label>
-                <input type="radio" id="Satiation" name="choices" value="Satiation">
-                <label for="Satiation" id="category4"></label>
+        </div>
+        <div class="row">
+            <div class="card-4" style="margin-left: 15px" style="margin-right: 15px">
+                <img id="player-4-card" width="170">
+                <p id="card-4-caption"></p>
             </div>
-            <br>
-            <div class="this-label">
-                <label for="Complexity">Complexity</label>
-                <input type="radio" id="Complexity" name="choices" value="Complexity">
-                <label for="Complexity" id="category5"></label>
+        </div>
+        <div class="row">
+            <div class="card-5" style="margin-left: 15px" style="margin-right: 15px">
+                <img id="player-5-card" width="170">
+                <p id="card-5-caption"></p>
             </div>
         </div>
     </div>
-</div>
 
-<div class="ai-card-outline" style="display: none">
-    <img id="human-card" width="250px">
-</div>
+    <div class="card-outline" style="display: none">
+        <div class="card-contents">
+            <img id="sandwich" src="https://raw.githubusercontent.com/r-ferrier/topTrumpsCSS/master/jam_sandwich.png"
+                 width="200" height="150">
+            <p id="caption"></p>
+            <div class="radio-labels">
+                <div class="this-label">
+                    <label for="Deliciousness">Deliciousness</label>
+                    <input type="radio" id="Deliciousness" name="choices" value="Deliciousness">
+                    <label for="Deliciousness" id="category1"></label>
+                </div>
+                <br>
+                <div class="this-label">
+                    <label for="Size">Size</label>
+                    <input type="radio" id="Size" name="choices" value="Size">
+                    <label for="Size" id="category2"></label>
+                </div>
+                <br>
+                <div class="this-label">
+                    <label for="Toastability">Toastability</label>
+                    <input type="radio" id="Toastability" name="choices" value="Toastability">
+                    <label for="Toastability" id="category3"></label>
+                </div>
+                <br>
+                <div class="this-label">
+                    <label for="Satiation">Satiation</label>
+                    <input type="radio" id="Satiation" name="choices" value="Satiation">
+                    <label for="Satiation" id="category4"></label>
+                </div>
+                <br>
+                <div class="this-label">
+                    <label for="Complexity">Complexity</label>
+                    <input type="radio" id="Complexity" name="choices" value="Complexity">
+                    <label for="Complexity" id="category5"></label>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="ai-card-outline" style="display: none">
+        <img id="human-card" width="250px">
+    </div>
 
-<div class="winning-card" style="display: none">
-    <img id="winners-card" width="200px">
-    <p id="winners-card-caption"></p>
-</div>
-
-<div class="bottom-line">
+    <div class="winning-card" style="display: none">
+        <img id="winners-card" width="200px">
+        <p id="winners-card-caption"></p>
+    </div>
 
     <div class="play-card">
         <input id="play-card" type="submit" value="play your card" name="choices" onclick="buttons()">
+        <form action="http://localhost:7777/toptrumps" method="GET">
+            <button id="end-game" type="submit" name="winner" style="display: none">end game</button>
+        </form>
     </div>
 
-    <form action="http://localhost:7777/toptrumps" method="GET">
-        <button id="end-game" type="submit" name="winner" style="display: none">end game</button>
-    </form>
+</div>
+
+<div class="bottom-line">
 
     <div class="game-stats">
         <div id="players-in-game">
@@ -169,7 +170,7 @@
         </div>
         <div id="cards-left-communal">
             <div id="number-communal">
-                <p id="communal-6" style = "text-align: center">23</p>
+                <p id="communal-6" style="text-align: center">23</p>
             </div>
             <p>On the table</p>
         </div>
@@ -266,8 +267,10 @@
 
         listOfPlayers.push(new Player('You', 0, true));
 
+
         for (let i = 1; i < ${players}; i++) {
-            listOfPlayers.push(new Player(aiName[i-1], i, false))
+            listOfPlayers.push(new Player(aiName[i - 1], i, false))
+
         }
 
         shuffle(listOfPlayers);
@@ -324,7 +327,7 @@
     function beginRound() {
 
         let categories = listOfPlayers[indexOfCurrentPlayer]._hand[0].categoryValues;
-        let name = listOfPlayers[indexOfCurrentPlayer]._hand[0].description.replace('_',' ');
+        let name = listOfPlayers[indexOfCurrentPlayer]._hand[0].description.replace('_', ' ');
         let number = (listOfPlayers[indexOfHumanPlayer]._hand[0].cardNumber) + 1;
 
         document.getElementsByClassName("winning-card")[0].style.display = "none";
@@ -337,7 +340,7 @@
             setCardWithoutChoices(number);
         }
 
-        document.getElementById("players-turn").innerHTML = getWhoseTurnItIs();
+        document.getElementById("players-turn-text").innerHTML = getWhoseTurnItIs();
     }
 
 
@@ -349,14 +352,14 @@
 
         if (humanIsGone) {
             findAIWinner();
-            document.getElementById("players-turn").innerHTML = "You've been knocked out! Click the button to let the ai players finish the game and find out who wins.";
+            document.getElementById("players-turn-text").innerHTML = "You've been knocked out! Click the button to let the ai players finish the game and find out who wins.";
         } else {
-            document.getElementById("players-turn").innerHTML = "You've won! Click the button to return to the homescreen.";
+            document.getElementById("players-turn-text").innerHTML = "You've won! Click the button to return to the homescreen.";
 
-            document.getElementById("end-game").value = [countOfRounds,listOfPlayers[0].name];
+            document.getElementById("end-game").value = [countOfRounds, listOfPlayers[0].name];
         }
 
-        setDatabase(numberOfDraws + "," + listOfPlayers[0]._number + "," + (countOfRounds-1));
+        setDatabase(numberOfDraws + "," + listOfPlayers[0]._number + "," + (countOfRounds - 1));
 
     }
 
@@ -423,7 +426,7 @@
             }
         }
 
-        document.getElementById("end-game").value = [countOfRounds,listOfPlayers[0].name];
+        document.getElementById("end-game").value = [countOfRounds, listOfPlayers[0].name];
 
     }
 
@@ -485,18 +488,19 @@
 
         } else if (buttonClicked === "continue to next round") {
 
-            if(!draw) {
+            if (!draw) {
                 updateRoundCount(listOfPlayers[indexOfRoundWinner].number);
             }
-            
+
             if (!humanIsGone && listOfPlayers.length > 1) {
                 beginRound();
                 document.getElementById("play-card").setAttribute("value", "play your card");
             } else {
                 endGame();
             }
-            
+
             countOfRounds++;
+
         }
     }
 
@@ -546,20 +550,19 @@
             if (listOfPlayers[indexOfRoundWinner].human) {
                 captionText = "Your card";
             } else {
-                captionText = listOfPlayers[indexOfRoundWinner].name + '\'s card'
+                captionText = listOfPlayers[indexOfRoundWinner].name + '\'s card';
             }
-            ;
 
             document.getElementById("winners-card").style.display = "block";
             document.getElementById("winners-card").src = cardAddressStart + cardNumberOfRoundWinner + addressEnd;
             document.getElementById("winners-card-caption").innerText = captionText;
 
-            document.getElementById("players-turn").innerHTML = winningCardName + " won this round, with the card " + winningCardDescription + " which had a " +
+            document.getElementById("players-turn-text").innerHTML = winningCardName + " won this round, with the card " + winningCardDescription + " which had a " +
                     categoryChoice + " value of " + winningCardCategory + ".";
         } else {
             document.getElementById("winners-card").style.display = "none";
 
-            document.getElementById("players-turn").innerHTML = "This round was a draw!";
+            document.getElementById("players-turn-text").innerHTML = "This round was a draw!";
             numberOfDraws++;
 
         }
@@ -670,7 +673,7 @@
                 winningCardName = listOfPlayers[i].name;
                 indexOfRoundWinner = i;
                 cardNumberOfRoundWinner = (listOfPlayers[i]._hand[0].cardNumber) + 1;
-                winningCardDescription = listOfPlayers[i]._hand[0].description.replace('_',' ');
+                winningCardDescription = listOfPlayers[i]._hand[0].description.replace('_', ' ');
             } else if (winningCardCategory === maxNumber) {
                 draw = true;
                 winningCardName = null;
@@ -707,7 +710,7 @@
         }
 
         let name = listOfPlayers[indexOfCurrentPlayer].name;
-        document.getElementById("players-turn").innerHTML = name + " chose " + categoryChoice;
+        document.getElementById("players-turn-text").innerHTML = name + " chose " + categoryChoice;
     }
 
 
@@ -756,9 +759,9 @@
         findHuman();
 
         if (indexOfCurrentPlayer === indexOfHumanPlayer) {
-            return "\nIt's your turn! Your top card is " + listOfPlayers[indexOfHumanPlayer].hand[0].description.replace('_',' ') + ".";
+            return "\nIt's your turn! Your top card is " + listOfPlayers[indexOfHumanPlayer].hand[0].description.replace('_', ' ') + ".";
         } else {
-            return "\nIt's " + listOfPlayers[indexOfCurrentPlayer]._name + "'s turn. Your top card is " + listOfPlayers[indexOfHumanPlayer].hand[0].description.replace('_',' ') + ".";
+            return "\nIt's " + listOfPlayers[indexOfCurrentPlayer]._name + "'s turn. Your top card is " + listOfPlayers[indexOfHumanPlayer].hand[0].description.replace('_', ' ') + ".";
         }
     }
 
