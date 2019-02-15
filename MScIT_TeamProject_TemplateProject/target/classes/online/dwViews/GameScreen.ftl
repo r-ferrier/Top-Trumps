@@ -269,7 +269,8 @@
 
 
         for (let i = 1; i < ${players}; i++) {
-            listOfPlayers.push(new Player(aiName[i - 1], i, false))
+
+            listOfPlayers.push(new Player(aiName[i-1], i, false))
 
         }
 
