@@ -18,55 +18,63 @@
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
 
-    <link rel="stylesheet" type = "text/css" href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsStyle.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsStyle.css">
 
 </head>
 
 <body onload="initialize()"> <!-- Call the initalize method when the page loads -->
-
-<div class="title">
-    <h1 id="firstWord">Top Trumps:</h1>
-    <h1 id="secondWord"><br>Sandwiches<br>edition</h1>
-</div>
+<img id="title" src="https://github.com/r-ferrier/images-and-css-for-top-trumps/blob/master/title-image.png?raw=true" alt="Top trumps: Sandwiches edition">
 <br>
 
+
 <div class="winner-message">
-    <h2 id="This person won"></h2>
+    <img id="winner-image" src="https://github.com/r-ferrier/images-and-css-for-top-trumps/blob/master/winner-image.png?raw=true" style="display:none">
+    <h2 id="winner"></h2>
 </div>
 
 <div class="buttonsContainer">
 
-    <form action="http://localhost:7777/toptrumps/stats" method="GET">
-    <input id="view_stats" type = submit value="view stats" class = "buttons"><br>
-    </form>
-
-    <form action="http://localhost:7777/toptrumps/game" method="GET">
-        <!--form to chose how many players are in game-->
+    <!--form to chose how many players are in game-->
     <div class="choose_players">
-        <label for="choose_players">choose players</label>
-        <select id="choose_players" name="players" required>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <input id="start_new_game" type = submit value="start new game" class = "buttons"">
+        <form action="http://localhost:7777/toptrumps/game" method="GET">
+            <label for="choose_players">Number of players for this game:</label>
+            <select id="choose_players" name="players" required>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <input type=submit value="start new game">
+        </form>
     </div>
-    </form>
+
+    <div class="view-stats">
+        <form action="http://localhost:7777/toptrumps/stats" method="GET">
+            <input type=submit value="view stats"><br>
+        </form>
+    </div>
 
 </div>
 <script type="text/javascript">
 
     // Method that is called on page load
 
-    function initialize(){
+    function initialize() {
 
         let n = window.location.search.lastIndexOf("=");
         let result = window.location.search.substring(n + 1);
+        let results = result.split(".");
+        let rounds = "rounds.";
 
-        if(result) {
+        if (results[0] === "1") {
+            rounds = "round.";
+        }
 
-            document.getElementById("This person won").innerText = result+" won! Game over.";
+        if (result) {
+
+            document.getElementById("winner").innerHTML = results[1] + " won! <br>Game over in " + results[0] + " " + rounds;
+            document.getElementById("winner-image").style.display = "block";
 
         }
     }
@@ -90,10 +98,6 @@
     }
 </script>
 </body>
-
-
-
-
 
 
 </html>
