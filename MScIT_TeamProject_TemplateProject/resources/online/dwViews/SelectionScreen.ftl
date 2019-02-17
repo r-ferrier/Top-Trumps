@@ -24,13 +24,13 @@
 </head>
 
 <body onload="initialize()"> <!-- Call the initalize method when the page loads -->
-<img id="title" src="https://github.com/r-ferrier/topTrumpsCSS/blob/master/titlePlaceholder.png?raw=true" alt="Top trumps: Sandwiches edition" width="400px">
+<img id="title" src="https://github.com/r-ferrier/images-and-css-for-top-trumps/blob/master/title-image.png?raw=true" alt="Top trumps: Sandwiches edition">
 <br>
 
 
 <div class="winner-message">
-    <img id="winner-image" src="https://github.com/r-ferrier/topTrumpsCSS/blob/master/winnerPlaceholder.png?raw=true" width="200px" style="display:none">
-    <h2 id="This person won"></h2>
+    <img id="winner-image" src="https://github.com/r-ferrier/images-and-css-for-top-trumps/blob/master/winner-image.png?raw=true" style="display:none">
+    <h2 id="winner"></h2>
 </div>
 
 <div class="buttonsContainer">
@@ -73,7 +73,7 @@
 
         if (result) {
 
-            document.getElementById("This person won").innerHTML = results[1] + " won! <br>Game over in " + results[0] + " " + rounds;
+            document.getElementById("winner").innerHTML = results[1] + " won! <br>Game over in " + results[0] + " " + rounds;
             document.getElementById("winner-image").style.display = "block";
 
         }
