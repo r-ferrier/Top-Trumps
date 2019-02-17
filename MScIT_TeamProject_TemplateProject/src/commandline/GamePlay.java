@@ -55,7 +55,7 @@ public class GamePlay {
 	}
 
 	public static void main(String[] args) {
-		new TestLog(true); // remove from final version. this needs to be here to prevent log printing in console
+//		new TestLog(true); // remove from final version. this needs to be here to prevent log printing in console
 		new GamePlay();
 
 	}
@@ -262,7 +262,7 @@ public class GamePlay {
 		int winner = -1;
 
 		for (Player player : players) {
-			if (!player.amIKnockedOut()) {
+			if (player.amIKnockedOut() == false) {
 				winner = player.getNumber();
 				System.out.println("The winner is " + player.getName());
 

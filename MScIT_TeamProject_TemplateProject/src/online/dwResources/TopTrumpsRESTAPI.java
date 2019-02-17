@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import commandline.*;
 import online.configuration.TopTrumpsJSONConfiguration;
-import sun.plugin.javascript.navig.Array;
+
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

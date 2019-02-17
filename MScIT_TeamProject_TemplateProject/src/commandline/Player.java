@@ -65,12 +65,12 @@ public class Player {
 		return knockedOut;
 	}
 
-//	/**
-//	 * Sets knockedOut to true.
-//	 */
-//	public void knockOutPlayer() {
-//		knockedOut = true;
-//	}
+	/**
+	 * Sets knockedOut to true.
+	 */
+	public void knockOutPlayer() {
+		knockedOut = true;
+	}
 
 	/**
 	 * Returns player's name.
