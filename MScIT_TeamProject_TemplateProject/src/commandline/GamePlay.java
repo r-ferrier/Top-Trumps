@@ -55,7 +55,9 @@ public class GamePlay {
 	}
 
 	public static void main(String[] args) {
+		new TestLog(true); // remove from final version. this needs to be here to prevent log printing in console
 		new GamePlay();
+
 	}
 
 	/**
@@ -74,6 +76,7 @@ public class GamePlay {
 	 */
 	public void createDeck() {
 		deck = new Deck();
+		deck.shuffleCards();
 	}
 
 	/**
@@ -121,6 +124,7 @@ public class GamePlay {
 				}
 			} catch (InputMismatchException e) {
 				System.out.println("Oops that was not a valid number. \n");
+				break;
 			}
 		}
 
@@ -426,7 +430,7 @@ public class GamePlay {
 	 * 
 	 * @param win boolean true/win false/draw
 	 */
-	private void addCardsToCommunalPile(boolean win) {
+	protected void addCardsToCommunalPile(boolean win) {
 
 		if (win) {
 
