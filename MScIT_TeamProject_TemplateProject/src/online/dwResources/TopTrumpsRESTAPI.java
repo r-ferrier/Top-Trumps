@@ -5,10 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import commandline.*;
 import online.configuration.TopTrumpsJSONConfiguration;
+import sun.plugin.javascript.navig.Array;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 @Path("/toptrumps") // Resources specified here should be hosted at http://localhost:7777/toptrumps
@@ -48,8 +50,6 @@ public class TopTrumpsRESTAPI {
     @GET
     @Path("/get-players/{number}")
     public String players(@PathParam("number") int numOfPlayers) throws JsonProcessingException {
-
-        database = new Database();
 
         ArrayList<Card> deck = new Deck().getDeck();
         Collections.shuffle(deck);
@@ -97,8 +97,10 @@ public class TopTrumpsRESTAPI {
 
 
     @GET
-    @Path("/writeDatabase/{databaseArray}")
-    public String databaseWriter(@PathParam("databaseArray") String databaseData) {
+    @Path("/writeDatabase/{databaseArray}/{playersArray}")
+    public String databaseWriter(@PathParam("databaseArray") String databaseData, @PathParam("playersArray") String playersData) {
+
+        database = new Database();
 
         String[] databaseArray = databaseData.split(",");
         int draw = Integer.parseInt(databaseArray[0]);
@@ -107,15 +109,17 @@ public class TopTrumpsRESTAPI {
 
         database.uploadGameStats(draw, gameWinner, roundCounter);
 
-        return "draws: " + draw + " winner: " + gameWinner + " number of rounds: " + roundCounter;
-    }
+        String[] playersArray = playersData.split(",");
 
-    @GET
-    @Path("/updateRoundCountsForPlayer/{playerIndex}")
-    public void databaseRoundCountUpdater(@PathParam("playerIndex") int playerNumber) {
+        int[] playersArrayAsInts = new int[playersArray.length];
 
-        database.setRoundWins(playerNumber);
+        for(int i = 0; i <playersArray.length; i++){
+            playersArrayAsInts[i] = Integer.parseInt(playersArray[i]);
+        }
 
+        database.setRoundWinsfromOnlineVersion(playersArrayAsInts);
+
+        return "draws: " + draw + " winner: " + gameWinner + " number of rounds: " + roundCounter + "players array as ints" + Arrays.toString(playersArrayAsInts);
     }
 
 }

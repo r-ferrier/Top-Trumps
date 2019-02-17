@@ -1,5 +1,6 @@
 package online.configuration;
 
+//this class has not been used in this project
 
 import io.dropwizard.Configuration;
 
@@ -20,12 +21,9 @@ public class TopTrumpsJSONConfiguration extends Configuration{
 	/** Get the commandline.Deck File location */
 
 	/** Get the Deck File location */
-
 	public String getDeckFile() {
 		return deckFile;
 	}
-
-
 
 	/** Set the commandline.Deck File location */
 
