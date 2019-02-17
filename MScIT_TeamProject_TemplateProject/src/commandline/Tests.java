@@ -14,8 +14,6 @@ public class TestTopTrump {
 	static Card c;
 	static String catDescription;
 	static int num;
-	private ArrayList<Integer> categoryValues = new ArrayList<Integer>();
-	private ArrayList<Integer> topCardValues = new ArrayList<Integer>();
 	
 	@Before
 	public void setUp() {
