@@ -181,6 +181,7 @@
 
     let listOfPlayers = [];
     let communalPile = [];
+    let playerWinsArray = [0,0,0,0,0];
 
     let countOfRounds = 0;
     let indexOfCurrentPlayer = 0;
@@ -198,7 +199,9 @@
 
     //runs on page load and sets up the game
     function initalize() {
+
         getPlayers();
+
         //creates as many Player objects as required for game, stores them in an array (players) and prints out two
         // lines at top of game announcing turns. Also calls on the rest api to upload a deck, which is then shuffled
         // and dealt to players. changes display depending on whose turn it is and shows human's top card.
@@ -236,6 +239,7 @@
     function beginRound() {
 
         countOfRounds++; //advance the count of rounds by one
+        playerWinsArray[indexOfRoundWinner]++;
 
         //set variables
         let categories = listOfPlayers[indexOfCurrentPlayer].hand[0].categoryValues;
@@ -278,6 +282,7 @@
             document.getElementById("end-game").value = countOfRounds + "." + listOfPlayers[0].name;
         }
         setDatabase(numberOfDraws + "," + listOfPlayers[0].number + "," + countOfRounds);
+        console.log(playerWinsArray.toString());
     }
 
     /**
@@ -289,6 +294,7 @@
 
         while (listOfPlayers.length > 1) { //run loop for as long as more than one player is left in the game
             countOfRounds++; //add one to count of rounds
+            playerWinsArray[indexOfRoundWinner]++;
             let maxNumber = 0;
 
             //find the highest category
@@ -323,6 +329,8 @@
 
             if (!draw) {
                 winningCardCategory = maxNumber;
+            }else{
+                numberOfDraws++;
             }
 
             //update the number of cards in each players hand
@@ -427,10 +435,6 @@
             displayNumberOfCardsLeft();
             findHuman();
 
-            //update the round count for each player if there wasn't a draw
-            if (!draw) {
-                updateRoundCount(listOfPlayers[indexOfRoundWinner].number);
-            }
             //if we still have at least two players and one is human, begin a round
             if (!humanIsGone && listOfPlayers.length > 1) {
                 beginRound();
@@ -473,6 +477,10 @@
             }
         }
         findHuman();
+
+        document.getElementsByClassName("all-cards-played")[0].style.display = "none";
+        document.getElementById("play-card").setAttribute("value", "continue to next round");
+
         getWinner();
     }
 
@@ -493,8 +501,6 @@
             }
 
             //display the correct elements and update the message
-            document.getElementsByClassName("all-cards-played")[0].style.display = "none";
-            document.getElementById("play-card").setAttribute("value", "continue to next round");
 
             document.getElementsByClassName("winning-card")[0].style.display = "block";
             document.getElementById("winners-card").src = cardAddressStart + cardNumberOfRoundWinner + addressEnd;
@@ -506,7 +512,6 @@
         }//if it was a draw . . .
         else {
             //display the draw message and remove card images
-
             document.getElementById("players-turn-text").innerHTML = "This round was a draw!";
             numberOfDraws++; //update the count of numbers of draws
         }
@@ -636,7 +641,7 @@
 
     //helper function to confirm correct in the console that data was sent to database without error
     function confirmDatabaseUpdated(responseText) {
-        console.log("Database successfully updated" + responseText);
+        console.log(responseText);
     }
 
 </script>
@@ -678,18 +683,12 @@
         xhr.send();
     }
 
-    function updateRoundCount(playerNumber) {
-        const xhr = createCORSRequest('GET',
-                "http://localhost:7777/toptrumps/updateRoundCountsForPlayer/" + playerNumber);
-        if (!xhr) {
-            alert("CORS not supported");
-        }
-        xhr.send();
-    }
-
     function setDatabase(databaseArray) {
+
+        let p = playerWinsArray.toString();
+
         const xhr = createCORSRequest('GET',
-                "http://localhost:7777/toptrumps/writeDatabase/" + databaseArray);
+                "http://localhost:7777/toptrumps/writeDatabase/" + databaseArray +"/"+p);
         if (!xhr) {
             alert("CORS not supported");
         }
