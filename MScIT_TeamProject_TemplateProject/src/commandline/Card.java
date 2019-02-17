@@ -37,7 +37,7 @@ public class Card {
 	 * ArrayList categoryValues is initialised with category ints. 
 	 * @param categoryInformation
 	 */
-	private void setCategories(String categoryInformation) {
+	protected void setCategories(String categoryInformation) {
 
 	    String[] categoryInfo = categoryInformation.split(" ");
 
@@ -57,12 +57,12 @@ public class Card {
 	}
 
 	/**
-	 * When it is an AI player's turn findBestCategory() method is called to locate
-	 * the highest positive integer from an ArrayList of category values.
-	 * It returns the position in the list by adding one to the array index. 
+	 * When it is an AI player's turn findBestCategory() method is called to locate.
+	 * the highest positive integer from an array of category values.
+	 * It returns the position in the list by adding one to the array index.
 	 * @return bestCategory
 	 */
-	public int findBestCategory(){
+	protected int findBestCategory(){
 		int max = Collections.max(categoryValues);
 		int bestCategory = categoryValues.indexOf(max) + 1; 
 		return bestCategory;
@@ -96,31 +96,30 @@ public class Card {
 	 * @param categoryToReturn Takes in an integer for each category.
 	 * @return Returns an integer that corresponds to the value in the chosen category.
 	 */
-	public int getAnyCategory(int categoryToReturn) {
-
-		if (categoryToReturn == 1) {
-			return category1;
-		} else if (categoryToReturn == 2) {
-			return category2;
-		} else if (categoryToReturn == 3) {
-			return category3;
-		} else if (categoryToReturn == 4) {
-			return category4;
-		} else {
-			return category5;
-		}
-	}
-
 //	public int getAnyCategory(int categoryToReturn) {
 //
-//		return categoryValues.get(categoryToReturn - 1);
+//		if (categoryToReturn == 1) {
+//			return category1;
+//		} else if (categoryToReturn == 2) {
+//			return category2;
+//		} else if (categoryToReturn == 3) {
+//			return category3;
+//		} else if (categoryToReturn == 4) {
+//			return category4;
+//		} else {
+//			return category5;
 //		}
+//	}
+// Possible new method to replace one above..........
+	public int getAnyCategory(int categoryToReturn) {
+		return categoryValues.get(categoryToReturn - 1);
+		}
 
 	/**
 	 * @return Returns String description ie. name of each sandwich.
 	 */
-		public String getDescription() {
-		return description;
+	public String getDescription() {
+	return description;
 	}
 
 	/**

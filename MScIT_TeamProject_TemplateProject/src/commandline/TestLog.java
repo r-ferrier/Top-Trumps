@@ -16,9 +16,9 @@ public class TestLog {
      * 
      */
     public TestLog(boolean writeLog) {
-        if (!writeLog) {
-            LogManager.getLogManager().reset();
-        } else {
+        LogManager.getLogManager().reset();
+
+        if (writeLog) {
             setUpLogger();
         }
 
@@ -29,7 +29,6 @@ public class TestLog {
      * in console.
      */
     public void setUpLogger() {
-        LogManager.getLogManager().reset(); // comment out to test in console
         SimpleFormatter formatter = new SimpleFormatter();
         try {
             FileHandler fh = new FileHandler("toptrumps.log");
