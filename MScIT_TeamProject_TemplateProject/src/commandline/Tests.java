@@ -35,6 +35,11 @@ public class Tests {
 	/**
 	 * communalPileNotEmpty() checks the communalPile ArrayList can correctly store a Card object.
 	 */
+
+	@Test
+	public void deckHas40Cards(){
+		assertEquals(40, deck.getDeck().size());
+	}
 	@Test
 	public void communalPileNotEmpty() {
 		communalPile.add(c);

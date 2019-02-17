@@ -641,7 +641,7 @@
 
     //helper function to confirm correct in the console that data was sent to database without error
     function confirmDatabaseUpdated(responseText) {
-        alert("Database successfully updated" + responseText);
+        console.log(responseText);
     }
 
 </script>

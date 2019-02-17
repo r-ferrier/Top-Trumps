@@ -128,7 +128,6 @@ public class GamePlay {
 		}
 
 	}
-
 	/**
 	 * Shuffles the ArrayList of players and sets the index of human player.
 	 */
@@ -152,6 +151,7 @@ public class GamePlay {
 		}
 		TestLog.logAllocatedHands(players);
 	}
+
 	/** 
 	 * At the beginning of each round, this method sets where the human is in the ArrayList.
 	 * It announces which player will be choosing the category (ie. player in position 0 for first round). 
@@ -175,6 +175,7 @@ public class GamePlay {
 						
 		}
 		addCardsToCommunalPile(declareRoundWinOrDraw());
+
 
 		removeKnockedOutPlayers();
 	}
