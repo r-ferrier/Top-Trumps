@@ -1,6 +1,8 @@
 package commandline;
 
 import static org.junit.Assert.*;
+
+import java.beans.Transient;
 import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,7 +26,7 @@ public class Tests {
 		c = new Card(catInfo,catDescription, num);
 	}
 	/**
-	 * deckIsNotEmpty() checks the deck ArrayList can correctly store a Card object.
+	 * deckIsNotEmpty() checks the deck ArrayList is populated.
 	 */
 	@Test
 	public void deckIsNotEmpty() {

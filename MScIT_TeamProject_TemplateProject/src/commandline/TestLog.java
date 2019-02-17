@@ -42,7 +42,7 @@ public class TestLog {
 
     /**
      * Log the contents of the complete deck once it has been read in and constructed.
-     * 
+     * @param deck
      */
     public static void logDeck(ArrayList<Card> deck) {
         String allCardsInDeck = "";
@@ -55,7 +55,7 @@ public class TestLog {
 
     /**
      * Log the contents of the complete deck after it has been shuffled.
-     * 
+     * @param deck
      */
     public static void logShuffle(ArrayList<Card> deck) {
         String shuffledDeck = "";
@@ -68,7 +68,8 @@ public class TestLog {
 
     /**
      * Check if player is human or computer and convert to a string
-     * 
+     * @param checkHuman
+     * @return status 
      */
     public static String humanOrComputer(boolean checkHuman) {
         String status = "";
@@ -81,11 +82,11 @@ public class TestLog {
     }
 
     /**
-     * Log the contents of the user's deck and the computer's deck(s) once they have
-     * been allocated. Indicate which the user's deck is and which the
-     * computer's deck(s) is.
-     * 
+     * Log the contents of the user's deck and the computer's deck(s) once they have been allocated. 
+     * Indicate which the user's deck is and which the computer's deck(s) is.
+     * @param players
      */
+
     public static void logAllocatedHands(ArrayList<Player> players) {
         String allocatedHands = "";
         for (Player p : players) {
@@ -104,7 +105,7 @@ public class TestLog {
 
     /**
      * Log the contents of the communal pile when cards are added or removed from it.
-     * 
+     * @param communalPile
      */
     public static void logCommunalPile(ArrayList<Card> communalPile) {
         String contents = "";
@@ -116,9 +117,9 @@ public class TestLog {
     }
 
     /**
-     * Log the contents of the current cards in play (the cards from the top of the
-     * user's deck and the computer's deck(s)).
-     * 
+     * Log the contents of the current cards in play 
+     * (the cards from the top of the user's deck and the computer's deck(s)).
+     * @param players
      */
     public static void logCardsInPlay(ArrayList<Player> players) {
         String cardsInPlay = "";
@@ -131,9 +132,10 @@ public class TestLog {
     }
 
     /**
-     * Log the category selected and corresponding values when a user or computer
-     * selects a category.
-     * 
+     * Log the category selected and corresponding values when a user or computer selects a category.
+     * @param selectedCategory
+     * @param categoryDescription
+     * @param players
      */
     public static void logSelectedCategory(int selectedCategory, String categoryDescription,
             ArrayList<Player> players) {
@@ -152,7 +154,7 @@ public class TestLog {
 
     /**
      * Log the contents of each deck after a round.
-     * 
+     * @param players
      */
     public static void logHandsAfterRound(ArrayList<Player> players) {
         String handsAfterRound = "";
@@ -172,7 +174,7 @@ public class TestLog {
 
     /**
      * Log the winner of the game.
-     * 
+     * @param winner
      */
     public static void logWinner(Player winner) {
         LOGGER.log(Level.INFO, "Game winner: " + winner.getName() + splitter);
