@@ -45,8 +45,8 @@ public class Deck {
                 cardNumber++;
             }
             TestLog.logDeck(deck);
-            shuffleCards();
-            TestLog.logShuffle(deck);
+
+
 
         } catch (IOException fileNotFound){
             fileNotFound.printStackTrace();
@@ -64,8 +64,9 @@ public class Deck {
     /** 
      * shuffleCards() shuffles the Arraylist of cards, making use of the Collections.shuffle() method.
      */
-    private void shuffleCards(){
+    public void shuffleCards(){
         Collections.shuffle(deck);
+        TestLog.logShuffle(deck);
     }
 
     /** 
