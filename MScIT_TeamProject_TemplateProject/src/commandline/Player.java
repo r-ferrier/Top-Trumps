@@ -11,7 +11,7 @@ public class Player {
 	public ArrayList<Card> hand = new ArrayList<>(); // This ArrayList contains the player's card objects
 
 	public boolean knockedOut = false; // When the 'hand' ArrayList contains no cards the player will be knocked out
-	public boolean human; //these are public so that the api will get them back correctly
+	public boolean human; //These are public so that the api will get them back correctly
 
 	/**
  	 * Constructor for Player. 
@@ -66,7 +66,7 @@ public class Player {
 	}
 
 	/**
-	 * Sets knockedOut to true.
+	 * Sets knockedOut to true. 
 	 */
 	public void knockOutPlayer() {
 		knockedOut = true;
@@ -105,7 +105,7 @@ public class Player {
 	
 	/**
 	 * The removeTopCardFromHand() method makes use of the trimToSize() method 
-	 * to resize Array once card is removed from index 0 of 'hand' ArrayList.
+	 * to resize ArrayList once card is removed from index 0 of 'hand' ArrayList.
 	 * When no commandline.Card objects remain in 'hand' ArrayList boolean knockedOut
 	 * is set to true.
 	 */

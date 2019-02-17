@@ -55,13 +55,12 @@ public class GamePlay {
 	}
 
 	public static void main(String[] args) {
-		new TestLog(true); // remove from final version. this needs to be here to prevent log printing in console
 		new GamePlay();
-
+		
 	}
 
 	/**
-	 * Creates the ArrayList for players and then populate it with AI players
+	 * Creates the ArrayList for players and then populates it with AI players
 	 */
 	public void setAIPlayers() {
 		players = new ArrayList<>();
@@ -72,7 +71,7 @@ public class GamePlay {
 	}
 
 	/**
-	 * Creates Deck of cards from file.
+	 * Creates Deck of cards from file. Shuffles Deck.
 	 */
 	public void createDeck() {
 		deck = new Deck();
@@ -131,13 +130,6 @@ public class GamePlay {
 	}
 
 	/**
-	 * NEED TO REVIEW!
-	 */
-	private ArrayList<commandline.Player> dealHands() {
-		return players;
-	}
-
-	/**
 	 * Shuffles the ArrayList of players and sets the index of human player.
 	 */
 	public void chooseFirstPlayer() {
@@ -160,33 +152,31 @@ public class GamePlay {
 		}
 		TestLog.logAllocatedHands(players);
 	}
-
+	/** 
+	 * At the beginning of each round, this method sets where the human is in the ArrayList.
+	 * It announces which player will be choosing the category (ie. player in position 0 for first round). 
+	 * After that the most recent winner will choose the category. It also displays the human player's top card.
+	 * The declareRoundWinOrDraw() method returns a boolean, true for win, false for a draw. This boolean is passed to the
+	 * addCardsToCommunalPile() method which removes every player's top card. If the
+	 * player won the round, the top cards go to the end of that player's 'hand'
+	 * ArrayList, along with any cards currently in the communal pile ArrayList. If
+	 * there was no winner, cards go into the same communal pile .
+	 */
 	private void playRound() {
 
-		setHumanPlayerIndex(); // At beginning of each round, set where the human is in the ArrayList.
-		announceCurrentPlayer(); // Announce which player will be choosing the category (ie. player in position 0
-								 // for first round). After that the most recent winner will choose category.
+		setHumanPlayerIndex(); 
+		announceCurrentPlayer(); 
 
-		showHumanTopCard(); // Print the human player's card.
-		chooseCategory(); // Ask the human to pick a category OR ask the computer to select the highest
-		// category from the card
+		showHumanTopCard(); 
+		chooseCategory(); 
 
 		if (!humanKnockedOut) {
-			playCard(); // Ask the human to press enter to advance the round as long as they are still
-						// in the game.
+			playCard(); 
+						
 		}
 		addCardsToCommunalPile(declareRoundWinOrDraw());
-		/*
-		 * This runs two methods. The declareRoundWinOrDraw() method returns a boolean,
-		 * true for win, false for a draw. This boolean is passed to the
-		 * addCardsToCommunalPile() method which removes every player's top card. If the
-		 * player won the round, the top cards go to the end of that player's 'hand'
-		 * ArrayList, along with any cards currently in the communal pile ArrayList. If
-		 * there was no winner, cards go into the same communal pile .
-		 */
 
 		removeKnockedOutPlayers();
-
 	}
 
 	/**
@@ -282,7 +272,7 @@ public class GamePlay {
 	}
 
 	/**
-	 * Get current player's top card and name. If the current player is human game
+	 * Get current player's top card and name. If the current player is human, the game
 	 * prompts them to choose a category from top card. Takes keyboard input and
 	 * checks for a valid integer. If current player is AI it calls
 	 * findBestCategory() method on topCard.
@@ -333,24 +323,16 @@ public class GamePlay {
 	 */
 	private void playCard() {
 
-		System.out.println("Press enter to play your card, or type q to quit");
-		Scanner scan = new Scanner(System.in);
+        System.out.println("Press enter to play your card, or type q to quit");
+        Scanner scan = new Scanner(System.in);
 
-		String readString = scan.nextLine();
+        String readString = scan.nextLine();
 
-		if (readString == null) {
-			return;
-		} else if (readString.isEmpty()) {
-			return;
-		} else if (readString.charAt(0) == 'q') {
-			System.exit(0);
-			return;
-		}
-
-		return; // It's a void method - I don't think there is anything to return to???
-
+        if(readString!=null && !readString.isEmpty() && readString.charAt(0) == 'q'){
+            System.exit(0);
+        }
 	}
-
+	
 	/**
 	 * If human player is still in the game, print their top card.
 	 */

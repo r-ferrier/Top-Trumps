@@ -18,7 +18,7 @@ public class Deck {
      * If it can do this successfully each line of the file is used
      * to create a Card object. 
      * Once all the objects have been made they are
-     * stored as an Arraylist 'deck' and shuffled.
+     * stored as an ArrayList 'deck'.
      */
     public Deck(){
         readFile();
@@ -28,7 +28,7 @@ public class Deck {
      * The readFile() method processes a file line by line, making use of the readLine() method. 
      * It uses the first line of the file to generate category titles. 
      * It then creates a commandline.Card object 
-     * from every subsequent line. It stores these objects in a 'deck' Arraylist.
+     * from every subsequent line. It stores these objects in a 'deck' ArrayList.
      */
     public void readFile(){
 

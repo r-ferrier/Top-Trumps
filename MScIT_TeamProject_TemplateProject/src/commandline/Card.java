@@ -32,8 +32,7 @@ public class Card {
 	}
 	/**
 	 * Takes in a line of the deck as a String and creates an array of elements.  
-	 * First index of the array becomes the card description.
-	 * Subsequent elements of the array are parsed as integers to set each category value.
+	 * First index of the array becomes the card description. Subsequent elements of the array are parsed as integers to set each category value.
 	 * ArrayList categoryValues is initialised with category ints. 
 	 * @param categoryInformation
 	 */
@@ -57,8 +56,7 @@ public class Card {
 	}
 
 	/**
-	 * When it is an AI player's turn findBestCategory() method is called to locate.
-	 * the highest positive integer from an array of category values.
+	 * When it is an AI player's turn findBestCategory() method is called to locate the highest positive integer from an array of category values.
 	 * It returns the position in the list by adding one to the array index.
 	 * @return bestCategory
 	 */
@@ -91,26 +89,13 @@ public class Card {
 				+ "\n5. " + category5 + "\n";
 		return cardCategories;
 	}
+
 	/**
 	 * 
-	 * @param categoryToReturn Takes in an integer for each category.
-	 * @return Returns an integer that corresponds to the value in the chosen category.
+	 * @param categoryToReturn Takes in an category number (1- 5).
+	 * @return Returns the value of the chosen category.
 	 */
-//	public int getAnyCategory(int categoryToReturn) {
-//
-//		if (categoryToReturn == 1) {
-//			return category1;
-//		} else if (categoryToReturn == 2) {
-//			return category2;
-//		} else if (categoryToReturn == 3) {
-//			return category3;
-//		} else if (categoryToReturn == 4) {
-//			return category4;
-//		} else {
-//			return category5;
-//		}
-//	}
-// Possible new method to replace one above..........
+
 	public int getAnyCategory(int categoryToReturn) {
 		return categoryValues.get(categoryToReturn - 1);
 		}
@@ -124,8 +109,7 @@ public class Card {
 
 	/**
 	 * setCategoryDescriptions() sets the five categories for the deck and stores them as an array of Strings in
-	 * the correct order. The method creates two arrays to remove the first entry, which
-	 * just reads 'description'.
+	 * the correct order. The method creates two arrays to remove the first entry with the card name/description
 	 * @param categoryDescriptions first line of the imported file
 	 */
 	public void setCategoryDescriptions(String categoryDescriptions) {
@@ -137,6 +121,9 @@ public class Card {
 			categories[i] = categoriesIncludingDescription[i + 1];
 		}
 	}
+	/*
+	* GETTERS
+	*/
 
 	public String[] getCategories() {
 		return categories;
