@@ -215,6 +215,7 @@
         findHuman();
         beginRound(); //starts up a round
         displayNumberOfCardsLeft(); //displays the game data in the bottom of the screen
+        console.log(playersFromRestApi);
     }
 
     /**
