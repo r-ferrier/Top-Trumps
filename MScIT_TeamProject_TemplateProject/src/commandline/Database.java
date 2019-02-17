@@ -202,6 +202,10 @@ public class Database {
 		System.out.println("Player: " + playerIndex + " won a round. They have now won " + playerWins[playerIndex] + " rounds total." );
 	}
 
+	public void setRoundWinsfromOnlineVersion(int[] players){
+		this.playerWins = players;
+	}
+
 	public int getRoundWins(int playerIndex) {
 		return playerWins[playerIndex];
 	}
