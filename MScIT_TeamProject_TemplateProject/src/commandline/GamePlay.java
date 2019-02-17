@@ -262,7 +262,7 @@ public class GamePlay {
 		int winner = -1;
 
 		for (Player player : players) {
-			if (player.amIKnockedOut() == false) {
+			if (!player.amIKnockedOut()) {
 				winner = player.getNumber();
 				System.out.println("The winner is " + player.getName());
 
