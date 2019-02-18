@@ -104,8 +104,8 @@ public class GamePlay {
 			try {
 				int gameStats = scanner.nextInt();
 				if (gameStats == 0) {
-					// database.pullGameStats();
-					// database.printGameStats();
+					database.pullGameStats();
+					database.printGameStats();
 				} else if (gameStats == 9) {
 					System.exit(0);
 					break;
@@ -394,7 +394,7 @@ public class GamePlay {
 			return false;
 		} else {
 
-			//database.setRoundWins(winner.getNumber());
+			database.setRoundWins(winner.getNumber());
 
 			currentPlayer = winnerIndex;
 

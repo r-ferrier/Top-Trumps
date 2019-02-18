@@ -127,7 +127,7 @@ public class TopTrumpsRESTAPI {
         int gameWinner = Integer.parseInt(databaseArray[1]);
         int roundCounter = Integer.parseInt(databaseArray[2]);
 
-        database.uploadGameStats(draw, gameWinner, roundCounter);
+        
 
         String[] playersArray = playersData.split(",");
 
@@ -138,6 +138,7 @@ public class TopTrumpsRESTAPI {
         }
 
         database.setRoundWinsfromOnlineVersion(playersArrayAsInts);
+        database.uploadGameStats(draw, gameWinner, roundCounter);
 
         return "draws: " + draw + " winner: " + gameWinner + " number of rounds: " + roundCounter + "players array as ints" + Arrays.toString(playersArrayAsInts);
     }
