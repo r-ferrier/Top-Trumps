@@ -1,24 +1,13 @@
 <html>
 
 <head>
-    <!-- Web page title -->
+
     <title>Top Trumps</title>
 
-    <!-- Import JQuery, as it provides functions you will probably find useful (see https://jquery.com/) -->
     <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-    <!--<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">-->
 
-    <!-- Optional Styling of the Website, for the demo I used Bootstrap (see https://getbootstrap.com/docs/4.0/getting-started/introduction/) -->
-    <!--<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/TREC_IS/bootstrap.min.css">-->
-    <!--<script src="http://dcs.gla.ac.uk/~richardm/vex.combined.min.js"></script>-->
-    <!--<script>vex.defaultOptions.className = 'vex-theme-os';</script>-->
-    <!--&lt;#&ndash;<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex.css"/>&ndash;&gt;-->
-    <!--<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex-theme-os.css"/>-->
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
-
-    <link rel="stylesheet" type="text/css"
+     <link rel="stylesheet" type="text/css"
           href="https://raw.githack.com/r-ferrier/topTrumpsCSS/master/topTrumpsStyle.css">
 
 </head>
@@ -60,6 +49,10 @@
 
     // Method that is called on page load
 
+    /**
+     * on page load just one thing is checked - whether a game has just been played, retuirning a winner. If it has, the winner's
+     * name and number of rounds are printed to the screen.
+     */
     function initialize() {
 
         let n = window.location.search.lastIndexOf("=");
@@ -77,24 +70,6 @@
             document.getElementById("winner-image").style.display = "block";
 
         }
-    }
-
-    function createCORSRequest(method, url) {
-        var xhr = new XMLHttpRequest();
-        if ("withCredentials" in xhr) {
-            // Check if the XMLHttpRequest object has a "withCredentials" property.
-            // "withCredentials" only exists on XMLHTTPRequest2 objects.
-            xhr.open(method, url, true);
-        } else if (typeof XDomainRequest != "undefined") {
-            // Otherwise, check if XDomainRequest.
-            // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-            xhr = new XDomainRequest();
-            xhr.open(method, url);
-        } else {
-            // Otherwise, CORS is not supported by the browser.
-            xhr = null;
-        }
-        return xhr;
     }
 </script>
 </body>

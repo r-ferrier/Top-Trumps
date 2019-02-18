@@ -128,6 +128,7 @@ public class GamePlay {
 		}
 
 	}
+
 	/**
 	 * Shuffles the ArrayList of players and sets the index of human player.
 	 */
