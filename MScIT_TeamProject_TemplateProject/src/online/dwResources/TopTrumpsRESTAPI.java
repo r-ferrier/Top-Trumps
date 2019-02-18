@@ -60,7 +60,7 @@ public class TopTrumpsRESTAPI {
         players.add(new Player("You", true, 0));
 
         for (int i = 0; i < numOfPlayers-1; i++) {
-            players.add(new Player(playerNames[i], false, i));
+            players.add(new Player(playerNames[i], false, i+1));
         }
 
         Collections.shuffle(players);
@@ -107,7 +107,7 @@ public class TopTrumpsRESTAPI {
         int gameWinner = Integer.parseInt(databaseArray[1]);
         int roundCounter = Integer.parseInt(databaseArray[2]);
 
-        database.uploadGameStats(draw, gameWinner, roundCounter);
+        
 
         String[] playersArray = playersData.split(",");
 
@@ -118,6 +118,7 @@ public class TopTrumpsRESTAPI {
         }
 
         database.setRoundWinsfromOnlineVersion(playersArrayAsInts);
+        database.uploadGameStats(draw, gameWinner, roundCounter);
 
         return "draws: " + draw + " winner: " + gameWinner + " number of rounds: " + roundCounter + "players array as ints" + Arrays.toString(playersArrayAsInts);
     }

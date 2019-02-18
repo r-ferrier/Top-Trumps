@@ -239,7 +239,10 @@
     function beginRound() {
 
         countOfRounds++; //advance the count of rounds by one
-        playerWinsArray[indexOfRoundWinner]++;
+        
+        if (!draw){
+        	playerWinsArray[listOfPlayers[indexOfRoundWinner].number]++;
+        	}
 
         //set variables
         let categories = listOfPlayers[indexOfCurrentPlayer].hand[0].categoryValues;
@@ -294,7 +297,9 @@
 
         while (listOfPlayers.length > 1) { //run loop for as long as more than one player is left in the game
             countOfRounds++; //add one to count of rounds
-            playerWinsArray[indexOfRoundWinner]++;
+            if(!draw) {
+           		 playerWinsArray[listOfPlayers[indexOfRoundWinner].number]++;
+           	}
             let maxNumber = 0;
 
             //find the highest category

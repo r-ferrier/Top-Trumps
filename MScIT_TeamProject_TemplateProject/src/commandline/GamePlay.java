@@ -38,7 +38,7 @@ public class GamePlay {
 			drawCounter = 0;
 			createDeck();
 			setAIPlayers();
-			// database = new Database();// Setting up all the elements needed for the game
+			database = new Database();// Setting up all the elements needed for the game
 			gameBegins(); // Prints output and prompts user entry of name
 			chooseFirstPlayer(); // Shuffles player ArrayList so the order of players is random
 			dealCardsToPlayers();
@@ -49,7 +49,7 @@ public class GamePlay {
 				roundCounter++;
 			}
 			gameWinner = decideWinner(); // Once game is over decide winner
-			// database.uploadGameStats(drawCounter, gameWinner, roundCounter);
+			database.uploadGameStats(drawCounter, gameWinner, roundCounter);
 
 		}
 	}
@@ -104,8 +104,8 @@ public class GamePlay {
 			try {
 				int gameStats = scanner.nextInt();
 				if (gameStats == 0) {
-					// database.pullGameStats();
-					// database.printGameStats();
+					database.pullGameStats();
+					database.printGameStats();
 				} else if (gameStats == 9) {
 					System.exit(0);
 					break;
@@ -393,7 +393,7 @@ public class GamePlay {
 			return false;
 		} else {
 
-			//database.setRoundWins(winner.getNumber());
+			database.setRoundWins(winner.getNumber());
 
 			currentPlayer = winnerIndex;
 
