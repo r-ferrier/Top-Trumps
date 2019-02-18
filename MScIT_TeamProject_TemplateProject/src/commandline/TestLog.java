@@ -169,7 +169,7 @@ public class TestLog {
             handsAfterRound += name + "'s Hand:\r\n" + playerHand + "\r\n";
         }
 
-        LOGGER.log(Level.INFO, "Players hands after a round\n\n" + handsAfterRound + splitter);
+        LOGGER.log(Level.INFO, "Players hands after a round\r\n" + handsAfterRound + splitter);
     }
 
     /**
