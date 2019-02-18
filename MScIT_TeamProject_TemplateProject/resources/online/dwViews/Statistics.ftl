@@ -27,7 +27,10 @@
 
         let array;
 
-        // Method that is called on page load
+        /**
+         * on intitialisation a method is called to pull game stats from the database using the restapi. If no results are returned,
+         * the page just displays a message to alert the user to the fact that the database can't be reached.
+         */
         function initialize() {
 
             pullGameStats();
