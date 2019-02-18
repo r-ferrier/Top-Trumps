@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import commandline.*;
 import online.configuration.TopTrumpsJSONConfiguration;
-
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
@@ -47,6 +45,14 @@ public class TopTrumpsRESTAPI {
 
     }
 
+    /**
+     * restapi method to start the game. Uses existing java classes to create and shuffle the deck, create and shuffle
+     * all of the players, and to deal them all a hand of cards. Passes back the arraylist of players to the web application,
+     * ready for the game to begin
+     * @param numOfPlayers - number of players chosen by the user from the selection screen
+     * @return array containing all players and their cards
+     * @throws JsonProcessingException
+     */
     @GET
     @Path("/get-players/{number}")
     public String players(@PathParam("number") int numOfPlayers) throws JsonProcessingException {
@@ -60,7 +66,7 @@ public class TopTrumpsRESTAPI {
         players.add(new Player("You", true, 0));
 
         for (int i = 0; i < numOfPlayers-1; i++) {
-            players.add(new Player(playerNames[i], false, i));
+            players.add(new Player(playerNames[i], false, i+1));
         }
 
         Collections.shuffle(players);
@@ -77,6 +83,12 @@ public class TopTrumpsRESTAPI {
         return oWriter.writeValueAsString(players);
     }
 
+    /**
+     * restapi method to pull stats from the database. Creates a new database object and pulls the most recent data from it.
+     * Sends this back to the web application to be displayed.
+     * @return
+     * @throws JsonProcessingException
+     */
     @GET
     @Path("/pull-game-stats")
     public String pullGameStats() throws JsonProcessingException {
@@ -96,6 +108,14 @@ public class TopTrumpsRESTAPI {
     }
 
 
+    /**
+     * restapi method to send data to the database. Creates a new database object and uses it to connect to the
+     * actual database and send it data from the last game played.
+     * played.
+     * @param databaseData information about the end of the game
+     * @param playersData information about the total number of rounds won by each player
+     * @return
+     */
     @GET
     @Path("/writeDatabase/{databaseArray}/{playersArray}")
     public String databaseWriter(@PathParam("databaseArray") String databaseData, @PathParam("playersArray") String playersData) {

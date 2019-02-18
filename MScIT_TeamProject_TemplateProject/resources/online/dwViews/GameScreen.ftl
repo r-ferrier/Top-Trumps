@@ -215,6 +215,7 @@
         findHuman();
         beginRound(); //starts up a round
         displayNumberOfCardsLeft(); //displays the game data in the bottom of the screen
+        console.log(playersFromRestApi);
     }
 
     /**
@@ -281,7 +282,8 @@
             document.getElementById("players-turn-text").innerHTML = "<br><br>You've won! " + "<br><br>Click the button to return to the homescreen.";
             document.getElementById("end-game").value = countOfRounds + "." + listOfPlayers[0].name;
         }
-        setDatabase(numberOfDraws + "," + listOfPlayers[0].number + "," + countOfRounds);
+        setDatabase(numberOfDraws + "," +
+                listOfPlayers[0].number + "," + countOfRounds);
         console.log(playerWinsArray.toString());
     }
 
@@ -294,7 +296,7 @@
 
         while (listOfPlayers.length > 1) { //run loop for as long as more than one player is left in the game
             countOfRounds++; //add one to count of rounds
-            playerWinsArray[indexOfRoundWinner]++;
+            playerWinsArray[listOfPlayers[indexOfRoundWinner].number]++;
             let maxNumber = 0;
 
             //find the highest category
